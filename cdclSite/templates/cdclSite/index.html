@@ -6,7 +6,6 @@
         
         .topNavBar {
             background-color:#404040;
-
         }
         
         .navbarIcon  {
@@ -27,6 +26,15 @@
             padding-top: 30px;
             padding-left: 30px;
         }
+        
+        .sidebarIcon {
+            width: 64px;
+            height: 64px;
+        }
+        
+        .linksColumn {
+            padding-top: 30px;
+        }
             
         
     </style>
@@ -41,18 +49,80 @@
         <script src="{% static "external/bootstrap/js/bootstrap.min.js" %}"></script>
         <link rel="stylesheet" type="test/css" href="{% static "external/bootstrap/css/bootstrap.css" %}">
         
+        <script src="{% static "js/indexPage.js" %}"></script>
+        
     </head>
 <!--    ALL JAVASCRIPT/JQUERY GOES HERE-->
     <script>
         
         
         $(document).ready(function() {
-            
+            displayLoginModal();
         });
         
     </script>
 
     <body>
+        
+        <!-- LOGIN MODAL -->
+        <div id="loginModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">LOGIN</h4>
+                    </div>
+                    <div class="modal-body">
+                        
+                        <div class="col-sm-12"><br></div>
+                        
+                        <div class="col-sm-12"><h4>Please enter your username and password</h4></div>
+                        
+                        <div class="col-sm-12 row">
+                            <div class="col-sm-6">
+                                <h5>USERNAME:</h5>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="usernameInput">
+                            </div>
+                            <div class="col-sm-12"><br></div>
+                        </div>
+                        <div class="col-sm-12 row">
+                            <div class="col-sm-6">
+                                <h5>PASSWORD:</h5>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="passwordInput">
+                            </div>
+                            <div class="col-sm-12"><br></div>
+                        </div>
+                        
+                        
+                    </div>
+
+                    <div class="modal-footer">
+
+                        <div class="col-sm-12">
+                            <hr>
+                        </div>
+
+                        <div class="col-sm-12 row">
+                            <button type="button" id="login" class="btn btn-primary" data-dismiss="modal">LOGIN</button>
+                        </div>
+
+                    </div>
+                
+                </div>
+
+            </div>
+        </div>
+        
+        
+        
+        
+        
         <!-- TOP NAV BAR -->
         <div class="container-fluid navbarContainer">
             <div class="col-sm-12 topNavBar" align="middle">
@@ -100,6 +170,7 @@
                 <h1 class="homepageTile">CANNOCK &amp; DISTRICT CHESS LEAGUE</h1>
                 <p class="lead homePageDescription">Welcome to the CDCL web page.</p>
             </div>
+            <hr>
         </div>
         
         <div class="container-fluid">
@@ -122,7 +193,10 @@
                 </div>
 
                 <div class="col-sm-4 linksColumn">
-                    <h4>LINKS</h4>
+                    <div class="login" align="middle">
+                        <img id="loginIcon" class="sidebarIcon" src="{% static "images/loginIcon.png" %}">
+                        <p>Login</p>
+                    </div>
                 </div>
                 
             </div>

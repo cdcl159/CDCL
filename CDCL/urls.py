@@ -18,6 +18,6 @@ from django.contrib import admin
 import cdclSite
 
 urlpatterns = [
+	url(r'^', include('cdclSite.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^cdclSite/', include('cdclSite.urls')),
 ]
