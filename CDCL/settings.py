@@ -52,7 +52,9 @@ MIDDLEWARE_CLASSES = [
 ]
 
 ROOT_URLCONF = 'CDCL.urls'
+TEMPLATE_PATH = os.path.join(BASE_DIR, "CDCL/templates/")
 
+TEMPLATE_DIRS = (TEMPLATE_PATH,)
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
