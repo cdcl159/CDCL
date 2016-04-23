@@ -54,9 +54,6 @@ MIDDLEWARE_CLASSES = [
 ROOT_URLCONF = 'CDCL.urls'
 TEMPLATE_PATH = os.path.join(BASE_DIR, "CDCL/templates/")
 
-print '---------------------'
-print TEMPLATE_PATH
-print '---------------------'
 TEMPLATE_DIRS = (TEMPLATE_PATH,)
 TEMPLATES = [
     {
