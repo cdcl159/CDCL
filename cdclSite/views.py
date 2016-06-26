@@ -102,7 +102,7 @@ def clubManagement(request):
 						clubNight = form_clubNight,
 						clubVenue = form_clubVenue,
 						clubAddress = form_clubAddress)
-					
+				
 				except Exception, e:
 					
 					pageMessage = {"type": "ERROR", "message": "The new club could not be added to the database."}
