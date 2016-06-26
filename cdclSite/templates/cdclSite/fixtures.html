@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<!-- ADD STYLING HERE-->
+    <style>
+        
+        .menuContainer {
+            overflow-y: auto;
+            background-color: #404040;
+        }
+        
+        .fixtureTableContainer {
+            overflow-y: auto;
+            max-height: 400px;
+        }
+        
+        .menuIcon {
+            padding-bottom: 10px;
+        }
+        
+        .menuElement {
+            padding-bottom: 25px;
+        }
+        
+        .menuText {
+            color: #4cc3d9;
+        }
+        
+        .fixture_PENDING {
+            background-color: #4cc3d9;
+        }
+        
+        .fixture_PLAYED {
+            background-color: #ffc65d;
+        }
+        
+        .fixture_CONTESTED {
+            background-color: #f16745;
+        }
+        
+        .fixture_APPROVED {
+            background-color: #7bc8a4;
+        }
+
+    </style>
+    
+<!--    INCLUDE STATIC FILES HERE-->
+    <head>
+        <title>CDCL</title>
+        
+        <meta chatset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        
+        <!-- Latest compiled and minified CSS -->
+        <link
+              rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+              integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+              crossorigin="anonymous">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous">
+        </script>
+        
+        <link rel="stylesheet" href="{% static 'css/common.css' %}">
+        <script src="{% static 'js/common.js' %}"></script>
+        <script src="{% static 'js/fixtures.js' %}"></script>
+        
+    </head>
+<!--    ALL JAVASCRIPT/JQUERY GOES HERE-->
+    <script>
+        
+        
+        $(document).ready(function() {
+            
+            var pageMessage = {{pageMessage|safe}};
+            var players = {{players|safe}};
+                          
+            handlePageMessage(pageMessage);
+
+        
+            displayUploadFixturesModal();
+            displayAddFixturesModal();
+            menuHover();
+            selectNewFixtureEvent();
+        
+            handleFileUpload();
+            submitFixureForm();
+            selectClubForTeam(players);
+            selectClubCaptain();
+        
+            submitTeams();
+        });
+        
+    </script>
+
+    <body>
+        
+         {% block content %}
+            <form id="fixtureManagementForm" method="post" enctype="multipart/form-data" action=".">
+            {% csrf_token %}
+            {% for field in fixtureManagementForm %}
+            {{ field.as_hidden }}
+            {% endfor %}
+        {% endblock %}
+        
+<!--        PAGE MESSAGE MODAL-->
+        
+        <div id="messageModal" class="modal fade messageModal" role="dialog">
+        
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    
+                    <div clas="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" id="messageTitle"></h4>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <div class="col-sm-12">
+                            <h5 id="messageBody"></h5>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+        
+        <div id="fixturesUploadModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title fixturesUploadTitle">UPLOAD NEW FIXTURES</h4>
+                    </div>
+                    <div class="modal-body">
+                        
+                        <div class="col-sm-12"><br></div>
+                        
+                        <div class="uploadFixturesContainer">
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <span id="browseButton" class="btn btn-primary">BROWSE</span>
+                                        <input id="fixtureFileUpload" name="fixtureFile" type="file">
+                                    </span>
+                                    <span id="fileText" class="form-control"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="modal-footer">
+
+                        <div class="col-sm-12">
+                            <hr>
+                        </div>
+
+                        <div class="col-sm-12 row">
+                            <button type="button" id="submitFixtures" class="btn btn-primary" data-dismiss="modal">Submit Fixtures</button>
+                        </div>
+
+                    </div>
+                
+                </div>
+
+            </div>
+        </div>
+                
+        <div id="addFixtureModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title addFixtureTitle">ADD NEW FIXTURE</h4>
+                    </div>
+                    <div class="modal-body">
+                        
+                        <div class="col-sm-12"><br></div>
+                        
+                        <div class="col-sm-12">
+                            <div class="col-sm-6">
+                                <h4>EVENT:</h4>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="dropdown">
+                                    <button class="btn btn-primary newSelectedEventDropdown dropdown-toggle" type="button" data-toggle="dropdown">Select Event
+                                    <span class="caret"></span></button>
+                                    <ul class="dropdown-menu">
+                                        {% for e in events %}
+                                            <li class="newFixtureEventOption" id="{{e.id}}">{{e.name}}</li>
+                                        {% endfor %}
+                                    
+                                    </ul>
+                                </div>
+                            </div>
+                                 
+                        </div>
+                        
+                        
+                    </div>
+
+                    <div class="modal-footer">
+
+                        <div class="col-sm-12">
+                            <hr>
+                        </div>
+
+                        <div class="col-sm-12 row">
+                            <button type="button" id="submitFixture" class="btn btn-primary" data-dismiss="modal">Submit Fixtures</button>
+                        </div>
+
+                    </div>
+                
+                </div>
+
+            </div>
+        </div>
+              
+        
+        <!-- TOP NAV BAR -->
+        <div class="container-fluid navbarContainer row">
+            <div class="col-sm-12 topNavBar" align="middle">
+                <div class="col-sm-2 home">
+                    <br>
+                    <img id="aboutIcon" class="navbarIcon" src="{% static 'images/homeIcon.png' %}">
+                    <p class="navbarText">Home</p>
+                </div>
+                <div class="col-sm-2 about">
+                    <br>
+                    <img id="aboutIcon" class="navbarIcon" src="{% static 'images/aboutIcon.png' %}">
+                    <p class="navbarText">About</p>
+                </div>
+                <div class="col-sm-2 officers">
+                    
+                    <br>
+                    <img id="officerIcon" class="navbarIcon" src="{% static 'images/officerIcon.png' %}">
+                    <p class="navbarText">Officers</p>
+                    
+                </div>
+                <div class="col-sm-2 rules">
+                    <br>
+                    <img id="rulesIcon" class="navbarIcon" src="{% static 'images/rulesIcon.png' %}">
+                    <p class="navbarText">Rules &amp; Constitution</p>
+                </div>
+                <div class="col-sm-2 clubs">
+                    <br>
+                    <img id="clubIcon" class="navbarIcon" src="{% static 'images/clubIcon.png' %}">
+                    <p class="navbarText">Clubs</p>
+                </div>
+                <div class="col-sm-2 results">
+                    <br>
+                    <img id="resultsIcon" class="navbarIcon" src="{% static 'images/resultsIcon.png' %}">
+                    <p class="navbarText">Results</p>
+                </div>
+                 
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="container-fluid dashContainer row">
+
+            <div class="col-sm-2 menuContainer" align="middle">
+                <h2 class="menuText">MENU</h2>
+                <br>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="menuElement" id="postAnnouncementElement" align="middle">
+                                <img id="announcementIcon" class="menuIcon" src="{% static 'images/announcementIcon.png' %}">
+                                <p class="menuText">Announcements</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="menuElement" id="contactElement" align="middle">
+                                <img id="sendMailIcon" class="menuIcon" src="{% static 'images/sendMailIcon.png' %}">
+                                <p class="menuText">Mailing</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="menuElement" id="clubManagement" align="middle">
+                                 <a href="{% url 'clubManagement' %}">
+                                     <img id="clubManagementIcon" class="menuIcon" src="{% static 'images/clubManagementIcon.png' %}">
+                                </a>
+                                <p class="menuText">Clubs</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="menuElement" id="players" align="middle">
+                                <img id="playersIcon" class="menuIcon" src="{% static 'images/playersIcon.png' %}">
+                                <p class="menuText">Players</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="menuElement" id="fixtures" align="middle">
+                                <img id="fixuresIcon" class="menuIcon" src="{% static 'images/fixtures.png' %}">
+                                <p class="menuText">Fixtures</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="menuElement" id="addResults" align="middle">
+                                <img id="addResultsIcon" class="menuIcon" src="{% static 'images/resultsIcon.png' %}">
+                                <p class="menuText">Submit Results</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="menuElement" id="userDetails" align="middle">
+                                <img id="userDetailsIcon" class="menuIcon" src="{% static 'images/userDetailsIcon.png' %}">
+                                <p class="menuText">User Details</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="menuElement" id="toolSettings" align="middle">
+                                <img id="settingsIcon" class="menuIcon" src="{% static 'images/settingsIcon.png' %}">
+                                <p class="menuText">User Management &amp; Tool Settings</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="menuElement" id="forum" align="middle">
+                                <img id="forumIcon" class="menuIcon" src="{% static 'images/forumIcon.png' %}">
+                                <p class="menuText">Forum</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="menuElement" id="finance" align="middle">
+                                <img id="financeIcon" class="menuIcon" src="{% static 'images/financeIcon.png' %}">
+                                <p class="menuText">Finance</p>
+                            </td>
+                        </tr>
+                    
+                    </tbody>
+                </table>
+                
+            </div>
+            
+            <div class="container-fluid col-sm-10 mainContainer">
+                <div class="col-sm-12 row">
+                    <div class="col-sm-11 userHeader">
+                        <h3>Fixture Management</h3>
+                    </div>
+                    <div class="col-sm-1">
+                        <button type="button" id="openUpload" class="btn btn-primary" data-dismiss="modal">Upload Fixtures</button>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <hr>
+                </div>
+                <div class="col-sm-12">
+                    <h4>Fixtures:</h4>
+                </div>
+                <div class="col-sm-12">
+                    <div class="col-sm-12 fixtureTableContainer">
+                        <table class="table fixtureTable">
+                                
+                            <thead>
+                                <tr>
+                                    <td>
+                                        <h4>Event</h4>
+                                    </td>
+                                    <td>
+                                        <h4>Season</h4>
+                                    </td>
+                                    <td>
+                                        <h4>Date</h4>
+                                    </td>
+                                    <td>
+                                        <h4>Home Team</h4>
+                                    </td>
+                                    <td>
+                                        <h4>Away Team</h4>
+                                    </td>
+                                    <td>
+                                        <h4>Home Submission</h4>
+                                    </td>
+                                    <td>
+                                        <h4>Away Submission</h4>
+                                    </td>
+                                    <td>
+                                        <h4>Edit</h4>
+                                    </td>
+                                    <td>
+                                        <h4>Status</h4>
+                                    </td>
+                                    
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tbody>
+                                    {% for f in fixtures %}
+                                        <tr class="fixture_{{f.status}}" i={{f.id}}>
+                                            <td class="fixtureTableCell">
+                                                <h5>{{f.event.name}}</h5>
+                                            </td>
+                                            <td class="fixtureTableCell">
+                                                <h5>{{f.season.name}}</h5>
+                                            </td>
+                                            <td class="fixtureTableCell">
+                                                <h5>{{f.date}}</h5>
+                                            </td>
+                                            <td class="fixtureTableCell">
+                                                <h5>{{f.homeTeam.name}}</h5>
+                                            </td>
+                                            <td class="fixtureTableCell">
+                                                <h5>{{f.awayTeam.name}}</h5>
+                                            </td>
+                                            <td class="fixtureTableCell">
+                                                {% if f.homeSubmission == None %}
+                                                    <img class="pendingSubmissionIcon" src="{% static 'images/submissionPending.png' %}" style="width:42px;height:42px;">
+                                                {% else %}
+                                                    <img class="receivedSubmissionIcon" src="{% static 'images/submissionReceived.png' %}" style="width:42px;height:42px;">
+                                                {% endif %}
+                                            </td>
+                                            <td class="fixtureTableCell">
+                                                {% if f.awaySubmission == None %}
+                                                    <img class="pendingSubmissionIcon" src="{% static 'images/submissionPending.png' %}" style="width:42px;height:42px;">
+                                                {% else %}
+                                                    <img class="receivedSubmissionIcon" src="{% static 'images/submissionReceived.png' %}" style="width:42px;height:42px;">
+                                                {% endif %}
+                                            </td>
+                                            <td class="fixtureTableCell">
+                                                <h5>Edit</h5>
+                                            </td>
+                                            <td class="fixtureTableCell">
+                                                <h5>{{f.status}}</h5>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    <tr class="fixtureRow" id="newFixtureRow" align="middle">
+                                        <td colspan="9">
+                                            <img id="addFixtureIcon" class="toolIcon" src="{% static 'images/addNew.png' %}">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <hr>
+                </div>
+                <div class="col-sm-12">
+                    <h4>Teams:</h4>
+                </div>
+                <div class="col-sm-12">
+                    <table class="table teamTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Club</th>
+                                <th>Captain</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for t in teams %}
+                                <tr class="teamRow" id="{{t.id}}">
+                                    <td class="teamName">{{t.name}}</td>
+                                    <td class="clubName">
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary teamClubDropdown dropdown-toggle {{t.id}}_club" type="button" data-toggle="dropdown" value="{{t.club.id}}">{{t.club.name}}
+                                            <span class="caret"></span></button>
+                                            <ul class="dropdown-menu teamClubDropdownMenu">
+                                            {% for c in clubs %}
+                                            <li class="teamClubOption" id="{{c.id}}">{{c.name}}</li>
+                                            {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    <td class="captainName">
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary teamCaptainDropdown dropdown-toggle {{t.id}}_cap" type="button" data-toggle="dropdown" value="{{t.captain.id}}">{{t.captain.forenames}}, {{t.captain.surname}}
+                                            <span class="caret"></span></button>
+                                            <ul class="dropdown-menu teamCaptainDropdownMenu">
+                                            
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-sm-12" align="right">
+                    <button type="button" id="submitTeams" class="btn btn-primary">Submit Teams</button>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="container-fluid footer">
+            <img id="logoutIcon" class="logoutIcon" src="{% static 'images/logoutIcon.png' %}">
+        </div>
+        
+        
+    </body>
+</html>

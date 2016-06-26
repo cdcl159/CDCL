@@ -4,20 +4,6 @@
 <!-- ADD STYLING HERE-->
     <style>
         
-        .topNavBar {
-            background-color:#404040;
-            
-        }
-        
-        .navbarIcon  {
-            width: 64px;
-            height: 64px;
-        }
-        
-        .navbarText {
-            color: #4cc3d9;
-        }
-        
         .mainContent {
             padding-top: 30px;
             padding-left: 30px;
@@ -36,7 +22,7 @@
         .linksColumn {
             padding-top: 30px;
         }
-            
+        
         
     </style>
     
@@ -46,11 +32,25 @@
         
         <meta chatset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="{% static "external/jquery/jquery112.js" %}"></script>
-        <script src="{% static "external/bootstrap/js/bootstrap.min.js" %}"></script>
-        <link rel="stylesheet" type="test/css" href="{% static "external/bootstrap/css/bootstrap.css" %}">
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
         
-        <script src="{% static "js/indexPage.js" %}"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link
+              rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+              integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+              crossorigin="anonymous">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous">
+        </script>
+        
+        <link rel="stylesheet" href="{% static 'css/common.css' %}">
+        <script src="{% static 'js/indexPage.js' %}"></script>
+        <script src="{% static 'js/common.js' %}"></script>
         
     </head>
 <!--    ALL JAVASCRIPT/JQUERY GOES HERE-->
@@ -58,12 +58,62 @@
         
         
         $(document).ready(function() {
+
+            var pageMessage = {{pageMessage|safe}};
+            console.log(pageMessage);
+
+            handlePageMessage(pageMessage);
+
             displayLoginModal();
+
+            submitLoginForm();
+            
         });
         
     </script>
 
     <body>
+        
+        {% block content %}
+        <form id="loginForm" method="post" action=".">
+            {% csrf_token %}
+            {% for field in loginForm %}
+            {{ field.as_hidden }}
+            {% endfor %}
+        {% endblock %}
+        
+        
+        
+        
+ <!-- MESSAGE MODAL -->
+        <div id="messageModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header messageHeader">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" id="messageTitle"></h4>
+                    </div>
+                    <div class="modal-body">
+                        
+                        <div class="col-sm-12"><br></div>
+                        
+                        <div class="col-sm-12">
+                            <h5 id="messageBody"></h5>
+                        </div>
+                        
+                    </div>
+
+                    <div class="modal-footer">
+                        <br>
+                    </div>
+                
+                </div>
+
+            </div>
+        </div>
+        
         
         <!-- LOGIN MODAL -->
         <div id="loginModal" class="modal fade" role="dialog">
@@ -110,7 +160,7 @@
                         </div>
 
                         <div class="col-sm-12 row">
-                            <button type="button" id="login" class="btn btn-primary" data-dismiss="modal">LOGIN</button>
+                            <button type="button" id="submitLoginForm" class="btn btn-primary" data-dismiss="modal">LOGIN</button>
                         </div>
 
                     </div>

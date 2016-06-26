@@ -1,0 +1,53 @@
+
+.topNavBar {
+    background-color: #404040;
+}
+
+.navbarIcon  {
+    width: 64px;
+    height: 64px;
+}
+
+.logoutIcon {
+    
+    width: 64px;
+    height: 64px;
+    right: 0;
+}
+
+.navbarText {
+    color: #4cc3d9;
+}
+
+.modalWARNING {
+    background: #ffc65d;
+}
+
+.modalERROR {
+    background: #f16745;
+}
+
+.modalSUCCESS {
+    background: #7bc8a4;
+}
+
+
+.footer {
+    text-align: right;
+    position: fixed;
+    width:100%;
+    bottom:0;
+
+}
+
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+}
+
+.toolIcon {
+    width: 32px;
+    height: 32px;
+}

@@ -3,4 +3,5 @@ __pycache__
 cdclenv
 db.sqlite3
 /static
+/uploads
 .DS_Store
