@@ -128,7 +128,7 @@ def clubManagement(request):
 
 					selectedClub.save()
 
-				except Exception, e:
+				except Exception as e:
 
 					pageMessage = {"type": "ERROR", "message": "The club details could not be changed in the database."}
 
@@ -208,7 +208,7 @@ def playerManagement(request):
 
 					selectedPlayer = Player.objects.get(id=form_playerID)
 
-				except Exception, e:
+				except Exception as e:
 
 					pageMessage = {"type": "ERROR", "message": "The selected player could not be found in the database."}
 
@@ -224,7 +224,7 @@ def playerManagement(request):
 
 						selectedPlayer.save()
 
-					except Exception, e:
+					except Exception as e:
 
 						pageMessage = {"type": "ERROR", "message": "The changes could not be made to the selected player."}
 
@@ -245,7 +245,7 @@ def playerManagement(request):
 						club = Club.objects.get(name=form_playerClub)
 					)
 
-				except Exception, e:
+				except Exception as e:
 
 					pageMessage = {"type": "ERROR", "message": "The new player could not be made with these details."}
 
@@ -295,7 +295,7 @@ def playerManagement(request):
 
 									print "PLAYER EXISTS"
 
-							except Exception, e:
+							except Exception as e:
 
 								print "ERROR: " + str(e)
 
@@ -310,7 +310,7 @@ def playerManagement(request):
 								break
 
 
-				except Exception, e:
+				except Exception as e:
 					pageMessage = {
 						"type": "ERROR",
 						"message": "The players could not be added: " + str(e)
@@ -385,7 +385,7 @@ def fixtures(request):
 
 						team.save()
 
-				except Exception, e:
+				except Exception as e:
 
 					pageMessage = {
 						"type": "ERROR",
@@ -447,7 +447,7 @@ def fixtures(request):
 
 						newFixture.save()
 
-				except Exception, e:
+				except Exception as e:
 					pageMessage = {
 						"type": "ERROR",
 						"message": "The fixtures could not be added: " + str(e)
