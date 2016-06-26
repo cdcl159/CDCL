@@ -101,8 +101,7 @@ def clubManagement(request):
 						clubWebsite = form_clubWebsite,
 						clubNight = form_clubNight,
 						clubVenue = form_clubVenue,
-						clubAddress = form_clubAddress
-					)
+						clubAddress = form_clubAddress)
 					
 				except Exception, e:
 					
