@@ -9,7 +9,6 @@ from django.http import HttpResponseRedirect, HttpResponse
 from cdclSite.forms import *
 from cdclSite.models import *
 import datetime
-import pprint
 import time
 import json
 import csv
@@ -269,8 +268,6 @@ def playerManagement(request):
 
 					for row in playersData[1:]:
 
-						print "row:", row
-
 						attempts = 0
 
 						while attempts < 5:
@@ -293,11 +290,9 @@ def playerManagement(request):
 
 								else:
 
-									print "PLAYER EXISTS"
+									pass
 
 							except Exception as e:
-
-								print "ERROR: " + str(e)
 
 								time.sleep(1)
 
@@ -327,7 +322,7 @@ def playerManagement(request):
 				"type": "ERROR",
 				"message": "Bad Form"
 			}
-			print playerManagementForm.errors
+			
 
 	else:
 
@@ -370,8 +365,6 @@ def fixtures(request):
 			if form_teamMode:
 
 				teamData = json.loads(form_teamData)
-
-				pprint.pprint(teamData)
 
 				try:
 
@@ -466,8 +459,6 @@ def fixtures(request):
 				"type": "ERROR",
 				"message": "Bad Form"
 			}
-
-			print fixtureManagementForm.errors
 
 	else:
 
