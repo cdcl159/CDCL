@@ -90,26 +90,26 @@ def clubManagement(request):
 
 			# use data to create a new club
 			if form_addMode:
+				pass
+				# try:
 
-				try:
-
-					newClub = Club.objects.create(
-						name = form_name,
-						contactName = form_contactName,
-						contactNumber = form_contactNumber,
-						contactEmail = form_contactEmail,
-						clubWebsite = form_clubWebsite,
-						clubNight = form_clubNight,
-						clubVenue = form_clubVenue,
-						clubAddress = form_clubAddress)
+				# 	newClub = Club.objects.create(
+				# 		name = form_name,
+				# 		contactName = form_contactName,
+				# 		contactNumber = form_contactNumber,
+				# 		contactEmail = form_contactEmail,
+				# 		clubWebsite = form_clubWebsite,
+				# 		clubNight = form_clubNight,
+				# 		clubVenue = form_clubVenue,
+				# 		clubAddress = form_clubAddress)
 				
-				except Exception, e:
+				# except Exception, e:
 					
-					pageMessage = {"type": "ERROR", "message": "The new club could not be added to the database."}
+				# 	pageMessage = {"type": "ERROR", "message": "The new club could not be added to the database."}
 
-				else:
+				# else:
 					
-					pageMessage = {"type": "SUCCESS", "message": "The new club was added to the database successfully."}
+				# 	pageMessage = {"type": "SUCCESS", "message": "The new club was added to the database successfully."}
 
 			if form_editMode:
 
