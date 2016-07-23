@@ -31,6 +31,7 @@ function clearFields() {
     });
     
 }
+
 function addClub() {
     $("#addNewClub").click(function() {
 
@@ -49,6 +50,7 @@ function addClub() {
 
     });
 }
+
 function editClub() {
 
     $("#submitClubChanges").click(function() {
