@@ -420,8 +420,12 @@ def fixtures(request):
 				try:
 					newFixtureFile = FixtureFile(fixtureFile=request.FILES['fixtureFile']).save()
 
-					with open(("uploads/"+request.FILES["fixtureFile"].name).replace(" ", "_")) as csvFile:
-						reader = csv.reader(csvFile)
+					# with open(("uploads/"+request.FILES["fixtureFile"].name).replace(" ", "_")) as csvFile:
+					# 	reader = csv.reader(csvFile)
+					# 	fixturesData = [row for row in reader]
+					csvFile = newFixtureFile.fixtureFile
+					with open(csvFile) as csvF:
+						reader = csv.reader(csvF)
 						fixturesData = [row for row in reader]
 					
 					for row in fixturesData[1:]:
