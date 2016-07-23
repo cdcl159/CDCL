@@ -423,7 +423,7 @@ def fixtures(request):
 					# with open(("uploads/"+request.FILES["fixtureFile"].name).replace(" ", "_")) as csvFile:
 					# 	reader = csv.reader(csvFile)
 					# 	fixturesData = [row for row in reader]
-					csvFile = newFixtureFile.fixtureFile
+					csvFile = newFixtureFile
 					with open(csvFile) as csvF:
 						reader = csv.reader(csvF)
 						fixturesData = [row for row in reader]
