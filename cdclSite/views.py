@@ -119,7 +119,7 @@ def clubManagement(request):
 				
 				except Exception as e:
 					
-					pageMessage = {"type": "ERROR", "message": "The new club could not be added to the database."}
+					pageMessage = {"type": "ERROR", "message": "The new club could not be added to the database: " + str(e)}
 
 				else:
 					
@@ -143,14 +143,13 @@ def clubManagement(request):
 
 				except Exception as e:
 
-					pageMessage = {"type": "ERROR", "message": "The club details could not be changed in the database."}
+					pageMessage = {"type": "ERROR", "message": "The club details could not be changed in the database:" + str(e)}
 
 				else:
 
 					pageMessage = {"type": "SUCCESS", "message": "The club details were changed in the database successfully."}
 
 		else:
-			
 			
 			pageMessage = {
 				"type": "ERROR",
