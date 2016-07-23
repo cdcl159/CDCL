@@ -16,7 +16,7 @@ function populateClubTable(clubData) {
         
         var newRowHTML = "<tr class='clubRow' id='" + x + "'><td>" + currentClub.name + "</td></tr>"
         
-        $('.clubTable tr:last').before(newRowHTML);
+        $('.clubTable').append(newRowHTML);
         
     }
     
@@ -91,10 +91,10 @@ function selectClub(clubdata) {
             $("#existingContactName").val(clubInfo["contactName"]);
             $("#existingContactNumber").val(clubInfo["contactNumber"]);
             $("#existingContactEmail").val(clubInfo["contactEmail"]);
-            $("#existingClubWebsite").val(clubInfo["clubWebsite"]);
-            $("#existingClubNight").val(clubInfo["clubNight"]);
-            $("#existingClubVenue").val(clubInfo["clubVenue"]);
-            $("#existingClubAddress").val(clubInfo["clubAddress"]);
+            $("#existingClubWebsite").val(clubInfo["website"]);
+            $("#existingClubNight").val(clubInfo["night"]);
+            $("#existingClubVenue").val(clubInfo["venue"]);
+            $("#existingClubAddress").val(clubInfo["address"]);
                         
         }
         
