@@ -55,13 +55,12 @@ def index(request):
 
 	return render(request, "cdclSite/index.html", {"loginForm": loginForm, "pageMessage": json.dumps(pageMessage)})
 
-
+@login_required(login_url='index')
 def dashboard(request):
 
 	pageMessage = {"type": "BLANK", "message": "NOTHING"}
 
 	return render(request, "cdclSite/dashboard.html", {"pageMessage": json.dumps(pageMessage)})
-
 
 def aboutPage(request):
 
@@ -80,7 +79,7 @@ def clubsPage(request):
 
 	return render(request, "cdclSite/clubs.html", {"clubs": Club.objects.all()})
 
-
+@login_required(login_url='index')
 def clubManagement(request):
 
 	if request.method == "POST":
@@ -187,7 +186,7 @@ def clubManagement(request):
 			"clubData": json.dumps(clubData)
 		})
 
-
+@login_required(login_url='index')
 def playerManagement(request):
 
 
@@ -361,7 +360,7 @@ def playerManagement(request):
 	return render(request, "cdclSite/playerManagement.html", {"pageMessage": json.dumps(pageMessage), "players": json.dumps(playerData), "playerManagementForm": playerManagementForm})
 
 
-
+@login_required(login_url='index')
 def fixtures(request):
 
 	if request.method == "POST":
@@ -505,7 +504,7 @@ def fixtures(request):
 		})
 
 
-
+@login_required(login_url='index')
 def resultsSubmission(request):
 
 	pageMessage = {"type": "BLANK", "message": "NOTHING"}
@@ -541,7 +540,7 @@ def resultsSubmission(request):
 			"playerData": json.dumps(playerData)
 		})
 
-
+@login_required(login_url='index')
 def userDetails(request):
 	
 	pageMessage = {"type": "BLANK", "message": "NOTHING"}
