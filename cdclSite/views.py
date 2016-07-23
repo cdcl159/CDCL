@@ -111,10 +111,10 @@ def clubManagement(request):
 						contactName = form_contactName,
 						contactNumber = form_contactNumber,
 						contactEmail = form_contactEmail,
-						clubWebsite = form_clubWebsite,
-						clubNight = form_clubNight,
-						clubVenue = form_clubVenue,
-						clubAddress = form_clubAddress
+						website = form_clubWebsite,
+						night = form_clubNight,
+						venue = form_clubVenue,
+						address = form_clubAddress
 					)
 				
 				except Exception as e:
@@ -171,10 +171,10 @@ def clubManagement(request):
 			"contactName": club.contactName,
 			"contactNumber": club.contactNumber,
 			"contactEmail": club.contactEmail,
-			"clubWebsite": club.website,
-			"clubNight": club.night,
-			"clubVenue": club.venue,
-			"clubAddress": club.address
+			"website": club.website,
+			"night": club.night,
+			"venue": club.venue,
+			"address": club.address
 		}
 	
 	return render(request,
