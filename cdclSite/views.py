@@ -58,12 +58,27 @@ def index(request):
 
 def dashboard(request):
 
-
 	pageMessage = {"type": "BLANK", "message": "NOTHING"}
-
 
 	return render(request, "cdclSite/dashboard.html", {"pageMessage": json.dumps(pageMessage)})
 
+
+def aboutPage(request):
+
+	return render(request, "cdclSite/about.html")
+
+def constitutionPage(request):
+
+	return render(request, "cdclSite/constitution.html")
+
+def officersPage(request):
+
+	return render(request, "cdclSite/officers.html")
+
+
+def clubsPage(request):
+
+	return render(request, "cdclSite/clubs.html", {"clubs": Club.objects.all()})
 
 
 def clubManagement(request):
@@ -100,7 +115,8 @@ def clubManagement(request):
 						clubWebsite = form_clubWebsite,
 						clubNight = form_clubNight,
 						clubVenue = form_clubVenue,
-						clubAddress = form_clubAddress)
+						clubAddress = form_clubAddress
+					)
 				
 				except Exception as e:
 					
@@ -114,16 +130,15 @@ def clubManagement(request):
 
 				try:
 
-
-					selectedClub = Club.objects.get(id=int(form_selectedClubID))
+					selectedClub = Club.objects.get(id = int(form_selectedClubID))
 					selectedClub.name = form_name
 					selectedClub.contactName = form_contactName
 					selectedClub.contactNumber = form_contactNumber
 					selectedClub.contactEmail = form_contactEmail
-					selectedClub.clubWebsite = form_clubWebsite
-					selectedClub.clubNight = form_clubNight
-					selectedClub.clubVenue = form_clubVenue
-					selectedClub.clubAddress = form_clubAddress
+					selectedClub.website = form_clubWebsite
+					selectedClub.night = form_clubNight
+					selectedClub.venue = form_clubVenue
+					selectedClub.address = form_clubAddress
 
 					selectedClub.save()
 
@@ -158,10 +173,10 @@ def clubManagement(request):
 			"contactName": club.contactName,
 			"contactNumber": club.contactNumber,
 			"contactEmail": club.contactEmail,
-			"clubWebsite": club.clubWebsite,
-			"clubNight": club.clubNight,
-			"clubVenue": club.clubVenue,
-			"clubAddress": club.clubAddress
+			"clubWebsite": club.website,
+			"clubNight": club.night,
+			"clubVenue": club.venue,
+			"clubAddress": club.address
 		}
 	
 	return render(request,

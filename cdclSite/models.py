@@ -4,8 +4,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-
-
 class PlayerFile(models.Model):
 	playerFile = models.FileField(upload_to='.')
 
@@ -42,18 +40,18 @@ class UserData(models.Model):
 class Club(models.Model):
 
 	# name of club
-	name = models.CharField(max_length=100)
+	name = models.CharField(max_length = 100)
 
 	# contact details for club
-	contactName = models.CharField(max_length=50)
-	contactNumber = models.CharField(max_length=20)
-	contactEmail = models.CharField(max_length=50)
+	contactName = models.CharField(max_length = 50)
+	contactNumber = models.CharField(max_length = 20)
+	contactEmail = models.CharField(max_length = 50)
 
 	# club details
-	clubWebsite = models.CharField(max_length=100, default="")
-	clubNight = models.CharField(max_length=20)
-	clubVenue = models.CharField(max_length=50)
-	clubAddress = models.CharField(max_length=200)
+	website = models.CharField(max_length = 100, default = "")
+	night = models.CharField(max_length = 20)
+	venue = models.CharField(max_length = 50)
+	address = models.CharField(max_length = 200)
 
 	
 

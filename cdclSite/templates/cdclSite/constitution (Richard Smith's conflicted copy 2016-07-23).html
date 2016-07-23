@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<!-- ADD STYLING HERE-->
+<style>
+    .mainContent {
+        padding-top: 30px;
+        padding-left: 30px;
+    }
+    
+    .pageHeader {
+        padding-top: 30px;
+        padding-left: 30px;
+    }
+    
+    .sidebarIcon {
+        width: 64px;
+        height: 64px;
+    }
+    
+    .linksColumn {
+        padding-top: 30px;
+    }
+    
+    .mainTextBody {
+        font-size: 16px;
+    }
+    
+    .panelToggle {
+        width: 32px;
+        height: 32px;
+    }
+    
+</style>
+
+<!--    INCLUDE STATIC FILES HERE-->
+
+<head>
+    <title>CDCL</title>
+
+    <meta chatset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous">
+    </script>
+
+    <link rel="stylesheet" href="{% static 'css/common.css' %}">
+    <script src="{% static 'js/indexPage.js' %}"></script>
+    <script src="{% static 'js/common.js' %}"></script>
+
+</head>
+<!--    ALL JAVASCRIPT/JQUERY GOES HERE-->
+<script>
+    $(document).ready(function() {
+
+        $("#constitutionBody").slideUp();
+        $("#leaguePlayBody").slideUp();
+        $("#chaseTrophyBody").slideUp();
+
+        $("#constitutionToggle").click(function() {
+            if ($(this).hasClass("down")) {
+                var newSrc = $(this).attr("src").replace("downArrow", "upArrow");
+                $(this).attr("src", newSrc);
+                $(this).removeClass("down");
+                $(this).addClass("up");
+            } else {
+                var newSrc = $(this).attr("src").replace("upArrow", "downArrow");
+                $(this).attr("src", newSrc);
+                $(this).removeClass("up");
+                $(this).addClass("down");
+            }
+            $("#constitutionBody").slideToggle();
+        });
+
+        $("#leaguePlayToggle").click(function() {
+            if ($(this).hasClass("down")) {
+                var newSrc = $(this).attr("src").replace("downArrow", "upArrow");
+                $(this).attr("src", newSrc);
+                $(this).removeClass("down");
+                $(this).addClass("up");
+            } else {
+                var newSrc = $(this).attr("src").replace("upArrow", "downArrow");
+                $(this).attr("src", newSrc);
+                $(this).removeClass("up");
+                $(this).addClass("down");
+            }
+            $("#leaguePlayBody").slideToggle();
+        });
+         $("#chaseTrophyToggle").click(function() {
+            if ($(this).hasClass("down")) {
+                var newSrc = $(this).attr("src").replace("downArrow", "upArrow");
+                $(this).attr("src", newSrc);
+                $(this).removeClass("down");
+                $(this).addClass("up");
+            } else {
+                var newSrc = $(this).attr("src").replace("upArrow", "downArrow");
+                $(this).attr("src", newSrc);
+                $(this).removeClass("up");
+                $(this).addClass("down");
+            }
+            $("#chaseTrophyBody").slideToggle();
+        });
+
+    });
+</script>
+
+<body>
+
+        <!-- TOP NAV BAR -->
+        <div class="container-fluid navbarContainer">
+            <div class="col-sm-12 topNavBar" align="middle">
+                <div class="col-sm-2 home">
+                    <br>
+                    <img id="aboutIcon" class="navbarIcon" src="{% static 'images/homeIcon.png' %}">
+                    <p class="navbarText">Home</p>
+                </div>
+                <div class="col-sm-2 about">
+                    <br>
+                    <img id="aboutIcon" class="navbarIcon" src="{% static 'images/aboutIcon.png' %}">
+                    <p class="navbarText">About</p>
+                </div>
+                <div class="col-sm-2 officers">
+
+                    <br>
+                    <img id="officerIcon" class="navbarIcon" src="{% static 'images/officerIcon.png' %}">
+                    <p class="navbarText">Officers</p>
+
+                </div>
+                <div class="col-sm-2 rules">
+                    <br>
+                    <img id="rulesIcon" class="navbarIcon" src="{% static 'images/rulesIcon.png' %}">
+                    <p class="navbarText">Rules &amp Constitution</p>
+                </div>
+                <div class="col-sm-2 clubs">
+                    <br>
+                    <img id="clubIcon" class="navbarIcon" src="{% static 'images/clubIcon.png' %}">
+                    <p class="navbarText">Clubs</p>
+                </div>
+                <div class="col-sm-2 results">
+                    <br>
+                    <img id="resultsIcon" class="navbarIcon" src="{% static 'images/resultsIcon.png' %}">
+                    <p class="navbarText">Results</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="pageHeader">
+                <h1 class="homepageTile">CANNOCK &amp; DISTRICT CHESS LEAGUE: CONSTITUTION</h1>
+                <p class="lead homePageDescription">The CDCL constitution.</p>
+            </div>
+            <hr>
+        </div>
+
+        <div class="container-fluid">
+            <div class="col-sm-12 mainTextBody">
+                <div class="col-sm-12 row" align="middle">
+                    <div class="col-sm-6">
+                        <h3>
+                            <b>Constitution</b>
+                        </h3>
+                    </div>
+                    <div class="col-sm-6">
+                        <img id="constitutionToggle" class="panelToggle down" src="{% static 'images/downArrow_grey.png' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12"><hr></div>
+                <div class="col-sm-12 well" id="constitutionBody">
+                    <p>
+                        <b>1. Title</b>
+                    </p>
+                    <p>
+                        The League shall be called the “<i>Cannock & District Chess League</i>”
+                    </p>
+                    <div class="col-sm-12">
+                        <hr>
+                    </div>
+                    <p>
+                        <b>2. Objectives and Aims</b>
+                    </p>
+                    <p>
+                        The object of the League is to promote the game of Chess within its area and to organise League Matches and competitions between the participating Clubs. A Prime aim of the League will be to bring awareness of Chess to the younger generations via the
+                        Promotions Officer.
+                    </p>
+                    <div class="col-sm-12">
+                        <hr>
+                    </div>
+                    <p>
+                        <b>3. Officers</b>
+                    </p>
+                    <p>
+                        The officers of the league shall consist of:
+                    </p>
+                    <ul>
+                        <li>President</li>
+                        <li>Deputy President</li>
+                        <li>General Secretary</li>
+                        <li>Records Secretary</li>
+                        <li>Tournaments Secretary</li>
+                        <li>Treasurer</li>
+                        <li>Promotions Officer</li>
+                        <li>Webmaster</li>
+                        <li>Publicity Officer</li>
+                        <li>Auditor</li>
+                    </ul>
+                    <div class="col-sm-12">
+                        <hr>
+                    </div>
+                    <p>
+                        <b>4. Terms of Office</b>
+                    </p>
+                    <p>
+                        <ul>
+                            <li>
+                                The President shall be elected at the AGM and shall hold Office for a term of two years. He shall not be eligible for immediate re-election. The Deputy President will serve for two years before becoming President.
+                            </li>
+                            <li>
+                                All other Officers shall be elected annually at the AGM and shall be eligible for re-election.
+                            </li>
+                            <li>
+                                The Committee shall have the power to form sub-committees and co-opt as is necessary to carry on the business of the League.
+                            </li>
+                        </ul>
+                    </p>
+                    <div class="col-sm-12">
+                        <hr>
+                    </div>
+                    <p>
+                        <b>5. Area</b>
+                    </p>
+                    <p>
+                        The catchment area of the League shall be within an eighteen-mile radius with its centre point the Bus Station in Cannock.
+                    </p>
+                    <div class="col-sm-12">
+                        <br>
+                    </div>
+                    <p align="middle">
+                        <i>Special Rule</i>
+                        <br> If the distance between two opposing clubs is greater than twenty-four miles the away team can request of the League Secretary to arrange a neutral venue as equidistant as is possible between the two clubs. A Minimum of twenty-eight
+                        days notice must be given to the League Secretary.
+                    </p>
+                    <div class="col-sm-12">
+                        <hr>
+                    </div>
+                    <p>
+                        <b>6. Fees</b>
+                    </p>
+                    <p>
+                        All fees shall be decided at the AGM.
+                    </p>
+                    <div class="col-sm-12">
+                        <hr>
+                    </div>
+                    <p>
+                        <b>7. Affiliations</b>
+                    </p>
+                    <p>
+                        The League shall affiliate to the English Chess Federation and the Staffordshire Chess Association.
+                    </p>
+                    <div class="col-sm-12">
+                        <hr>
+                    </div>
+                    <p>
+                        <b>8. Sub-Committees</b>
+                    </p>
+                    <p>
+                        <li>
+                            The AGM shall have the power to constitute Sub-Committees for the purpose to carry out specific tasks. The members of the Sub-Committee shall be elected, except as hereinafter provided and shall be eligible for re-election. The Sub-Committee shall have
+                            the power to co-opt.
+                        </li>
+
+                        <li>
+                            If any Sub-Committee holds any funds, details must be supplied to the Treasurer for inclusion in the statement of accounts presented at the AGM.
+                        </li>
+
+                        <li>
+                            The AGM shall constitute a rules and disputes sub-committee, this committee shall comprise the executive ex-officio and three other members who shall be elected at the AGM.
+                        </li>
+
+                        <li>
+                            The functions of the rules and disputes sub-committee shall be to make recommendations to the AGM on any proposed alterations to this Constitution or the Competition rules and to deal with disputes arising as hereinafter provided.
+                        </li>
+
+                        <li>
+                            If a dispute arises either out of a league match or an individual competition match, then any party who feels aggrieved (hereinafter called the appellant) may appeal to the sub-committee to resolve the dispute.
+                        </li>
+
+                        <li>
+                            The appellant shall within seven days of the dispute arising, give notice of the full particulars of the dispute to the League Secretary and shall send copies of the same to the following:
+                            <ul>
+                                <li>
+                                    In the case of the dispute arising out of a League match, to the Records Secretary and the Secretary of the opposing club.
+                                </li>
+
+                                <li>
+                                    In the case of the dispute arising out of an individual competition match, to the Tournament Secretary and his opponent.
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            The League Secretary shall, as soon as is reasonably convenient after receipt of the appellants notice, convene a meeting of the sub-committee to hear the dispute and shall give not less than seven days notice of the meeting to the appellant and the parties
+                            to whom he should have sent copies of his notice to, in accordance with 8f hereof. The failure of the parties to attend the meeting shall not affect the power of the sub-committee to resolve the dispute.
+                        </li>
+
+                        <li>
+                            Subject to the right of the parties to the dispute to object to the composition of the sub-committee, the composition thereof shall be settled in the following manner:
+                        </li>
+
+                        <li>
+                            The sub-committee shall comprise an odd number of which a quorum shall be three.
+                        </li>
+
+                        <li>
+                            The members of the sub-committee shall not have an interest in the dispute, without prejudice to the generality of the forgoing an interest shall be deemed to be membership of the club involved or being Records Secretary if the dispute arises out of a
+                            League match or being Tournament Secretary if the dispute arises out of an individual competition match.
+                        </li>
+
+                        <li>The procedure at the meeting of the sub-committee shall be as follows:
+                            <ul>
+
+                                <li>
+                                    The Records Secretary, if the dispute arises out of a League match, or the Tournament Secretary if the dispute arises out of an individual competition match shall report on all matters within his knowledge affecting the dispute.
+                                </li>
+
+                                <li>
+                                    The appellant shall present his case.
+                                </li>
+
+                                <li>
+                                    The other party to the dispute shall present his case.
+                                </li>
+
+                                <li>
+                                    The sub-committee shall consider the appeal in private and deliver its decision either verbally or in writing at a time to be appointed by it.
+                                </li>
+
+                                <li>
+                                    The dispute shall be decided in accordance with the rules laid down in the authorised edition of the laws of Chess published by the International Chess Federation, and the tournament rules of the English Chess Federation unless otherwise provided for
+                                    in this Constitution and the Competition rules.
+                                </li>
+
+                                <li>
+                                    There shall be no appeal from the decision of the sub-committee on issues of fact, but with the consent of the sub-committee an appeal may be made to the English Chess Federation upon a question involving the laws of Chess, provided that the appellant
+                                    shall provide the English Chess Federation with a statement of the facts provided by the sub-committee.
+                                </li>
+                            </ul>
+
+                        </li>
+                    </p>
+                    <div class="col-sm-12">
+                        <hr>
+                    </div>
+                    <p>
+                        <b>9. Annual General Meeting</b>
+                    </p>
+                    <p>
+                        <li>
+                            The AGM of the League shall take place in the month of April, or if circumstances do not allow, then as soon as is expedient.
+                        </li>
+
+                        <li>
+                            The Secretary of the League shall give a minimum of twenty eight days notice of the AGM to all League officers and Secretaries of Associated clubs.
+                        </li>
+
+                        <li>
+                            At the AGM the Secretaries of the League and sub-committees shall present their reports and the Treasurer shall present a statement of accounts.
+                        </li>
+
+                        <li>
+                            All players registered with the League in compliance with the competition rules shall have the right to attend the AGM or any other league meeting and to vote on issues arising from such meetings.
+                        </li>
+
+                        <li>
+                            Votes by proxy shall not be allowed at any meeting.
+                        </li>
+                    </p>
+                    <div class="col-sm-12">
+                        <hr>
+                    </div>
+                    <p>
+                        <b>10. Alteration of Constitution and playing rules</b>
+                    </p>
+                    <p>
+                        <li>
+                            This Constitution and League competition rules may be added to or amended at the AGM or EGM provided that the amendment or addition is stated in the notice calling the meeting.
+                        </li>
+
+                        <li>
+                            All registered players attending the AGM shall have the right to speak upon the proposed amendment or addition and also the right to vote on each amendment or addition.
+                        </li>
+
+                        <li>
+                            Each member of the Executive Committee shall have one vote on any issue arising at a meeting at which they are present.
+                        </li>
+
+                        <li>
+                            Each registered player shall have one vote on any issue arising at a meeting at which they are present.
+                        </li>
+                    </p>
+                    <div class="col-sm-12">
+                        <hr>
+                    </div>
+                    <p>
+                        <b>11. Extraordinary general meetings</b>
+                    </p>
+                    <p>
+                        <li>An EGM must be called by the League Secretary, upon receipt of a written request of the Executive Committee.</li>
+                        <li>The Secretary shall give not less than seven days notice of such meeting to all persons that should be notified of an AGM.</li>
+                    </p>
+                    <div class="col-sm-12">
+                        <hr>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 row" align="middle">
+                    <div class="col-sm-6">
+                        <h3>
+                            <b>League Play</b>
+                        </h3>
+                    </div>
+                    <div class="col-sm-6">
+                        <img id="leaguePlayToggle" class="panelToggle down" src="{% static 'images/downArrow_grey.png' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12"><hr></div>
+                <div class="col-sm-12 well" id="leaguePlayBody">
+                    <p>
+                        <b><u>Teams shall</u></b> consist of four players and <b><u>must be played in descending order of strength.</u></b>
+                    </p>
+                    <p>
+                        <b><u>Away teams</u></b> to play with the white pieces on odd numbered boards.
+                    </p>
+                    <p>
+                        <b><u>Clocks</u></b>  to be started at 7.15pm or 7.30pm depending on the home team’s start time.
+                    </p>
+                    <p>
+                        <b><u>Time</u></b> 30 moves in 1 hour, plus 20 minutes <b>Quick play finish.</b> Normal rules shall be 1 hour default time.
+                    </p>
+                    <p>
+                        <b><u>Game points</u></b>  1 point scored for a win, ½ point for a draw.
+                    </p>
+                    <p>
+                        <b><u> Match points</u></b> 3 points for a win, 1 point for a draw.
+                    </p>
+                    <p>
+                        <b><u>All games</u></b> must be decided on the occasion of the match.
+                    </p>
+                    <p>
+                        <b><u>Match results</u></b> must be sent to the Records Secretary within 2 days of the match.
+                    </p>
+                    <p>
+                        <b><u>Changes of fixtures</u></b> must be notified to the Records Secretary A.S.A.P. The new date and time for the fixture must be agreed with the Records Secretary.
+                    </p>
+                    <p>
+                        <b><u>Where a club</u></b> has two teams in any division, a player (including lower team reserves) may not play for both teams.
+                    </p>
+                    <p>
+                        <b><u>Players</u></b> may play for one club only. If a player wishes to play for another club, the player must notify the League’s Records Secretary in writing giving at least 14 days notice before their first match for the new club.
+                    </p>
+                    <p>
+                        <b><u>All games</u></b> will be sent for grading.
+                    </p>
+                    <p>
+                        <b><u>Grading Limits:</u></b> The total combined grade of the four players in a team shall be less than the following limits:
+                        <ul>
+                            <li>Division 1	641ECF</li>
+                            <li>Division 2	551 ECF</li>
+                            <li>Division 3	461 ECF</li>
+                            <li>Division 4	371 ECF</li>
+                        </ul>
+                    </p>
+                    <p>
+                        <b><u>Registration</u></b> of players with the League is not necessary, the League will be run on a basis of trust, to this end team Captains will be trusted to assess fairly the approximate grade of un-graded players but must at least award the minimum grades in each Division as follows:
+                        <ul>
+                            <li>Division 1	100 ECF</li>
+                            <li>Division 2	85 ECF</li>
+                            <li>Division 3	70 ECF</li>
+                            <li>Division 4	55 ECF</li>
+                        </ul>
+                    </p>
+                    <div align="middle">
+                        <p>
+                            Captains should use actual grades for players graded below the ungraded minimum.
+                        </p>
+
+                        <p>
+                            Players who have lost their grades but have held a grade in the 5 years previous to the current date must use that grade when assessing team strength.
+                        </p>
+
+                        <p>
+                            A player may appeal against 14.a. above, if they feel that their personal circumstances are such that the  rule should not apply to them.  Such appeal must be lodged in writing with the League’s Record Secretary setting out the reason and circumstances of the appeal at least 28 days before the player intends to play their first match.  Appeals received later than the 28day limit will not be considered for the imminent match season, but may be considered for the following season.
+                        </p>
+                    </div>
+                    <p>
+                        <b><u>Defaulted boards</u></b> shall count as the minimum grade allowed for that division.
+                    </p>
+                    <p>
+                        <b><u>League Champions:</u></b> The League Champions will be the team with the highest number of match points to their credit, in the event of a tie then total game points will decide.
+                    </p>
+                    <p>
+                        Where teams are tied at the top of a division, the winners will be determined on the flowing basis:
+                        <ul>
+                            <li>i) results of the matches between the tied teams; next</li>
+                            <li>ii) games difference (games won minus games lost, as for goal difference); next</li>
+                            <li>iii) greatest grading profit in the matches between the teams (ie the team with the lowest grading total wil be the winners).</li>
+                        </ul>
+                    </p>
+                    <p>
+                        The number of rounds to be played will be as follows:
+                        <br>
+	                    If 6 or less teams are entered in a division then matches will consist of home and away ties.  If 7 or more teams are entered in a division then matches will consist of 1 round only. 
+                    </p>
+                    <p>
+                        <b><u>Mobile Phones</u></b> must be switched off or rendered silent for the duration of the match. If a ring tone is heard, the opposing player should remind their opponent of this rule. A second infringement in the same game will result in the game being forfeited by the guilty player.
+                    </p>
+                    
+                    <p>Any infringements of these rules will result in penalties being levied on the offending teams in the form of warnings and or penalty points.</p>
+
+                    <p>The normal laws of Chess apply. The default time shall be 30 minutes.</p>
+
+                    <p>The Executive Committee’s decision on all matters arising is final.</p>
+
+                    <p align="middle"><br><b>Quickplay finishes where no arbiter is present in the venue</b></p>
+
+                    <p>
+                        Where games are played as in Article G6 of the FIDE Laws of Chess, a player may claim a draw when he has less than two minutes left on his clock and before his flag falls. This concludes the game.
+                    </p>
+                    <p>
+                        He may claim on the basis:
+                    </p>
+                    <p>
+                        <ul>
+                            <li>a. that his opponent cannot win by normal means, and/or</li>
+                            <li>b. that his opponent has been making no effort to win by normal means.</li>
+                        </ul>
+                    </p>
+                    <p>
+                        <b>In a)</b> the player must write down the final position and his opponent verify it.
+                    </p>
+                    <p>
+                        <b>In b)</b> the player must write down the final position and submit an up to date scoresheet. The opponent shall verify both the scoresheet and the final position.
+                        The claim shall be referred to an arbiter whose decision shall be final.
+                    </p>
+
+                    <p>The claim shall be referred to an arbiter whose decision shall be final.</p>
+
+                </div>
+
+
+                <div class="col-sm-12 row" align="middle">
+                    <div class="col-sm-6">
+                        <h3>
+                            <b>Tournament Rules: Chase Trophy</b>
+                        </h3>
+                    </div>
+                    <div class="col-sm-6">
+                        <img id="chaseTrophyToggle" class="panelToggle down" src="{% static 'images/downArrow_grey.png' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 well" id="chaseTrophyBody">
+
+
+                    <p>
+                        The Tournament Secretary will send out the fixtures to the captains and these must be completed by the assigned date.
+                    </p>
+                    <p>
+                        Teams shall consist of FOUR players and <b><u>must be played in descending order of strength. Grading limit 550.</u></b>
+                    </p>
+                    <p>
+                        <b><u>Away teams</u></b> to play with the white pieces on odd numbered boards.
+                    </p>
+                    <p>
+                        <b><u>Clocks</u></b> to be started at 7.15pm or 7.30pm depending on the home teams start time.
+                    </p>
+                    <p>
+                        <b><u>Time</u></b> 30 moves in 1 hour, after Black’s 30th move; clocks back 20 minutes for a Quick play finish.
+                    </p>
+                    <p>
+                        <b><u>Game points</u></b> 1 point scored for a win, ½ point for a draw.
+                    </p>
+                    <p>
+                        <b><u>All games</u></b> must be decided on the <b><i>occasion</i></b> of the match. In the event of a drawn match, the winning team will be determined by:
+                        <ul>
+                            <li>i) Board Count; next</li>
+                            <li>ii) discounting of bottom boards; next</li>
+                            <li>iii) the match will be awarded to the Away team.</li>
+                        </ul>                        
+                    </p>
+                    <p>
+                        <b><u>Match results</u></b> must be sent to the Tournament Secretary within 2 days of the match.
+                    </p>
+                    <p>
+                        <b><u>Changes of fixtures</u></b> must be notified to the Tournament Secretary A.S.AP. The new date and time for the fixture must be agreed with the Tournament Secretary.
+                    </p>
+                    <p>
+                        <b><u>Players</u></b> may play for one club only.
+                    </p>  
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+</body>
+
+</html>

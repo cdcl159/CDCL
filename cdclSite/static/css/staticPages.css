@@ -1,0 +1,26 @@
+.mainContent {
+    padding-top: 30px;
+    padding-left: 30px;
+}
+
+.pageHeader {
+    padding-top: 30px;
+    padding-left: 30px;
+}
+
+.sidebarIcon {
+    width: 64px;
+    height: 64px;
+}
+
+.linksColumn {
+    padding-top: 30px;
+}
+
+.mainTextBody {
+    font-size: 16px;
+}
+
+.panelToggle {
+    background-color: #404040;
+}
