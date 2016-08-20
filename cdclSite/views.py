@@ -457,7 +457,7 @@ def fixtures(request):
 
 				try:
 
-					newFixtureFile = FixtureFile(fixtureFile=request.FILES['fixtureFile']).save()
+					newFixtureFile = FixtureFile.objects.create(fixtureFile=request.FILES['fixtureFile'])
 
 					# test text replacement
 					with open(newFixtureFile.fixtureFile.path) as csvFile:
