@@ -317,42 +317,23 @@ def playerManagement(request):
 
 					for row in playersData[1:]:
 
-						attempts = 0
+						try:
 
-						while attempts < 5:
-							
-							try:
+							existing = Player.objects.get(ecfCode=row[0])
 
-								try:
+						except Player.DoesNotExist:
 
-									existing = Player.objects.get(ecfCode=row[0])
+							newPlayer = Player.objects.create(
+								forenames = row[1],
+								surname = row[2],
+								ecfCode = row[0],
+								grading = row[3],
+								club = Club.objects.get(name=row[4])
+							)
 
-								except Player.DoesNotExist:
+						else:
 
-									newPlayer = Player.objects.create(
-										forenames = row[1],
-										surname = row[2],
-										ecfCode = row[0],
-										grading = row[3],
-										club = Club.objects.get(name=row[4])
-									)
-
-								else:
-
-									pass
-
-							except Exception as e:
-
-								time.sleep(1)
-
-								attempts += 1
-									
-							else:
-
-								time.sleep(1)
-
-								break
-
+							pass
 
 				except Exception as e:
 					pageMessage = {
