@@ -466,6 +466,7 @@ def fixtures(request):
 					
 					for row in fixturesData[1:]:
 
+						# find or create the required teams
 						try:
 							homeTeam = Team.objects.get(name=str(row[3].title()))
 						except Team.DoesNotExist:
@@ -480,19 +481,32 @@ def fixtures(request):
 						else:
 							awayTeam = Team.objects.get(name=str(row[4].title()))
 
-
+						# find or create the event
+						try:
+							locatedEvent = Event.objects.get(name=str(row[0].title()))
+						except Event.DoesNotExist:
+							locatedEvent = Event.objects.create(name=str(row[0].title()))
+						else:
+							pass
+						
+						# find or create the season
+						try:
+							locatedSeason = Season.objects.get(name=str(row[1]))
+						except Season.DoesNotExist:
+							locatedSeason = Season.objects.create(name=str(row[1]))
+						else:
+							pass
+						
+						# create the new fixture
 						newFixture = Fixture.objects.create(
 								date = datetime.datetime.strptime(row[2], "%d/%m/%Y"),
 								homeTeam = homeTeam,
 								awayTeam = awayTeam,
+								season = locatedSeason,
+								event = locatedEvent,
 								status = "PENDING"
 							)
-
-						newFixture.event = Event.objects.get(name=str(row[0].title()))
-						newFixture.season = Season.objects.get(name=str(row[1]))
-
-						newFixture.save()
-
+						
 				except Exception as e:
 					pageMessage = {
 						"type": "ERROR",
