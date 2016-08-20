@@ -308,12 +308,12 @@ def playerManagement(request):
 
 
 				try:
-					newPlayerFile = PlayerFile(playerFile=request.FILES['playerFile']).save()
+
+					newPlayerFile = PlayerFile.objects.create(playerFile=request.FILES['playerFile'])
 					
-					with open("uploads/"+request.FILES['playerFile'].name) as csvFile:
+					with open(newPlayerFile.playerFile.path) as csvFile:
 						reader = csv.reader(csvFile)
 						playersData = [row for row in reader]
-
 
 					for row in playersData[1:]:
 
@@ -510,14 +510,14 @@ def fixtures(request):
 				except Exception as e:
 					pageMessage = {
 						"type": "ERROR",
-						"message": "The fixtures could not be added: " + str(e)
+						"message": "One or more fixture could not be added: " + str(e)
 					}
 					
 
 				else:
 					pageMessage = {
 						"type": "SUCCESS",
-						"message": "The fixtures were added."
+						"message": "All fixtures added successfully."
 					}
 
 		else:
