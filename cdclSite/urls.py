@@ -11,6 +11,7 @@ urlpatterns = [
 		url(r'^constitution/', views.constitutionPage, name = "constitution"),
 		url(r'^officers/', views.officersPage, name = "officers"),
 		url(r'^clubs/', views.clubsPage, name = "clubs"),
+		url(r'^results/', views.resultsPage, name = "results"),
 		url(r'^dashboard/$', views.dashboard, name = "dashboard"),
 		url(r'^clubManagement/$', views.clubManagement, name = "clubManagement"),
 		url(r'^playerManagement/$', views.playerManagement, name = "playerManagement"),

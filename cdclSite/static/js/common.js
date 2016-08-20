@@ -1,11 +1,13 @@
 
 function handlePageMessage(pageMessage) {
 
+
+
     if (pageMessage.type != "BLANK") {
 
         $("#messageTitle").text(pageMessage.type);
         $("#messageBody").text(pageMessage.message);
-        $(".messageHeader").addClass("modal"+pageMessage.type);
+        $(".messageModelHeader").addClass("modal"+pageMessage.type);
         $("#messageModal").modal("show");
     }
 }

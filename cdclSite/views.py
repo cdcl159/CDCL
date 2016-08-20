@@ -13,11 +13,43 @@ import time
 import json
 import csv
 
-def logoutPage(request):
-	
-	logout(request)
-	return HttpResponseRedirect("../")
 
+# page displaying information about cdcl
+def aboutPage(request):
+
+	return render(request, "cdclSite/about.html")
+
+
+
+# page displaying rules and constitution
+def constitutionPage(request):
+
+	return render(request, "cdclSite/constitution.html")
+
+
+
+# page displaying all officers (should be made automated)
+def officersPage(request):
+
+	return render(request, "cdclSite/officers.html")
+
+
+
+# page displaying all registered clubs
+def clubsPage(request):
+
+	return render(request, "cdclSite/clubs.html", {"clubs": Club.objects.all()})
+
+
+
+# page displaying results so far
+def resultsPage(request):
+
+	return render(request, "cdclSite/results.html")
+
+
+
+# main page (displays login form and announcements) 
 def index(request):
 
 	if request.method == "POST":
@@ -60,6 +92,17 @@ def index(request):
 
 	return render(request, "cdclSite/index.html", {"loginForm": loginForm, "pageMessage": json.dumps(pageMessage)})
 
+
+
+# logs out the user and redirects them to the index page
+def logoutPage(request):
+	
+	logout(request)
+	return HttpResponseRedirect("../")
+
+
+
+# displays player stats and links to other sections of system
 @login_required(login_url='index')
 def dashboard(request):
 
@@ -67,23 +110,9 @@ def dashboard(request):
 
 	return render(request, "cdclSite/dashboard.html", {"pageMessage": json.dumps(pageMessage)})
 
-def aboutPage(request):
-
-	return render(request, "cdclSite/about.html")
-
-def constitutionPage(request):
-
-	return render(request, "cdclSite/constitution.html")
-
-def officersPage(request):
-
-	return render(request, "cdclSite/officers.html")
 
 
-def clubsPage(request):
-
-	return render(request, "cdclSite/clubs.html", {"clubs": Club.objects.all()})
-
+# displays tools for managing/adding clubs
 @login_required(login_url='index')
 def clubManagement(request):
 
@@ -190,9 +219,11 @@ def clubManagement(request):
 			"clubData": json.dumps(clubData)
 		})
 
+
+
+# displays tools for managing players
 @login_required(login_url='index')
 def playerManagement(request):
-
 
 	if request.method == "POST":
 		
@@ -364,6 +395,8 @@ def playerManagement(request):
 	return render(request, "cdclSite/playerManagement.html", {"pageMessage": json.dumps(pageMessage), "players": json.dumps(playerData), "playerManagementForm": playerManagementForm})
 
 
+
+# displays tools for managing fixtures
 @login_required(login_url='index')
 def fixtures(request):
 
@@ -509,6 +542,8 @@ def fixtures(request):
 		})
 
 
+
+# displays forms for captains to upload match results
 @login_required(login_url='index')
 def resultsSubmission(request):
 
@@ -545,6 +580,9 @@ def resultsSubmission(request):
 			"playerData": json.dumps(playerData)
 		})
 
+
+
+# displays tools to keep user data up to date
 @login_required(login_url='index')
 def userDetails(request):
 	
