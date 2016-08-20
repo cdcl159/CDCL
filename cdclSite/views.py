@@ -456,13 +456,11 @@ def fixtures(request):
 			if form_bulkMode:
 
 				try:
+
 					newFixtureFile = FixtureFile(fixtureFile=request.FILES['fixtureFile']).save()
-					print "---------"
-					print(newFixtureFile.fixtureFile)
-					print "---------"
 
 					# test text replacement
-					with open("uploads/"+request.FILES["fixtureFile"].name) as csvFile:
+					with open(newFixtureFile.fixtureFile.path) as csvFile:
 						reader = csv.reader(csvFile)
 						fixturesData = [row for row in reader]
 					
