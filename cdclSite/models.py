@@ -79,8 +79,8 @@ class Season(models.Model):
 
 	name = models.CharField(max_length=10)
 	
-	startDate = models.DateField(null=True)
-	endDate = models.DateField(null=True)
+	startDate = models.DateField(null = True)
+	endDate = models.DateField(null = True)
 
 
 

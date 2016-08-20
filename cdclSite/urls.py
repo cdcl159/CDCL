@@ -1,10 +1,10 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import *
 from cdclSite import views
 from django.conf import settings
 from django.conf.urls.static import static
 
 
-urlpatterns = patterns('',
+urlpatterns = [
 		url(r'^$', views.index, name = "index"),
 		url(r'^about/', views.aboutPage, name = "about"),
 		url(r'^constitution/', views.constitutionPage, name = "constitution"),
@@ -16,4 +16,4 @@ urlpatterns = patterns('',
 		url(r'^fixtures/$', views.fixtures, name = "fixtures"),
 		url(r'^resultsSubmission/$', views.resultsSubmission, name = "resultsSubmission"),
 		url(r'^userDetails/$', views.userDetails, name = "userDetails"),
-	) + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+] + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
