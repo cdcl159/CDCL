@@ -342,7 +342,9 @@
         </div>
         
         <div class="container-fluid footer">
-            <img id="logoutIcon" class="logoutIcon" src="{% static "images/logoutIcon.png" %}">
+            <a href="{% url 'logout' %}">
+                <img id="logoutIcon" class="logoutIcon" src="{% static 'images/logoutIcon.png' %}">
+            </a>
         </div>
         
         
