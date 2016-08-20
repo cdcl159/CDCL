@@ -420,6 +420,7 @@ def fixtures(request):
 				try:
 					newFixtureFile = FixtureFile(fixtureFile=request.FILES['fixtureFile']).save()
 
+					# test text replacement
 					with open("uploads/"+request.FILES["fixtureFile"].name) as csvFile:
 						reader = csv.reader(csvFile)
 						fixturesData = [row for row in reader]
