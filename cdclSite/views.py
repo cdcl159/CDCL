@@ -112,6 +112,15 @@ def dashboard(request):
 
 
 
+@login_required(login_url='index')
+def announcementsPage(request):
+
+	pageMessage = {"type": "BLANK", "message": "NOTHING"}
+
+	return render(request, "cdclSite/announcementsPage.html", {"pageMessage": json.dumps(pageMessage)}) 
+
+
+
 # displays tools for managing/adding clubs
 @login_required(login_url='index')
 def clubManagement(request):

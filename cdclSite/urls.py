@@ -13,6 +13,7 @@ urlpatterns = [
 		url(r'^clubs/', views.clubsPage, name = "clubs"),
 		url(r'^results/', views.resultsPage, name = "results"),
 		url(r'^dashboard/$', views.dashboard, name = "dashboard"),
+		url(r'^announcementsPage/$', views.announcementsPage, name = "announcementsPage"),
 		url(r'^clubManagement/$', views.clubManagement, name = "clubManagement"),
 		url(r'^playerManagement/$', views.playerManagement, name = "playerManagement"),
 		url(r'^fixtures/$', views.fixtures, name = "fixtures"),
