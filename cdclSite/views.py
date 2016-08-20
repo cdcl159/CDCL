@@ -458,7 +458,7 @@ def fixtures(request):
 				try:
 					newFixtureFile = FixtureFile(fixtureFile=request.FILES['fixtureFile']).save()
 					print "---------"
-					print newFixtureFile.fixtureFile
+					print(newFixtureFile.fixtureFile)
 					print "---------"
 
 					# test text replacement
