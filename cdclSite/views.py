@@ -13,6 +13,11 @@ import time
 import json
 import csv
 
+def logoutPage(request):
+	
+	logout(request)
+	return HttpResponseRedirect("../")
+
 def index(request):
 
 	if request.method == "POST":
