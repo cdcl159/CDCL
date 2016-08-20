@@ -4,6 +4,14 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class Announcement(models.Model):
+	title = models.CharField(max_length = 50)
+	creator = models.OneToOneField(User)
+	creationDateTime = models.DateTimeField()
+	body = models.CharField(max_length = 5000)
+
+
+
 class PlayerFile(models.Model):
 	playerFile = models.FileField(upload_to='.')
 
