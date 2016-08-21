@@ -38,7 +38,7 @@ class UserData(models.Model):
 	surname = models.CharField(max_length = 100, null = True)
 	address_1 = models.CharField(max_length = 100, null = True)
 	address_2 = models.CharField(max_length = 100, null = True)
-	aAddress_3 = models.CharField(max_length = 100, null = True)
+	address_3 = models.CharField(max_length = 100, null = True)
 	postcode = models.CharField(max_length = 100, null = True)
 	primaryContactNumber = models.CharField(max_length = 100, null = True)
 	backupContactNumber = models.CharField(max_length = 100, null = True)
