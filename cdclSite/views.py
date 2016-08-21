@@ -48,6 +48,43 @@ def resultsPage(request):
 	return render(request, "cdclSite/results.html")
 
 
+def registrationPage(request):
+
+	if request.method == "POST":
+
+		registrationForm = RegistrationForm(request.POST)
+
+		if registrationForm.is_valid():
+
+			form_username = registrationForm.cleaned_data["username"]
+			form_password = registrationForm.cleaned_data["password"]
+			form_forenames = registrationForm.cleaned_data["forenames"]
+			form_surname = registrationForm.cleaned_data["surname"]
+			form_address_1 = registrationForm.cleaned_data["address_1"]
+			form_address_2 = registrationForm.cleaned_data["address_2"]
+			form_address_3 = registrationForm.cleaned_data["address_3"]
+			form_postcode = registrationForm.cleaned_data["postcode"]
+			form_primaryContactNumber = registrationForm.cleaned_data["primaryContactNumber"]
+			form_backupContactNumber = registrationForm.cleaned_data["backupContactNumber"]
+			form_email = registrationForm.cleaned_data["email"]
+			form_ecfCode = registrationForm.cleaned_data["ecfCode"]
+			form_club = registrationForm.cleaned_data["club"]
+
+		else:
+
+			pageMessage = {
+				"type": "ERROR",
+				"message": "One or more fields in the form were not completed correctly."
+			} 
+
+	return render(
+		request,
+		"cdclSite/register.html",
+		{
+			"pageMessage": json.dumps(pageMessage)
+		}
+	)
+
 
 # main page (displays login form and announcements) 
 def index(request):

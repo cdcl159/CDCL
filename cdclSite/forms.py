@@ -102,3 +102,23 @@ class ResultsSubmissionForm(forms.Form):
 class UserManagementToolsForm(forms.Form):
 
 	pass
+
+
+class RegistrationForm(forms.Form):
+	
+	# NEED TO ADJUST MAX LENGTHS
+	username = forms.CharField(required = True, max_length = 100)
+	password = forms.CharField(required = True, max_length = 100)
+
+	forenames = forms.CharField(required = True, max_length = 100)
+	surname = forms.CharField(required = True, max_length = 100)
+	address_1 = forms.CharField(required = False, max_length = 100)
+	address_2 = forms.CharField(required = False, max_length = 100)
+	address_3 = forms.CharField(required = False, max_length = 100)
+	postcode = forms.CharField(required = False, max_length = 100)
+	primaryContactNumber = forms.CharField(required = False, max_length = 100)
+	backupContactNumber = forms.CharField(required = False, max_length = 100)
+	email = forms.CharField(required = False, max_length = 100)
+
+	ecfCode = forms.CharField(required = False, max_length = 100)
+	club = forms.CharField(required = False, max_length = 100)
