@@ -122,12 +122,12 @@ class Game(models.Model):
 	boardNumber = models.IntegerField()
 
 	# player ids
-	blackPlayerID = models.IntegerField()
-	whitePlayerID = models.IntegerField()
+	homePlayerID = models.IntegerField()
+	awayPlayerID = models.IntegerField()
 
 	# player scores
-	blackPlayerScore = models.FloatField()
-	whitePlayerScore = models.FloatField()
+	homePlayerScore = models.FloatField()
+	awayPlayerScore = models.FloatField()
 
 	# submission to which the game belongs
 	submission = models.ForeignKey(Submission)

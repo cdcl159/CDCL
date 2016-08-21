@@ -654,8 +654,94 @@ def resultsSubmission(request):
 			form_board5_awayPlayerScore = resultsSubmissionForm.cleaned_data["board5_awayPlayerScore"] 
 			form_board6_awayPlayerScore = resultsSubmissionForm.cleaned_data["board6_awayPlayerScore"]
 
-			
+			form_homeTeam = resultsSubmissionForm.cleaned_data["homeTeam"]
+			form_awayTeam = resultsSubmissionForm.cleaned_data["awayTeam"]
 
+			boards = [
+				{
+					"homeplayerid": form_board1_homePlayerID,
+					"awayPlayerid": form_board1_awayPlayerID,
+					"homeplayerscore": form_board1_homePlayerScore,
+					"awayplayerscore": form_board1_awayPlayerScore
+
+				},
+				{
+					"homeplayerid": form_board2_homePlayerID,
+					"awayPlayerid": form_board2_awayPlayerID,
+					"homeplayerscore": form_board2_homePlayerScore,
+					"awayplayerscore": form_board2_awayPlayerScore
+
+				},
+				{
+					"homeplayerid": form_board3_homePlayerID,
+					"awayPlayerid": form_board3_awayPlayerID,
+					"homeplayerscore": form_board3_homePlayerScore,
+					"awayplayerscore": form_board3_awayPlayerScore
+
+				},
+				{
+					"homeplayerid": form_board4_homePlayerID,
+					"awayPlayerid": form_board4_awayPlayerID,
+					"homeplayerscore": form_board4_homePlayerScore,
+					"awayplayerscore": form_board4_awayPlayerScore
+
+				},
+				{
+					"homeplayerid": form_board5_homePlayerID,
+					"awayPlayerid": form_board5_awayPlayerID,
+					"homeplayerscore": form_board5_homePlayerScore,
+					"awayplayerscore": form_board5_awayPlayerScore
+
+				},
+				{
+					"homeplayerid": form_board6_homePlayerID,
+					"awayPlayerid": form_board6_awayPlayerID,
+					"homeplayerscore": form_board6_homePlayerScore,
+					"awayplayerscore": form_board6_awayPlayerScore
+
+				}
+			]
+
+			userPlayer = request.user.player
+
+			captainedTeams = Team.objects.filter(captain = userPlayer)
+			
+			homeOrAway = "H"
+			for team in captainedTeams:
+				if team.name == form_homeTeam:
+					usersTeam = team
+					homeOrAway = "H"
+					break;
+				if team.name == form_awayTeam:
+					usersTeam = team
+					homeOrAway = "A" 
+					break
+
+			newSubmission = Submission.objects.create(team = usersTeam)
+
+			i = 0
+			while i < 6:
+
+				newGame = Game.objects.create(
+					boardNumber = i,
+					homePlayerID = boards[i]["homeplayerid"],
+					awayPlayerID = boards[i]["awayplayerid"],
+					homePlayerScore = boards[i]["homeplayerscore"],
+					awayPlayerScore = boards[i]["homeplayerscore"],
+					submission = newSubmission
+				)
+
+				i += 1
+
+			fixture = Fixture.objects.get(id = form_selectedFixtureID)
+
+			if homeOrAway == "H":
+				fixture.homeSubmission = newSubmission
+			else:
+				fixture.awaySubmission = newSubmission
+
+			fixture.save()
+			
 		else:
 
 			pageMessage = {
