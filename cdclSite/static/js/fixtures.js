@@ -25,6 +25,44 @@ function selectNewFixtureEvent() {
     });
 }
 
+function selectNewFixtureSeason() {
+    $(".newFixtureSeasonOption").click(function() {
+
+        $(".newSelectedSeason").removeClass("newSelectedSeason");
+        $(this).addClass("newSelectedSeason");
+        $(".newSelectedSeasonDropdown").val($(this).text());
+        $(".newSelectedSeasonDropdown").text($(this).text());
+        
+
+    });
+}
+
+function selectNewFixtureHomeTeam() {
+    $(".newFixtureHomeTeamOption").click(function() {
+
+        $(".newSelectedHomeTeam").removeClass("newSelectedHomeTeam");
+        $(this).addClass("newSelectedHomeTeam");
+        $(".newSelectedHomeTeamDropdown").val($(this).text());
+        $(".newSelectedHomeTeamDropdown").text($(this).text());
+        
+
+    });
+}
+
+
+
+function selectNewFixtureAwayTeam() {
+    $(".newFixtureAwayTeamOption").click(function() {
+
+        $(".newSelectedAwayTeam").removeClass("newSelectedAwayTeam");
+        $(this).addClass("newSelectedAwayTeam");
+        $(".newSelectedAwayTeamDropdown").val($(this).text());
+        $(".newSelectedAwayTeamDropdown").text($(this).text());
+        
+
+    });
+}
+
 
 function handleFileUpload() {
     
@@ -45,6 +83,18 @@ function submitFixureForm() {
         $("#id_bulkMode").val(true);
         $("#id_fixtureFile").val($("#fixtureFileUpload").val());
         $("#fixtureManagementForm").submit();
+    });
+
+    $("#submitSingleFixture").click(function() {
+        $("#id_addMode").val(true);
+        $("#id_newFixtureDivision").val($(".newSelectedDivisionDropdown").val());
+        $("#id_newFixtureSeason").val($(".newSelectedSeasonDropdown").val());
+        $("#id_newFixtureEvent").val($(".newSelectedEventDropdown").val());
+        $("#id_newFixtureDate").val($("#newFixtureDate").val());
+        $("#id_newFixtureHomeTeam").val($(".newSelectedHomeTeamDropdown").val());
+        $("#id_newFixtureAwayTeam").val($(".newSelectedAwayTeamDropdown").val());
+        $("#fixtureManagementForm").submit();
+
     });
     
 }

@@ -402,6 +402,12 @@ def fixtures(request):
 			form_fixtureFile = fixtureManagementForm.cleaned_data["fixtureFile"]
 			form_teamMode = fixtureManagementForm.cleaned_data["teamMode"]
 			form_teamData = fixtureManagementForm.cleaned_data["teamData"]
+			form_newFixtureDivision = fixtureManagementForm.cleaned_data["newFixtureDivision"]
+			form_newFixtureSeason = fixtureManagementForm.cleaned_data["newFixtureSeason"]
+			form_newFixtureEvent = fixtureManagementForm.cleaned_data["newFixtureEvent"]
+			form_newFixtureDate = fixtureManagementForm.cleaned_data["newFixtureDate"]
+			form_newFixtureHomeTeam = fixtureManagementForm.cleaned_data["newFixtureHomeTeam"]
+			form_newFixtureAwayTeam = fixtureManagementForm.cleaned_data["newFixtureAwayTeam"]
 
 			if form_teamMode:
 
@@ -440,7 +446,65 @@ def fixtures(request):
 
 			# if addMode is true, use the player details from the from to create a new player
 			if form_addMode:
-				pass
+				
+
+				try:
+
+					# find or create the required teams
+					try:
+						homeTeam = Team.objects.get(name=form_newFixtureHomeTeam.title())
+					except Team.DoesNotExist:
+						homeTeam = Team.objects.create(name=form_newFixtureHomeTeam.title())
+					else:
+						homeTeam = Team.objects.get(name=form_newFixtureHomeTeam.title())
+
+					try:
+						awayTeam = Team.objects.get(name=form_newFixtureAwayTeam.title())
+					except Team.DoesNotExist:
+						awayTeam = Team.objects.create(name=form_newFixtureAwayTeam.title())
+					else:
+						awayTeam = Team.objects.get(name=form_newFixtureAwayTeam.title())
+
+					# find or create the event
+					try:
+						locatedEvent = Event.objects.get(name=form_newFixtureEvent.title())
+					except Event.DoesNotExist:
+						locatedEvent = Event.objects.create(name=form_newFixtureEvent.title())
+					else:
+						pass
+					
+					# find or create the season
+					try:
+						locatedSeason = Season.objects.get(name=form_newFixtureSeason)
+					except Season.DoesNotExist:
+						locatedSeason = Season.objects.create(name=form_newFixtureSeason)
+					else:
+						pass
+					
+					# create the new fixture
+					newFixture = Fixture.objects.create(
+							date = datetime.datetime.strptime(form_newFixtureDate, "%d/%m/%Y"),
+							homeTeam = homeTeam,
+							awayTeam = awayTeam,
+							season = locatedSeason,
+							event = locatedEvent,
+							status = "PENDING"
+						)
+					
+				except Exception as e:
+
+					pageMessage = {
+						"type": "ERROR",
+						"message": "The new fixture could not be added: " + str(e)
+					}
+				
+				else:
+
+					pageMessage = {
+						"type": "SUCCESS",
+						"message": "The new fixture was added successfully."
+					}
+
 
 			# if bulkMode is true, a file has been submitted
 			if form_bulkMode:

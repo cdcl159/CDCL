@@ -54,6 +54,12 @@ class FixtureManagementForm(forms.Form):
 
 	# csv file of fixtures
 	fixtureFile = forms.FileField(required = False)
+	newFixtureSeason = forms.CharField(required = False, max_length = 100)
+	newFixtureDivision = forms.CharField(required = False, max_length = 100)
+	newFixtureEvent = forms.CharField(required = False, max_length = 100)
+	newFixtureDate = forms.CharField(required = False, max_length = 100)
+	newFixtureHomeTeam = forms.CharField(required = False, max_length = 100)
+	newFixtureAwayTeam = forms.CharField(required = False, max_length = 100)
 
 	teamData = forms.CharField(required = False, max_length = 1000)
 
