@@ -741,7 +741,7 @@ def resultsSubmission(request):
 				fixture.awaySubmission = newSubmission
 
 			fixture.save()
-			
+
 		else:
 
 			pageMessage = {
@@ -796,3 +796,39 @@ def userDetails(request):
 	pageMessage = {"type": "BLANK", "message": "NOTHING"}
 
 	return render(request, "cdclSite/userDetails.html", {"pageMessage": json.dumps(pageMessage)})
+
+
+
+@login_required(login_url='index')
+def userManagementToolSettings(request):
+
+	if request.method == "POST":
+
+		userManagementToolsForm = UserManagementToolsForm(request.POST)
+
+
+		if userManagementToolsForm.is_valid():
+
+				pass
+		
+		else:
+
+			pageMessage = {
+				"type": "ERROR",
+				"message": "Some or all of the form fields were not correctly completed."
+			}
+
+	else:
+
+		userManagementToolsForm = UserManagementToolsForm()
+
+	pageMessage = {"type": "BLANK", "message": "NOTHING"}
+
+	return render(
+		request,
+		"cdclSite/userManagementToolSettings.html",
+		{
+			"pageMessage": json.dumps(pageMessage),
+			"userManagementToolsForm": userManagementToolsForm
+		}
+	)

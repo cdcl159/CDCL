@@ -99,3 +99,6 @@ class ResultsSubmissionForm(forms.Form):
 	homeTeam = forms.CharField(required = False, max_length = 100)
 	awayTeam = forms.CharField(required = False, max_length = 100)
 
+class UserManagementToolsForm(forms.Form):
+
+	pass
