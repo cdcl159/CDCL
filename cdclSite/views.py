@@ -806,7 +806,6 @@ def userManagementToolSettings(request):
 
 		userManagementToolsForm = UserManagementToolsForm(request.POST)
 
-
 		if userManagementToolsForm.is_valid():
 
 				pass
@@ -829,6 +828,7 @@ def userManagementToolSettings(request):
 		"cdclSite/userManagementToolSettings.html",
 		{
 			"pageMessage": json.dumps(pageMessage),
-			"userManagementToolsForm": userManagementToolsForm
+			"userManagementToolsForm": userManagementToolsForm,
+			"users": User.objects.all()
 		}
 	)
