@@ -191,7 +191,7 @@
                     </div>
                     <div class="modal-body">
                         
-                        <div class="col-sm-12"><br></div>
+                        <div class="col-sm-12"><br><br></div>
                         
                         <div class="col-sm-12">
                             <div class="col-sm-6">
@@ -205,14 +205,67 @@
                                         {% for e in events %}
                                             <li class="newFixtureEventOption" id="{{e.id}}">{{e.name}}</li>
                                         {% endfor %}
-                                    
                                     </ul>
                                 </div>
                             </div>
-                                 
                         </div>
-                        
-                        
+                        <div class="col-sm-12">
+                            <div class="col-sm-6">
+                                <h4>SEASON:</h4>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="dropdown">
+                                    <button class="btn btn-primary newSelectedSeasonDropdown dropdown-toggle" type="button" data-toggle="dropdown">Select Season
+                                    <span class="caret"></span></button>
+                                    <ul class="dropdown-menu">
+                                        {% for s in seasons %}
+                                            <li class="newFixtureSeasonOption" id="{{s.id}}">{{s.name}}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="col-sm-6">
+                                <h4>DATE:</h4>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control addFixtureInput" id="date", placeholder="dd/mm/yyyy">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="col-sm-6">
+                                <h4>HOME TEAM:</h4>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="dropdown">
+                                    <button class="btn btn-primary newSelectedHomeTeamDropdown dropdown-toggle" type="button" data-toggle="dropdown">Home Team
+                                    <span class="caret"></span></button>
+                                    <ul class="dropdown-menu">
+                                        {% for t in teams %}
+                                            <li class="newFixtureHomeTeamOption" id="{{t.id}}">{{t.name}}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="col-sm-6">
+                                <h4>AWAY TEAM:</h4>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="dropdown">
+                                    <button class="btn btn-primary newSelectedAwayTeamDropdown dropdown-toggle" type="button" data-toggle="dropdown">Away Team
+                                    <span class="caret"></span></button>
+                                    <ul class="dropdown-menu">
+                                        {% for t in teams %}
+                                            <li class="newFixtureAwayTeamOption" id="{{t.id}}">{{t.name}}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                     <div class="modal-footer">
@@ -222,7 +275,7 @@
                         </div>
 
                         <div class="col-sm-12 row">
-                            <button type="button" id="submitFixture" class="btn btn-primary" data-dismiss="modal">Submit Fixtures</button>
+                            <button type="button" id="submitSingleFixture" class="btn btn-primary" data-dismiss="modal">Submit Fixture</button>
                         </div>
 
                     </div>
