@@ -109,6 +109,7 @@ class RegistrationForm(forms.Form):
 	# NEED TO ADJUST MAX LENGTHS
 	username = forms.CharField(required = True, max_length = 100)
 	password = forms.CharField(required = True, max_length = 100)
+	passwordConfirm = forms.CharField(required = True, max_length = 100)
 
 	forenames = forms.CharField(required = True, max_length = 100)
 	surname = forms.CharField(required = True, max_length = 100)

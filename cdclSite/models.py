@@ -36,10 +36,10 @@ class UserData(models.Model):
 
 	forenames = models.CharField(max_length = 100, null = True)
 	surname = models.CharField(max_length = 100, null = True)
-	Address_1 = models.CharField(max_length = 100, null = True)
-	Address_2 = models.CharField(max_length = 100, null = True)
-	Address_3 = models.CharField(max_length = 100, null = True)
-	Postcode = models.CharField(max_length = 100, null = True)
+	address_1 = models.CharField(max_length = 100, null = True)
+	address_2 = models.CharField(max_length = 100, null = True)
+	aAddress_3 = models.CharField(max_length = 100, null = True)
+	postcode = models.CharField(max_length = 100, null = True)
 	primaryContactNumber = models.CharField(max_length = 100, null = True)
 	backupContactNumber = models.CharField(max_length = 100, null = True)
 	email = models.CharField(max_length = 100, null = True)
@@ -69,14 +69,14 @@ class Player(models.Model):
 
 
 	# link to site-user object
-	user = models.OneToOneField(User, null=True)
+	user = models.OneToOneField(User, null = True)
 
 	# names for player
-	forenames = models.CharField(max_length=100)
-	surname = models.CharField(max_length=100)
+	forenames = models.CharField(max_length = 100)
+	surname = models.CharField(max_length = 100)
 
 	# code and rating given externally
-	ecfCode = models.CharField(max_length=8)
+	ecfCode = models.CharField(max_length = 8)
 	grading = models.IntegerField()
 
 	# key to owner club
@@ -85,7 +85,7 @@ class Player(models.Model):
 
 class Season(models.Model):
 
-	name = models.CharField(max_length=10)
+	name = models.CharField(max_length = 10)
 	
 	startDate = models.DateField(null = True)
 	endDate = models.DateField(null = True)
@@ -94,7 +94,7 @@ class Season(models.Model):
 
 class Event(models.Model):
 
-	name = models.CharField(max_length=20)
+	name = models.CharField(max_length = 20)
 
 
 
@@ -103,10 +103,10 @@ class Event(models.Model):
 
 class Team(models.Model):
 
-	name = models.CharField(max_length=30)
+	name = models.CharField(max_length = 30)
 
-	captain = models.ForeignKey(Player, null=True)
-	club = models.ForeignKey(Club, null=True)
+	captain = models.ForeignKey(Player, null = True)
+	club = models.ForeignKey(Club, null = True)
 	
 
 
@@ -140,23 +140,23 @@ class Fixture(models.Model):
 	date = models.DateField()
 
 	# teams playing the fixture
-	homeTeam = models.ForeignKey(Team, related_name="homeTeam", null=True)
-	awayTeam = models.ForeignKey(Team, related_name="awayTeam", null=True)
+	homeTeam = models.ForeignKey(Team, related_name = "homeTeam", null = True)
+	awayTeam = models.ForeignKey(Team, related_name = "awayTeam", null = True)
 
 	# score (based on outcome of the games)
-	homeScore = models.IntegerField(null=True)
-	awayScore = models.IntegerField(null=True)
+	homeScore = models.IntegerField(null = True)
+	awayScore = models.IntegerField(null = True)
 
 	# event to which the fixture belongs
-	event = models.ForeignKey(Event, null=True)
+	event = models.ForeignKey(Event, null = True)
 
 	# season in which the fixture took place
-	season = models.ForeignKey(Season, null=True)
+	season = models.ForeignKey(Season, null = True)
 
 	# status of the fixture (played, approved, postponed pending etc)
-	status = models.CharField(max_length=15)
+	status = models.CharField(max_length = 15)
 
 	# submissions from teams (hold game results)
-	homeSubmission = models.OneToOneField(Submission, related_name="homeSubmission", null=True)
-	awaySubmission = models.OneToOneField(Submission, related_name="awaySubmission", null=True)
+	homeSubmission = models.OneToOneField(Submission, related_name = "homeSubmission", null = True)
+	awaySubmission = models.OneToOneField(Submission, related_name = "awaySubmission", null = True)
 

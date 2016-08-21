@@ -58,6 +58,7 @@ def registrationPage(request):
 
 			form_username = registrationForm.cleaned_data["username"]
 			form_password = registrationForm.cleaned_data["password"]
+			form_passwordConfirm = registrationForm.cleaned_data["passwordConfirm"]
 			form_forenames = registrationForm.cleaned_data["forenames"]
 			form_surname = registrationForm.cleaned_data["surname"]
 			form_address_1 = registrationForm.cleaned_data["address_1"]
@@ -70,6 +71,55 @@ def registrationPage(request):
 			form_ecfCode = registrationForm.cleaned_data["ecfCode"]
 			form_club = registrationForm.cleaned_data["club"]
 
+			if form_password != form_passwordConfirm:
+
+				pageMessage = {
+					"type": "ERROR",
+					"message": "The password and confirmed password did not match."
+				}
+
+			else:
+
+				try:
+					newUser = User.objects.create_user(username = form_username, password = form_password)
+				
+				except Exception as e:
+
+					pageMessage = {
+						"type": "ERROR",
+						"message": "User account could not be created: " + str(e)
+					}
+				
+				else:
+
+					try:
+
+						newUserData = UserData.objects.create(
+							user = newUser,
+							forenames = form_forenames,
+							surname = form_surnames,
+							address_1 = form_address_1,
+							address_2 = form_address_2,
+							aAddress_3 = form_address_3,
+							postcode = form_postcode,
+							primaryContactNumber = form_primaryContactNumber,
+							backupContactNumber = form_backupContactNumber,
+							email = form_email
+						)
+					
+					except Exception as e:
+
+						pageMessage {
+							"type": "WARNING",
+							"message": "Account created but user data (forenames, surname address etc) could not be created."
+						}
+
+					else:
+
+						pageMessage = {
+							"type": "SUCCESS",
+							"message": "Account created successfully."
+						}
 		else:
 
 			pageMessage = {
@@ -99,7 +149,7 @@ def index(request):
 			form_username = loginForm.cleaned_data["username"]
 			form_password = loginForm.cleaned_data["password"]
 
-			authenticatedUser = authenticate(username=form_username, password=form_password)
+			authenticatedUser = authenticate(username = form_username, password = form_password)
 
 			if authenticatedUser:
 				login(request, authenticatedUser)
@@ -355,7 +405,7 @@ def playerManagement(request):
 
 				try:
 
-					newPlayerFile = PlayerFile.objects.create(playerFile=request.FILES['playerFile'])
+					newPlayerFile = PlayerFile.objects.create(playerFile = request.FILES['playerFile'])
 					
 					with open(newPlayerFile.playerFile.path) as csvFile:
 						reader = csv.reader(csvFile)
@@ -365,7 +415,7 @@ def playerManagement(request):
 
 						try:
 
-							existing = Player.objects.get(ecfCode=row[0])
+							existing = Player.objects.get(ecfCode = row[0])
 
 						except Player.DoesNotExist:
 
@@ -374,7 +424,7 @@ def playerManagement(request):
 								surname = row[2],
 								ecfCode = row[0],
 								grading = row[3],
-								club = Club.objects.get(name=row[4])
+								club = Club.objects.get(name = row[4])
 							)
 
 						else:
@@ -419,7 +469,15 @@ def playerManagement(request):
 		}
 
 
-	return render(request, "cdclSite/playerManagement.html", {"pageMessage": json.dumps(pageMessage), "players": json.dumps(playerData), "playerManagementForm": playerManagementForm})
+	return render(
+		request,
+		"cdclSite/playerManagement.html",
+		{
+			"pageMessage": json.dumps(pageMessage),
+			"players": json.dumps(playerData),
+			"playerManagementForm": playerManagementForm
+		}
+	)
 
 
 
@@ -489,32 +547,32 @@ def fixtures(request):
 
 					# find or create the required teams
 					try:
-						homeTeam = Team.objects.get(name=form_newFixtureHomeTeam.title())
+						homeTeam = Team.objects.get(name = form_newFixtureHomeTeam.title())
 					except Team.DoesNotExist:
-						homeTeam = Team.objects.create(name=form_newFixtureHomeTeam.title())
+						homeTeam = Team.objects.create(name = form_newFixtureHomeTeam.title())
 					else:
-						homeTeam = Team.objects.get(name=form_newFixtureHomeTeam.title())
+						homeTeam = Team.objects.get(name = form_newFixtureHomeTeam.title())
 
 					try:
-						awayTeam = Team.objects.get(name=form_newFixtureAwayTeam.title())
+						awayTeam = Team.objects.get(name = form_newFixtureAwayTeam.title())
 					except Team.DoesNotExist:
-						awayTeam = Team.objects.create(name=form_newFixtureAwayTeam.title())
+						awayTeam = Team.objects.create(name = form_newFixtureAwayTeam.title())
 					else:
-						awayTeam = Team.objects.get(name=form_newFixtureAwayTeam.title())
+						awayTeam = Team.objects.get(name = form_newFixtureAwayTeam.title())
 
 					# find or create the event
 					try:
-						locatedEvent = Event.objects.get(name=form_newFixtureEvent.title())
+						locatedEvent = Event.objects.get(name = form_newFixtureEvent.title())
 					except Event.DoesNotExist:
-						locatedEvent = Event.objects.create(name=form_newFixtureEvent.title())
+						locatedEvent = Event.objects.create(name = form_newFixtureEvent.title())
 					else:
 						pass
 					
 					# find or create the season
 					try:
-						locatedSeason = Season.objects.get(name=form_newFixtureSeason)
+						locatedSeason = Season.objects.get(name = form_newFixtureSeason)
 					except Season.DoesNotExist:
-						locatedSeason = Season.objects.create(name=form_newFixtureSeason)
+						locatedSeason = Season.objects.create(name = form_newFixtureSeason)
 					else:
 						pass
 					
@@ -548,7 +606,7 @@ def fixtures(request):
 
 				try:
 
-					newFixtureFile = FixtureFile.objects.create(fixtureFile=request.FILES['fixtureFile'])
+					newFixtureFile = FixtureFile.objects.create(fixtureFile = request.FILES['fixtureFile'])
 
 					# test text replacement
 					with open(newFixtureFile.fixtureFile.path) as csvFile:
@@ -559,32 +617,32 @@ def fixtures(request):
 
 						# find or create the required teams
 						try:
-							homeTeam = Team.objects.get(name=str(row[3].title()))
+							homeTeam = Team.objects.get(name = str(row[3].title()))
 						except Team.DoesNotExist:
-							homeTeam = Team.objects.create(name=str(row[3]).title())
+							homeTeam = Team.objects.create(name = str(row[3]).title())
 						else:
-							homeTeam = Team.objects.get(name=str(row[3].title()))
+							homeTeam = Team.objects.get(name = str(row[3].title()))
 
 						try:
-							awayTeam = Team.objects.get(name=str(row[4].title()))
+							awayTeam = Team.objects.get(name = str(row[4].title()))
 						except Team.DoesNotExist:
-							awayTeam = Team.objects.create(name=str(row[4]).title())
+							awayTeam = Team.objects.create(name = str(row[4]).title())
 						else:
-							awayTeam = Team.objects.get(name=str(row[4].title()))
+							awayTeam = Team.objects.get(name = str(row[4].title()))
 
 						# find or create the event
 						try:
-							locatedEvent = Event.objects.get(name=str(row[0].title()))
+							locatedEvent = Event.objects.get(name = str(row[0].title()))
 						except Event.DoesNotExist:
-							locatedEvent = Event.objects.create(name=str(row[0].title()))
+							locatedEvent = Event.objects.create(name = str(row[0].title()))
 						else:
 							pass
 						
 						# find or create the season
 						try:
-							locatedSeason = Season.objects.get(name=str(row[1]))
+							locatedSeason = Season.objects.get(name = str(row[1]))
 						except Season.DoesNotExist:
-							locatedSeason = Season.objects.create(name=str(row[1]))
+							locatedSeason = Season.objects.create(name = str(row[1]))
 						else:
 							pass
 						
