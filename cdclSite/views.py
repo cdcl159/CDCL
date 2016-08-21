@@ -109,7 +109,7 @@ def registrationPage(request):
 					
 					except Exception as e:
 
-						pageMessage {
+						pageMessage = {
 							"type": "WARNING",
 							"message": "Account created but user data (forenames, surname address etc) could not be created."
 						}
