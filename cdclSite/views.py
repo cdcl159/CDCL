@@ -616,6 +616,57 @@ def fixtures(request):
 @login_required(login_url='index')
 def resultsSubmission(request):
 
+
+	if request.method == "POST":
+
+		resultsSubmissionForm = ResultsSubmissionForm(request.POST)
+
+		if resultsSubmissionForm.is_valid():
+
+			
+			form_selectedFixtureID = resultsSubmissionForm.cleaned_data["selectedFixtureID"] 
+
+			form_board1_homePlayerID = resultsSubmissionForm.cleaned_data["board1_homePlayerID"] 
+			form_board2_homePlayerID = resultsSubmissionForm.cleaned_data["board2_homePlayerID"] 
+			form_board3_homePlayerID = resultsSubmissionForm.cleaned_data["board3_homePlayerID"] 
+			form_board4_homePlayerID = resultsSubmissionForm.cleaned_data["board4_homePlayerID"] 
+			form_board5_homePlayerID = resultsSubmissionForm.cleaned_data["board5_homePlayerID"] 
+			form_board6_homePlayerID = resultsSubmissionForm.cleaned_data["board6_homePlayerID"] 
+
+			form_board1_awayPlayerID = resultsSubmissionForm.cleaned_data["board1_awayPlayerID"] 
+			form_board2_awayPlayerID = resultsSubmissionForm.cleaned_data["board2_awayPlayerID"] 
+			form_board3_awayPlayerID = resultsSubmissionForm.cleaned_data["board3_awayPlayerID"] 
+			form_board4_awayPlayerID = resultsSubmissionForm.cleaned_data["board4_awayPlayerID"] 
+			form_board5_awayPlayerID = resultsSubmissionForm.cleaned_data["board5_awayPlayerID"] 
+			form_board6_awayPlayerID = resultsSubmissionForm.cleaned_data["board6_awayPlayerID"] 
+
+			form_board1_homePlayerScore = resultsSubmissionForm.cleaned_data["board1_homePlayerScore"] 
+			form_board2_homePlayerScore = resultsSubmissionForm.cleaned_data["board2_homePlayerScore"] 
+			form_board3_homePlayerScore = resultsSubmissionForm.cleaned_data["board3_homePlayerScore"] 
+			form_board4_homePlayerScore = resultsSubmissionForm.cleaned_data["board4_homePlayerScore"] 
+			form_board5_homePlayerScore = resultsSubmissionForm.cleaned_data["board5_homePlayerScore"] 
+			form_board6_homePlayerScore = resultsSubmissionForm.cleaned_data["board6_homePlayerScore"] 
+
+			form_board1_awayPlayerScore = resultsSubmissionForm.cleaned_data["board1_awayPlayerScore"]
+			form_board2_awayPlayerScore = resultsSubmissionForm.cleaned_data["board2_awayPlayerScore"] 
+			form_board3_awayPlayerScore = resultsSubmissionForm.cleaned_data["board3_awayPlayerScore"] 
+			form_board4_awayPlayerScore = resultsSubmissionForm.cleaned_data["board4_awayPlayerScore"] 
+			form_board5_awayPlayerScore = resultsSubmissionForm.cleaned_data["board5_awayPlayerScore"] 
+			form_board6_awayPlayerScore = resultsSubmissionForm.cleaned_data["board6_awayPlayerScore"]
+
+			
+
+		else:
+
+			pageMessage = {
+				"type": "ERROR",
+				"message": "One or more fields were not completed correctly."
+			}
+
+	else:
+
+		resultsSubmissionForm = ResultsSubmissionForm()
+
 	pageMessage = {"type": "BLANK", "message": "NOTHING"}
 
 	fixtureData = {}
@@ -644,6 +695,7 @@ def resultsSubmission(request):
 
 	return render(request, "cdclSite/resultsSubmission.html",
 		{
+			"resultsForm": resultsSubmissionForm,
 			"pageMessage": json.dumps(pageMessage),
 			"fixtureData": json.dumps(fixtureData),
 			"playerData": json.dumps(playerData)

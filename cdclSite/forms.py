@@ -66,5 +66,36 @@ class FixtureManagementForm(forms.Form):
 
 class ResultsSubmissionForm(forms.Form):
 
-	pass
-	# TODO!
+	selectedFixtureID = forms.IntegerField(required = False)
+
+	board1_homePlayerID = forms.IntegerField(required = False)
+	board2_homePlayerID = forms.IntegerField(required = False)
+	board3_homePlayerID = forms.IntegerField(required = False)
+	board4_homePlayerID = forms.IntegerField(required = False)
+	board5_homePlayerID = forms.IntegerField(required = False)
+	board6_homePlayerID = forms.IntegerField(required = False)
+
+	board1_awayPlayerID = forms.IntegerField(required = False)
+	board2_awayPlayerID = forms.IntegerField(required = False)
+	board3_awayPlayerID = forms.IntegerField(required = False)
+	board4_awayPlayerID = forms.IntegerField(required = False)
+	board5_awayPlayerID = forms.IntegerField(required = False)
+	board6_awayPlayerID = forms.IntegerField(required = False)
+
+	board1_homePlayerScore = forms.IntegerField(required = False)
+	board2_homePlayerScore = forms.IntegerField(required = False)
+	board3_homePlayerScore = forms.IntegerField(required = False)
+	board4_homePlayerScore = forms.IntegerField(required = False)
+	board5_homePlayerScore = forms.IntegerField(required = False)
+	board6_homePlayerScore = forms.IntegerField(required = False)
+
+	board1_awayPlayerScore = forms.IntegerField(required = False)
+	board2_awayPlayerScore = forms.IntegerField(required = False)
+	board3_awayPlayerScore = forms.IntegerField(required = False)
+	board4_awayPlayerScore = forms.IntegerField(required = False)
+	board5_awayPlayerScore = forms.IntegerField(required = False)
+	board6_awayPlayerScore = forms.IntegerField(required = False)
+	
+	homeTeam = forms.CharField(required = False, max_length = 100)
+	awayTeam = forms.CharField(required = False, max_length = 100)
+

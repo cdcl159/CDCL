@@ -64,9 +64,6 @@
             handlePageMessage(pageMessage);
             menuHover();
         
-            console.log(fixtureData);
-            console.log(playerData);
-        
             initUI(fixtureData);
         
             selectFixture(fixtureData, playerData);
@@ -79,9 +76,9 @@
     <body>
         
          {% block content %}
-            <form id="fixtureManagementForm" method="post" enctype="multipart/form-data" action=".">
+            <form id="resultsForm" method="post" action=".">
             {% csrf_token %}
-            {% for field in fixtureManagementForm %}
+            {% for field in resultsForm %}
             {{ field.as_hidden }}
             {% endfor %}
         {% endblock %}
