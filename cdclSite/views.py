@@ -125,11 +125,16 @@ def registrationPage(request):
 			pageMessage = {
 				"type": "ERROR",
 				"message": "One or more fields in the form were not completed correctly."
-			} 
+			}
+
+	pageMessage = {
+		"type": "BLANK",
+		"message": "NOTHING"
+	}
 
 	return render(
 		request,
-		"cdclSite/register.html",
+		"cdclSite/registration.html",
 		{
 			"pageMessage": json.dumps(pageMessage)
 		}

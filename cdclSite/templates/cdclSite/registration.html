@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<!-- ADD STYLING HERE-->
+    <style>
+        .formContainer {
+            
+        }
+    </style>
+    
+<!--    INCLUDE STATIC FILES HERE-->
+    <head>
+        <title>CDCL</title>
+        
+        <meta chatset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        
+        <!-- Latest compiled and minified CSS -->
+        <link
+              rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+              integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+              crossorigin="anonymous">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous">
+        </script>
+        
+        <link rel="stylesheet" href="{% static 'css/common.css' %}">
+        <script src="{% static 'js/indexPage.js' %}"></script>
+        <script src="{% static 'js/common.js' %}"></script>
+        
+    </head>
+<!--    ALL JAVASCRIPT/JQUERY GOES HERE-->
+    <script>
+        
+        
+        $(document).ready(function() {
+
+            var pageMessage = {{pageMessage|safe}};
+            
+        });
+        
+    </script>
+
+    <body>
+        
+        {% block content %}
+        <form id="registrationForm" method="post" action=".">
+            {% csrf_token %}
+            {% for field in registrationForm %}
+            {{ field.as_hidden }}
+            {% endfor %}
+        {% endblock %}
+        
+        
+        
+        
+ <!-- MESSAGE MODAL -->
+        <div id="messageModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <div class="modal-content">
+                    <div class="modal-header messageModelHeader">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h2 class="modal-title" id="messageTitle"></h2>
+                    </div>
+                    <div class="modal-body">
+                        
+                        <div class="col-sm-12"><br></div>
+                        
+                        <div class="col-sm-12">
+                            <h3 id="messageBody"></h3>
+                        </div>
+                        
+                    </div>
+
+                    <div class="modal-footer">
+
+                    </div>
+                
+                </div>
+
+            </div>
+        </div>
+        
+        
+        
+        <!-- TOP NAV BAR -->
+        <div class="container-fluid navbarContainer">
+            <div class="col-sm-12 topNavBar" align="middle">
+                <div class="col-sm-2 home">
+                    <br>
+                    <img id="aboutIcon" class="navbarIcon" src="{% static "images/homeIcon.png" %}">
+                    <p class="navbarText">Home</p>
+                </div>
+                <div class="col-sm-2 about">
+                    <br>
+                    <a href="{% url 'about' %}">
+                        <img id="aboutIcon" class="navbarIcon" src="{% static "images/aboutIcon.png" %}">
+                        <p class="navbarText">About</p>
+                    </a>
+                </div>
+                <div class="col-sm-2 officers">
+                    <br>
+                    <a href="{% url 'officers' %}">
+                        <img id="officerIcon" class="navbarIcon" src="{% static "images/officerIcon.png" %}">
+                        <p class="navbarText">Officers</p>
+                    </a>
+                </div>
+                <div class="col-sm-2 rules">
+                    <br>
+                    <a href="{% url 'constitution' %}">
+                        <img id="rulesIcon" class="navbarIcon" src="{% static "images/rulesIcon.png" %}">
+                        <p class="navbarText">Rules &amp Constitution</p>
+                    </a>
+                </div>
+                <div class="col-sm-2 clubs">
+                    <br>
+                    <a href="{% url 'clubs' %}">
+                        <img id="clubIcon" class="navbarIcon" src="{% static "images/clubIcon.png" %}">
+                        <p class="navbarText">Clubs</p>
+                    </a>
+                </div>
+                <div class="col-sm-2 results">
+                    <br>
+                    <img id="resultsIcon" class="navbarIcon" src="{% static "images/resultsIcon.png" %}">
+                    <p class="navbarText">Results</p>
+                </div>
+                 
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="container-fluid">
+            <div class="col-sm-12=">
+                <h3>Register New Account</h3>
+            </div>
+            <hr>
+        </div>
+        
+        <div class="container-fluid">
+            
+            <div class="col-sm-12" align="middle">
+                <h3>Please fill out the form below to request an account.<h3>
+                <h4>Required fields will be marked, but please fill as many fields as possible</h4>
+                <br>
+            </div>
+
+            <div class="formContainer" align="middle">
+                 <div class="col-sm-12 row">
+                    <div class="col-sm-6">
+                        <h4>Username</h4>
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control registrationInput" id="username">
+                    </div>
+                </div>
+                <div class="col-sm-12 row">
+                    <div class="col-sm-6">
+                        <h4>Password</h4>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control registrationInput" id="password">
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control registrationInput" id="passwordConfirm" placeholder="confirm password">
+                    </div>
+                </div>
+
+                <div class="col-sm-12 row">
+                    <div class="col-sm-6">
+                        <h4>Forenames</h4>
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control registrationInput" id="fornames">
+                    </div>
+                </div>
+                <div class="col-sm-12 row">
+                    <div class="col-sm-6">
+                        <h4>Surname</h4>
+                   </div>
+                   <div class="col-sm-6">
+                       <input type="text" class="form-control registrationInput" id="surname">
+                   </div>
+                </div>
+                <div class="col-sm-12 row">
+                    <div class="col-sm-6">
+                        <h4>Address Line 1</h4>
+                   </div>
+                   <div class="col-sm-6">
+                       <input type="text" class="form-control registrationInput" id="address1">
+                   </div>
+                </div>
+                <div class="col-sm-12 row">
+                    <div class="col-sm-6">
+                        <h4>Address Line 2</h4>
+                   </div>
+                   <div class="col-sm-6">
+                       <input type="text" class="form-control registrationInput" id="address2">
+                   </div>
+                </div>
+                <div class="col-sm-12 row">
+                    <div class="col-sm-6">
+                        <h4>Address Line 3</h4>
+                   </div>
+                   <div class="col-sm-6">
+                       <input type="text" class="form-control registrationInput" id="address3">
+                   </div>
+                </div>
+                <div class="col-sm-12 row">
+                    <div class="col-sm-6">
+                        <h4>Postcode</h4>
+                   </div>
+                   <div class="col-sm-6">
+                       <input type="text" class="form-control registrationInput" id="postcode">
+                   </div>
+                </div>
+                <div class="col-sm-12 row">
+                    <div class="col-sm-6">
+                        <h4>Primary Contact Number</h4>
+                   </div>
+                   <div class="col-sm-6">
+                       <input type="text" class="form-control registrationInput" id="contactNumberA">
+                   </div>
+                </div>
+                <div class="col-sm-12 row">
+                    <div class="col-sm-6">
+                        <h4>Secondary Contact Number</h4>
+                   </div>
+                   <div class="col-sm-6">
+                       <input type="text" class="form-control registrationInput" id="contactNumberB">
+                   </div>
+                </div>
+                <div class="col-sm-12 row">
+                    <div class="col-sm-6">
+                        <h4>Email</h4>
+                   </div>
+                   <div class="col-sm-6">
+                       <input type="text" class="form-control registrationInput" id="email">
+                   </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12" align="middle">
+                <br>
+                <button type="button" id="submitRequest" class="btn btn-primary" data-dismiss="modal">Request Account</button>
+            </div>
+
+        </div>
+        
+    </body>
+</html>
