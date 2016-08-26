@@ -136,7 +136,8 @@ def registrationPage(request):
 		request,
 		"cdclSite/registration.html",
 		{
-			"pageMessage": json.dumps(pageMessage)
+			"pageMessage": json.dumps(pageMessage),
+			"clubs": Club.objects.all()
 		}
 	)
 

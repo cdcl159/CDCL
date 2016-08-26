@@ -122,4 +122,4 @@ class RegistrationForm(forms.Form):
 	email = forms.CharField(required = False, max_length = 100)
 
 	ecfCode = forms.CharField(required = False, max_length = 100)
-	club = forms.CharField(required = False, max_length = 100)
+	club = forms.IntegerField(required = False)

@@ -3,8 +3,8 @@
 <html lang="en">
 <!-- ADD STYLING HERE-->
     <style>
-        .formContainer {
-            
+        .clubDropdown {
+            width:100%;
         }
     </style>
     
@@ -31,7 +31,7 @@
         </script>
         
         <link rel="stylesheet" href="{% static 'css/common.css' %}">
-        <script src="{% static 'js/indexPage.js' %}"></script>
+        <script src="{% static 'js/registration.js' %}"></script>
         <script src="{% static 'js/common.js' %}"></script>
         
     </head>
@@ -42,7 +42,7 @@
         $(document).ready(function() {
 
             var pageMessage = {{pageMessage|safe}};
-            
+            selectClub();
         });
         
     </script>
@@ -156,7 +156,7 @@
             <div class="formContainer" align="middle">
                  <div class="col-sm-12 row">
                     <div class="col-sm-6">
-                        <h4>Username</h4>
+                        <h4>Username (required)</h4>
                     </div>
                     <div class="col-sm-6">
                         <input type="text" class="form-control registrationInput" id="username">
@@ -164,7 +164,7 @@
                 </div>
                 <div class="col-sm-12 row">
                     <div class="col-sm-6">
-                        <h4>Password</h4>
+                        <h4>Password (required)</h4>
                     </div>
                     <div class="col-sm-3">
                         <input type="text" class="form-control registrationInput" id="password">
@@ -176,7 +176,7 @@
 
                 <div class="col-sm-12 row">
                     <div class="col-sm-6">
-                        <h4>Forenames</h4>
+                        <h4>Forenames (required)</h4>
                     </div>
                     <div class="col-sm-6">
                         <input type="text" class="form-control registrationInput" id="fornames">
@@ -184,7 +184,7 @@
                 </div>
                 <div class="col-sm-12 row">
                     <div class="col-sm-6">
-                        <h4>Surname</h4>
+                        <h4>Surname (required)</h4>
                    </div>
                    <div class="col-sm-6">
                        <input type="text" class="form-control registrationInput" id="surname">
@@ -224,7 +224,7 @@
                 </div>
                 <div class="col-sm-12 row">
                     <div class="col-sm-6">
-                        <h4>Primary Contact Number</h4>
+                        <h4>Primary Contact Number (required)</h4>
                    </div>
                    <div class="col-sm-6">
                        <input type="text" class="form-control registrationInput" id="contactNumberA">
@@ -245,6 +245,30 @@
                    <div class="col-sm-6">
                        <input type="text" class="form-control registrationInput" id="email">
                    </div>
+                </div>
+                <div class="col-sm-12 row">
+                    <div class="col-sm-6">
+                        <h4>ECF Code (if known)</h4>
+                   </div>
+                   <div class="col-sm-6">
+                       <input type="text" class="form-control registrationInput" id="ecfCode">
+                   </div>
+                </div>
+                <div class="col-sm-12 row">
+                    <div class="col-sm-6">
+                        <h4>Club (required)</h4>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="dropdown">
+                            <button class="btn btn-primary clubDropdown dropdown-toggle" type="button" data-toggle="dropdown">Select Club
+                            <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                {% for c in clubs %}
+                                    <li class="clubOption" id="{{c.id}}">{{c.name}}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
 
