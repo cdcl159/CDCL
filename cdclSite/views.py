@@ -126,16 +126,19 @@ def registrationPage(request):
 				"type": "ERROR",
 				"message": "One or more fields in the form were not completed correctly."
 			}
+	else:
+		registrationForm = RegistrationForm()
 
-	pageMessage = {
-		"type": "BLANK",
-		"message": "NOTHING"
-	}
+		pageMessage = {
+			"type": "BLANK",
+			"message": "NOTHING"
+		}
 
 	return render(
 		request,
 		"cdclSite/registration.html",
 		{
+			"registrationForm": registrationForm,
 			"pageMessage": json.dumps(pageMessage),
 			"clubs": Club.objects.all()
 		}

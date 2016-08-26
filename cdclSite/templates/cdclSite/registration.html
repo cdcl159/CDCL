@@ -42,7 +42,10 @@
         $(document).ready(function() {
 
             var pageMessage = {{pageMessage|safe}};
+            handlePageMessage(pageMessage);
             selectClub();
+            submitForm();
+
         });
         
     </script>
