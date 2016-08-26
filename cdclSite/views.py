@@ -464,8 +464,6 @@ def playerManagement(request):
 								club = Club.objects.get(name = row[4])
 							)
 
-							clubname = row[4]
-
 						else:
 
 							pass
@@ -473,7 +471,7 @@ def playerManagement(request):
 				except Exception as e:
 					pageMessage = {
 						"type": "ERROR",
-						"message": "The players could not be added: " + str(e) + ": " + clubname
+						"message": "The players could not be added: " + str(e)
 					}
 
 				else:
