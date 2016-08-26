@@ -82,6 +82,9 @@ def registrationPage(request):
 
 				try:
 					newUser = User.objects.create_user(username = form_username, password = form_password)
+
+					newUser.is_active = False
+					newUser.save()
 				
 				except Exception as e:
 
@@ -97,7 +100,7 @@ def registrationPage(request):
 						newUserData = UserData.objects.create(
 							user = newUser,
 							forenames = form_forenames,
-							surname = form_surnames,
+							surname = form_surname,
 							address_1 = form_address_1,
 							address_2 = form_address_2,
 							aAddress_3 = form_address_3,
@@ -111,10 +114,35 @@ def registrationPage(request):
 
 						pageMessage = {
 							"type": "WARNING",
-							"message": "Account created but user data (forenames, surname address etc) could not be created."
+							"message": "Account created but user data (forenames, surname address etc) could not be created. " + str(e)
 						}
 
 					else:
+
+						try:
+							
+							userPlayer = Player.objects.get(ecfCode = form_ecfCode)
+
+						except Player.DoesNotExist:
+							
+							if form_ecfCode:
+								userPlayer = Player.objects.create(
+									user = newUser,
+									forenames = form_forenames,
+									surname = form_surname,
+									ecfCode = form_ecfCode,
+									club = Club.objects.get(name = form_club)
+								)
+							
+							else:
+
+								userPlayer = Player.objects.create(
+									user = newUser,
+									forenames = form_forenames,
+									surname = form_surname,
+									club = Club.objects.get(name = form_club)
+								)
+
 
 						pageMessage = {
 							"type": "SUCCESS",

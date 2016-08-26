@@ -238,7 +238,8 @@
                 <div class="col-sm-12`">
                     {% for u in users %}
                         <h4>{{u.username}}</h4>
-                        <h4>{{u.userdata.isTreasurer}}</h4>
+                        <h4>{{u.userdata}}</h4>
+                        <h4>{{u.is_active}}</h4>
                     {% endfor %}
                 </div>
 
