@@ -235,12 +235,25 @@
                 <div class="col-sm-12">
                     <br>
                 </div>
-                <div class="col-sm-12`">
-                    {% for u in users %}
-                        <h4>{{u.username}}</h4>
-                        <h4>{{u.userdata}}</h4>
-                        <h4>{{u.is_active}}</h4>
-                    {% endfor %}
+                <div class="col-sm-12">
+                    <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th><h4>Username</h4></th>
+                            <th><h4>Active</h4></th>
+                            <th><h4>Captain</h4></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                         {% for u in users %}
+                         <tr>
+                            <td>{{u.username}}</td>
+                            <td>{{u.is_active}}</td>
+                        <tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                   
                 </div>
 
             </div>
