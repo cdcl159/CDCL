@@ -357,7 +357,9 @@ def clubManagement(request):
 # displays tools for managing players
 @login_required(login_url='index')
 def playerManagement(request):
-
+	
+	errorPlayers = []
+	
 	if request.method == "POST":
 		
 		playerManagementForm = PlayerManagementForm(request.POST, request.FILES)
@@ -439,14 +441,22 @@ def playerManagement(request):
 			# if bulkMode is true, a file has been submitted
 			if form_bulkMode:
 
-
 				try:
 
 					newPlayerFile = PlayerFile.objects.create(playerFile = request.FILES['playerFile'])
-					
+
 					with open(newPlayerFile.playerFile.path) as csvFile:
 						reader = csv.reader(csvFile)
 						playersData = [row for row in reader]
+				
+				except Exception as e:
+
+					pageMessage = {
+						"type": "ERROR",
+						"message": "The player file could not be uploaded correctly: " + str(e)
+					}
+				
+				else:
 
 					for row in playersData[1:]:
 
@@ -456,29 +466,40 @@ def playerManagement(request):
 
 						except Player.DoesNotExist:
 
-							newPlayer = Player.objects.create(
-								forenames = row[1],
-								surname = row[2],
-								ecfCode = row[0],
-								grading = row[3],
-								club = Club.objects.get(name = row[4])
-							)
+							try:
+
+								newPlayer = Player.objects.create(
+									forenames = row[1],
+									surname = row[2],
+									ecfCode = row[0],
+									grading = row[3],
+									club = Club.objects.get(name = row[4])
+								)
+
+							except Exception as e:
+								row.append(str(e))
+								errorPlayers.append(row)
+							
+							else:
+								pass
 
 						else:
 
 							pass
 
-				except Exception as e:
+
+				if len(errorPlayers)  > 0:
+
 					pageMessage = {
 						"type": "ERROR",
-						"message": "The players could not be added: " + str(e)
+						"message": "Players could not be added: "
 					}
 
 				else:
 					pageMessage = {
-						"type": "SUCCESS",
-						"message": "The players were added."
-					}
+					"type": "SUCCESS",
+					"message": "The players were added."
+				}
 
 		else:
 			pageMessage = {
@@ -512,7 +533,8 @@ def playerManagement(request):
 		{
 			"pageMessage": json.dumps(pageMessage),
 			"players": json.dumps(playerData),
-			"playerManagementForm": playerManagementForm
+			"playerManagementForm": playerManagementForm,
+			"errorPlayers": errorPlayers
 		}
 	)
 
