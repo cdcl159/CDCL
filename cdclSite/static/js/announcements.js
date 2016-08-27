@@ -17,12 +17,17 @@ function selectPostToLocation() {
 }
 
 function submitAnnouncementForm() {
+
+    $("#submit").click(function() {
     
-    $("#id_title").val($("#title").val());
-    $("#id_body").val($("#body").val());
+        $("#id_title").val($("#title").val());
+        $("#id_body").val($("#body").val());
 
-    $("#id_postTo").val($("#postToDropdown").val());
+        $("#id_postTo").val($("#postToDropdown").val());
 
-    $("#announcementForm").submit();
+        $("#announcementForm").submit();
+        
+    });
+  
 
 }

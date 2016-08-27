@@ -215,7 +215,15 @@ def index(request):
 		loginForm = LoginForm()
 
 
-	return render(request, "cdclSite/index.html", {"loginForm": loginForm, "pageMessage": json.dumps(pageMessage)})
+	return render(
+		request,
+		"cdclSite/index.html",
+		{
+			"loginForm": loginForm,
+			"pageMessage": json.dumps(pageMessage),
+			"announcements": Announcement.objects.filter(postTo = "M")
+		}
+	)
 
 
 
