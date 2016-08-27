@@ -131,3 +131,8 @@ class RegistrationForm(forms.Form):
 	club = forms.IntegerField(required = False)
 
 
+class AnnouncementForm(forms.Form):
+
+	title = forms.CharField(required = True, max_length = 50)
+	body = forms.CharField(required = True, max_length = 5000)
+	postTo = forms.CharField(required = True, max_length = 1)

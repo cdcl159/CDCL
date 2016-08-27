@@ -6,9 +6,10 @@ from django.contrib.auth.models import User
 
 class Announcement(models.Model):
 	title = models.CharField(max_length = 50)
-	creator = models.OneToOneField(User)
+	creator = models.ForeignKey(User)
 	creationDateTime = models.DateTimeField()
 	body = models.CharField(max_length = 5000)
+	postTo = models.CharField(max_length = 1)
 
 
 

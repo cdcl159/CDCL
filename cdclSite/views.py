@@ -240,7 +240,52 @@ def dashboard(request):
 @login_required(login_url='index')
 def announcementsPage(request):
 
-	pageMessage = {"type": "BLANK", "message": "NOTHING"}
+	if request.method == "POST":
+
+		announcementForm = AnnouncementForm(request.POST)
+
+		if announcementForm.is_valid():
+
+			form_title = announcementForm.cleaned_data["title"]
+			form_body = announcementForm.cleaned_data["body"]
+			form_postTo = announcementForm.cleaned_data["postTo"]
+
+			try:
+
+				newAnnouncement = Announcement.objects.create(
+					title = form_title,
+					creator = request.user,
+					creationDateTime = datetime.datetime.now(),
+					body = form_body,
+					postTo = form_postTo
+				)
+				
+			except Exception as e:
+
+				pageMessage = {
+					"type": "ERROR",
+					"message": "The new announcement could not be created: " + str(e)
+				}
+
+			else:
+
+				pageMessage = {
+					"type": "SUCCESS",
+					"message": "The new announcement was created successfully"
+				}
+		
+		else:
+
+			pageMessage = {
+				"type": "ERROR",
+				"message": "The form could not be submitted. Please make sure all fields are complete."
+			}
+
+	else:
+
+		announcementForm = AnnouncementForm()
+
+		pageMessage = {"type": "BLANK", "message": "NOTHING"}
 
 	return render(request, "cdclSite/announcementsPage.html", {"pageMessage": json.dumps(pageMessage)}) 
 

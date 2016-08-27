@@ -55,10 +55,8 @@
         </script>
         
         <link rel="stylesheet" href="{% static 'css/common.css' %}">
-        <link rel="stylesheet" href="{% static 'css/performanceGraphs.css' %}">
-        <script src="{% static 'js/dashboard.js' %}"></script>
         <script src="{% static 'js/common.js' %}"></script>
-        <script src="{% static 'js/performanceGraphs.js' %}"></script>
+        <script src="{% static 'js/announcements.js' %}"></script>
         
         
     </head>
@@ -71,45 +69,26 @@
             var pageMessage = {{pageMessage|safe}};
             
             handlePageMessage(pageMessage);
-        
-            var sampleBarData = {"wins": 5, "losses": 4, "draws": 3};
-        
-            var sampleLineData = {
-
-                "seriesA": [
-                    {"gameNumber": 1, "opponentRating": 90},
-                    {"gameNumber": 2, "opponentRating": 85},
-                    {"gameNumber": 3, "opponentRating": 50},
-                    {"gameNumber": 4, "opponentRating": 110},
-                    {"gameNumber": 5, "opponentRating": 100},
-                    {"gameNumber": 6, "opponentRating": 98},
-                    {"gameNumber": 7, "opponentRating": 103},
-                    {"gameNumber": 8, "opponentRating": 95},
-                ]
-            };
-        
-        
-            drawPerformanceBarChart(".cumulativeResultsGraph",
-                                    $(".cumulativeResultsGraph").width(),
-                                    $(".cumulativeResultsGraph").width()*0.75,
-                                    {top: 20, right: 20, bottom: 30, left: 40},
-                                    sampleBarData);
-        
-            drawPerformanceLineGraph(".playerOpponentRatings",
-                                     $(".cumulativeResultsGraph").width(),
-                                     $(".cumulativeResultsGraph").width()*0.75,
-                                     {top: 20, right: 20, bottom: 30, left: 40},
-                                     sampleLineData);
-        
-        
             menuHover();
-        
+
+
+            selectPostToLocation();
+            displayConfirmationModal();
+
         
         });
         
     </script>
 
     <body>
+
+        {% block content %}
+            <form id="announcementForm" method="post" action=".">
+            {% csrf_token %}
+            {% for field in announcementForm %}
+            {{ field.as_hidden }}
+            {% endfor %}
+        {% endblock %}
         
 <!--        PAGE MESSAGE MODAL-->
         
@@ -129,6 +108,44 @@
                             <h3 id="messageBody"></h3>
                         </div>
                         
+                    </div>
+
+                    <div class="modal-footer">
+
+                    </div>
+                
+                </div>
+
+            </div>
+        </div>
+
+        <div id="confirmationModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <div class="modal-content">
+                    <div class="modal-header confirmationModelHeader">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h2 class="modal-title" id="confirmationTitle">Confirm Announcement</h2>
+                    </div>
+                    <div class="modal-body">
+                        
+                        <div class="col-sm-12"><br></div>
+                        
+                        <div class="col-sm-12" align="middle">
+                            <h3>Are you sure you want to post?</h3>
+                        </div>
+
+
+                        <div class="col-sm-12 row" align="middle">
+                            <div class="col-sm-6">
+                                <button type="button" id="cancel" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <button type="button" id="submit" class="btn btn-success" data-dismiss="modal">Accept</button>
+                            </div>
+                        </div>
+
+
                     </div>
 
                     <div class="modal-footer">
@@ -297,10 +314,10 @@
                             </div>
                             <div class="col-sm-10">
                                 <div class="dropdown">
-                                    <button class="btn btn-primary postToDropdown dropdown-toggle" type="button" data-toggle="dropdown">Main Page
+                                    <button class="btn btn-primary postToDropdown dropdown-toggle" type="button" data-toggle="dropdown">Select
                                     <span class="caret"></span></button>
                                     <ul class="dropdown-menu">
-                                        <li class="postToOption" id="mainPage">Main Page</li>
+                                        <li class="postToOption" id="m">Main Page</li>
                                     </ul>
                                 </div>
                             </div>
