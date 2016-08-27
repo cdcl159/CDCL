@@ -72,6 +72,8 @@
             var dataIconFilepath = "{% static 'images/playerIcon.png' %}";
 
             handlePageMessage(pageMessage);
+            displayUserDataModal(userData);
+            displayPlayerDataModal(userData);
             menuHover();
             initUI(
                 userData,
@@ -123,7 +125,135 @@
 
             </div>
         </div>
-        
+
+        <div id="userdataModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <div class="modal-content">
+                    <div class="modal-header userdataModelHeader">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h2 class="modal-title" id="userdataTitle"></h2>
+                    </div>
+                    <div class="modal-body">
+                        
+                        <div class="col-sm-12"><br></div>
+                        
+                        <div class="col-sm-12 row">
+                            <div class="col-sm-6"><h3 align="right">Forenames:</h3></div>
+                            <div class="col-sm-6"><h5 class="userdataText" id="userdata_forenames"></h5></div>
+                        </div>
+                        <div class="col-sm-12 row">
+                            <div class="col-sm-6"><h3 align="right">Surname:</h3></div>
+                            <div class="col-sm-6"><h5 class="userdataText" id="userdata_surname"></h5></div>
+                        </div>
+                        <div class="col-sm-12 row">
+                            <div class="col-sm-6"><h3 align="right">Address 1:</h3></div>
+                            <div class="col-sm-6"><h5 class="userdataText" id="userdata_address_1"></h5></div>
+                        </div>
+                        <div class="col-sm-12 row">
+                            <div class="col-sm-6"><h3 align="right">Address 2:</h3></div>
+                            <div class="col-sm-6"><h5 class="userdataText" id="userdata_address_2"></h5></div>
+                        </div>
+                        <div class="col-sm-12 row">
+                            <div class="col-sm-6"><h3 align="right">Address 3:</h3></div>
+                            <div class="col-sm-6"><h5 class="userdataText" id="userdata_address_3"></h5></div>
+                        </div>
+                        <div class="col-sm-12 row">
+                            <div class="col-sm-6"><h3 align="right">Postcode:</h3></div>
+                            <div class="col-sm-6"><h5 class="userdataText" id="userdata_postcode"></h5></div>
+                        </div>
+                        <div class="col-sm-12 row">
+                            <div class="col-sm-6"><h3 align="right">Primary Contact Number:</h3></div>
+                            <div class="col-sm-6"><h5 class="userdataText" id="userdata_primaryContactNumber"></h5></div>
+                        </div>
+                        <div class="col-sm-12 row">
+                            <div class="col-sm-6"><h3 align="right">Backup Contact Number:</h3></div>
+                            <div class="col-sm-6"><h5 class="userdataText" id="userdata_backupContactNumber"></h5></div>
+                        </div>
+                        <div class="col-sm-12 row">
+                            <div class="col-sm-6"><h3 align="right">email:</h3></div>
+                            <div class="col-sm-6"><h5 class="userdataText" id="userdata_email"></h5></div>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+
+                    </div>
+                
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div id="playerdataModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <div class="modal-content">
+                    <div class="modal-header playerdataModelHeader">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h2 class="modal-title" id="playerdataTitle"></h2>
+                    </div>
+                    <div class="modal-body">
+                        
+                        <div class="col-sm-12"><br></div>
+
+                        <div class="col-sm-12 row">
+                            <div class="col-sm-6">
+                                <h3 align="right">Forenames:</h3>
+                            </div>
+                            <div class="col-sm-6">
+                                <h5 class="playerdataText" id="playerdata_forenames">
+                            </div>
+                        </div>
+                        <div class="col-sm-12 row">
+                            <div class="col-sm-6">
+                                <h3 align="right">Surname:</h3>
+                            </div>
+                            <div class="col-sm-6">
+                                <h5 class="playerdataText" id="playerdata_surname">
+                            </div>
+                        </div>
+                        <div class="col-sm-12 row">
+                            <div class="col-sm-6">
+                                <h3 align="right">ECF Code:</h3>
+                            </div>
+                            <div class="col-sm-6">
+                                <h5 class="playerdataText" id="playerdata_ecf">
+                            </div>
+                        </div>
+                        <div class="col-sm-12 row">
+                            <div class="col-sm-6">
+                                <h3 align="right">Grading:</h3>
+                            </div>
+                            <div class="col-sm-6">
+                                <h5 class="playerdataText" id="playerdata_grading">
+                            </div>
+                        </div>
+                        <div class="col-sm-12 row">
+                            <div class="col-sm-6">
+                                <h3 align="right">Club:</h3>
+                            </div>
+                            <div class="col-sm-6">
+                                <h5 class="playerdataText" id="playerdata_club">
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="modal-footer">
+
+                    </div>
+                
+                </div>
+
+            </div>
+        </div>
+
+
+
         
         <!-- TOP NAV BAR -->
         <div class="container-fluid navbarContainer row">
