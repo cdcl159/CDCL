@@ -8,6 +8,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 
 from cdclSite.forms import *
 from cdclSite.models import *
+import pprint
 import datetime
 import time
 import json
@@ -952,7 +953,7 @@ def userDetails(request):
 	return render(request, "cdclSite/userDetails.html", {"pageMessage": json.dumps(pageMessage)})
 
 
-
+# displays tools to manage users and their access
 @login_required(login_url='index')
 def userManagementToolSettings(request):
 
@@ -977,12 +978,69 @@ def userManagementToolSettings(request):
 
 	pageMessage = {"type": "BLANK", "message": "NOTHING"}
 
+	userDataDict = {}
+
+	for user in User.objects.all():
+
+		userDataDict[user.id] = {
+			"username": user.username,
+			"active": user.is_active,
+			"superuser": user.is_superuser
+		}
+
+		try:
+
+			currentUserData = user.userdata
+		
+		except UserData.DoesNotExist:
+
+			userDataDict[user.id]["userData"] = None
+		
+		else:
+
+			userDataDict[user.id]["userData"] = {
+				"isOfficer": user.userData.isOfficer,
+				"isRecordSecretary": user.userData.isRecordSecretary,
+				"isTreasurer": user.userData.isTreasurer,
+				"forenames": user.userData.forenames,
+				"surname": user.userData.surname,
+				"address_1": user.userData.address_1,
+				"address_2": user.userData.address_2,
+				"address_3": user.userData.address_3,
+				"postcode": user.userData.postcode,
+				"primaryContactNumber": user.userData.primaryContactNumber,
+				"backupContactNumber": user.userData.backupContactNumber,
+				"email": user.userData.email
+			}
+
+		try:
+
+			currentPlayerData = user.player
+		
+		except Player.DoesNotExist:
+
+			userDataDict[user.id]["playerData"] = None
+		
+		else:
+
+			userDataDict[user.id]["playerData"] = {
+				"forenames": user.player.forenames,
+				"surname": user.player.surname,
+				"ecfCode": user.player.ecfCode,
+				"grading": user.player.grading,
+				"club": user.player.club.name
+			}
+
+	pprint.pprint(userDataDict)
+
 	return render(
 		request,
 		"cdclSite/userManagementToolSettings.html",
 		{
 			"pageMessage": json.dumps(pageMessage),
+			"userData": json.dumps(userDataDict),
 			"userManagementToolsForm": userManagementToolsForm,
 			"users": User.objects.all()
+			
 		}
 	)

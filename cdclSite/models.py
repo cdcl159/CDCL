@@ -67,7 +67,6 @@ class Club(models.Model):
 
 class Player(models.Model):
 
-
 	# link to site-user object
 	user = models.OneToOneField(User, null = True)
 

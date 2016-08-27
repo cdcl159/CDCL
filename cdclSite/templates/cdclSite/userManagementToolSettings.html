@@ -21,6 +21,11 @@
             color: #4cc3d9;
         }
 
+        .tableIcon {
+            width: 25%;
+            height: 25%;
+        }
+
     </style>
     
 <!--    INCLUDE STATIC FILES HERE-->
@@ -48,6 +53,7 @@
         
         <link rel="stylesheet" href="{% static 'css/common.css' %}">
         <script src="{% static 'js/common.js' %}"></script>
+        <script src="{% static 'js/userManagementToolSettings.js' %}"></script>
         
         
     </head>
@@ -58,11 +64,23 @@
         $(document).ready(function() {
 
             var pageMessage = {{pageMessage|safe}};
-                
+            var userData = {{userData|safe}};
+            
+            var checkedIconFilepath = "{% static 'images/checkedIcon.png' %}";
+            var uncheckedIconFilepath = "{% static 'images/uncheckedIcon.png' %}";
+            var playerIconFilepath = "{% static 'images/playerIcon.png' %}";
+            var dataIconFilepath = "{% static 'images/playerIcon.png' %}";
+
             handlePageMessage(pageMessage);
             menuHover();
-        
-        
+            initUI(
+                userData,
+                checkedIconFilepath,
+                uncheckedIconFilepath,
+                playerIconFilepath,
+                dataIconFilepath
+            );
+
         });
         
     </script>
@@ -236,21 +254,21 @@
                     <br>
                 </div>
                 <div class="col-sm-12">
-                    <table class="table table-hover">
+                    <table class="table table-hover" id="userTable">
                     <thead>
                         <tr>
                             <th><h4>Username</h4></th>
                             <th><h4>Active</h4></th>
-                            <th><h4>Captain</h4></th>
+                            <th><h4>Superuser</h4></th>
+                            <th><h4>Officer</h4></th>
+                            <th><h4>RecordSecretary</h4></th>
+                            <th><h4>Treasurer</h4></th>
+                            <th><h4>User Data</h4></th>
+                            <th><h4>Player Data</h4></th>
                         </tr>
                     </thead>
                     <tbody>
-                         {% for u in users %}
-                         <tr>
-                            <td>{{u.username}}</td>
-                            <td>{{u.is_active}}</td>
-                        <tr>
-                        {% endfor %}
+                         
                     </tbody>
                 </table>
                    

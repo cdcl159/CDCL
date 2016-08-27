@@ -42,6 +42,8 @@ function initUI(playerData, settingsIconSrc) {
     for (p in playerData) {
         
         var currentPlayer = playerData[p];
+
+        console.log(currentPlayer);
         
         var newRowHTML = "<tr class='playerRow' id='" + p + "'><td class='forenames'>" + currentPlayer["forenames"] +
             "</td><td class='surname'>" + currentPlayer["surname"] +
