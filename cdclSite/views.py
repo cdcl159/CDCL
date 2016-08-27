@@ -963,7 +963,172 @@ def userManagementToolSettings(request):
 
 		if userManagementToolsForm.is_valid():
 
-				pass
+				form_selectedUserId = userManagementToolsForm.cleaned_data["selectedUserId"]
+				form_activeMode = userManagementToolsForm.cleaned_data["activeMode"]
+				form_superuserMode = userManagementToolsForm.cleaned_data["superuserMode"]
+				form_officerMode = userManagementToolsForm.cleaned_data["officerMode"]
+				form_recordsMode = userManagementToolsForm.cleaned_data["recordsMode"]
+				form_treasurerMode = userManagementToolsForm.cleaned_data["treasurerMode"]
+
+
+				try:
+
+					selectedUser = User.objects.get(id = form_selectedUserId)
+
+				except User.DoesNotExist:
+
+					pageMessage = {
+						"type": "ERROR",
+						"message": "User could not be found: id = " + str(form_selectedUserId)
+					}
+				
+				else:
+
+					if form_treasurerMode:
+
+						try:
+
+							if selectedUser.userdata.isTreasurer:
+							
+								selectedUser.userdata.isTreasurer = False
+							
+							else:
+								
+								selectedUser.userdata.isTreasurer = True
+							
+							selectedUser.save()
+
+						except Exception as e:
+
+							pageMessage = {
+								"type": "ERROR",
+								"message": "Could not change treasurer status of user: " + str(e)
+							}
+
+						else:
+
+							pageMessage = {
+								"type": "SUCCESS",
+								"message": "Treasurer status changed successfully."
+							}
+
+					if form_recordsMode:
+
+						try:
+
+							if selectedUser.userdata.isRecordSecretary:
+							
+								selectedUser.userdata.isRecordSecretary = False
+							
+							else:
+								
+								selectedUser.userdata.isRecordSecretary = True
+								
+							selectedUser.save()
+
+						except Exception as e:
+
+							pageMessage = {
+								"type": "ERROR",
+								"message": "Could not change record secretary status of user: " + str(e)
+							}
+
+						else:
+
+							pageMessage = {
+								"type": "SUCCESS",
+								"message": "Record secretary status changed successfully."
+							}
+
+
+
+					if form_officerMode:
+
+						try:
+
+							if selectedUser.userdata.isOfficer:
+							
+								selectedUser.userdata.isOfficer = False
+							
+							else:
+								
+								selectedUser.userdata.isOfficer = True
+
+							selectedUser.save()
+
+						except Exception as e:
+
+							pageMessage = {
+								"type": "ERROR",
+								"message": "Could not change officer status of user: " + str(e)
+							}
+
+						else:
+
+							pageMessage = {
+								"type": "SUCCESS",
+								"message": "Officer status changed successfully."
+							}
+
+
+					if form_superuserMode:
+
+						try:
+
+							if selectedUser.is_superuser:
+
+								selectedUser.is_superuser = False
+							
+							else:
+
+								selectedUser.is_superuser = True
+
+							selectedUser.save()
+
+						except Exception as e:
+
+							pageMessage = {
+								"type": "ERROR",
+								"message": "Could not change the user's superuser status: " + str(e)
+							}
+
+						else:
+
+							pageMessage = {
+								"type": "SUCCESS",
+								"message": "Superuser status changed successfully."
+							}
+
+
+
+					if form_activeMode:
+
+						try:
+								
+							if selectedUser.is_active:
+
+								selectedUser.is_active = False
+							
+							else:
+
+								selectedUser.is_active = True
+
+							selectedUser.save()
+
+						except Exception as e:
+
+							pageMessage = {
+								"type": "ERROR",
+								"message": "Could not change the user's enabled status: " + str(e)
+							}
+
+						else:
+
+							pageMessage = {
+								"type": "SUCCESS",
+								"message": "Account activity changed successfully."
+							}
+
 		
 		else:
 
@@ -976,7 +1141,7 @@ def userManagementToolSettings(request):
 
 		userManagementToolsForm = UserManagementToolsForm()
 
-	pageMessage = {"type": "BLANK", "message": "NOTHING"}
+		pageMessage = {"type": "BLANK", "message": "NOTHING"}
 
 	userDataDict = {}
 

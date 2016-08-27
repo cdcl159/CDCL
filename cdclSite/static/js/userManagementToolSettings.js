@@ -59,6 +59,103 @@ function displayPlayerDataModal(userData) {
 }
 
 
+function toggleActivity() {
+
+    $("#userTable").on("click", ".activeToggle", function() {
+
+        var selectedUserID = $(this).parent().parent().attr("id");
+
+        $("#id_selectedUserId").val(selectedUserID);
+
+        $("#id_superuserMode").val(false);
+        $("#id_activeMode").val(true);
+
+        $("#userManagementToolsForm").submit();
+
+    });
+
+}
+
+
+function toggleOfficer() {
+
+
+    $("#userTable").on("click", ".officerToggle", function() {
+
+        var selectedUserID = $(this).parent().parent().attr("id");
+
+        $("#id_selectedUserId").val(selectedUserID);
+
+        $("#id_superuserMode").val(false);
+        $("#id_activeMode").val(false);
+        $("#id_officerMode").val(true);
+
+        $("#userManagementToolsForm").submit();
+
+    });
+
+}
+
+function toggleTreasurer() {
+
+
+    $("#userTable").on("click", ".treasurerToggle", function() {
+
+        var selectedUserID = $(this).parent().parent().attr("id");
+
+        $("#id_selectedUserId").val(selectedUserID);
+
+        $("#id_superuserMode").val(false);
+        $("#id_activeMode").val(false);
+        $("#id_officerMode").val(false);
+        $("#id_treasurerMode").val(true);
+
+        $("#userManagementToolsForm").submit();
+
+    });
+
+}
+
+function togglRecords() {
+
+
+    $("#userTable").on("click", ".recordsToggle", function() {
+
+        var selectedUserID = $(this).parent().parent().attr("id");
+
+        $("#id_selectedUserId").val(selectedUserID);
+
+        $("#id_superuserMode").val(false);
+        $("#id_activeMode").val(false);
+        $("#id_officerMode").val(false);
+        $("#id_recordsMode").val(true);
+
+        $("#userManagementToolsForm").submit();
+
+    });
+
+}
+
+
+function toggleSuperuser() {
+
+    $("#userTable").on("click", ".superuserToggle", function() {
+
+        var selectedUserID = $(this).parent().parent().attr("id");
+
+        $("#id_selectedUserId").val(selectedUserID);
+        $("#id_activeMode").val(false);
+        $("#id_officerMode").val(false);
+        $("#id_superuserMode").val(true);
+
+        $("#userManagementToolsForm").submit();
+
+    });
+
+}
+
+
+
 function initUI(
     userData,
     enabledIconPath,
@@ -68,36 +165,38 @@ function initUI(
 
     for (x in userData) {
 
+        console.log(userData[x]);
+
         var usernameCell = "<td>" + userData[x]["username"] + "</td>";
 
         if (userData[x]["active"]) {
-            var activeCell = '<td><img class="tableIcon toggleIcon userActive" src="' + enabledIconPath + '" %}></td>';
+            var activeCell = '<td><img class="tableIcon activeToggle" src="' + enabledIconPath + '" %}></td>';
         } else {
-            var activeCell = '<td><img class="tableIcon toggleIcon userInactive" src="' + disabledIconPath + '" %}></td>';
+            var activeCell = '<td><img class="tableIcon activeToggle" src="' + disabledIconPath + '" %}></td>';
         }
 
-        if (userData[x]["Superuser"]) {
-            var superuserCell = '<td><img class="tableIcon toggleIcon userSuperuser" src="' + enabledIconPath + '" %}></td>';
+        if (userData[x]["superuser"]) {
+            var superuserCell = '<td><img class="tableIcon superuserToggle" src="' + enabledIconPath + '" %}></td>';
         } else {
-            var superuserCell = '<td><img class="tableIcon toggleIcon userNotSuperuser" src="' + disabledIconPath + '" %}></td>';
+            var superuserCell = '<td><img class="tableIcon superuserToggle" src="' + disabledIconPath + '" %}></td>';
         }
 
         if (userData[x]["userData"] && userData[x]["userData"]["isOffier"]) {
-            var officerCell = '<td><img class="tableIcon toggleIcon userOfficer" src="' + enabledIconPath + '" %}></td>';
+            var officerCell = '<td><img class="tableIcon officerToggle" src="' + enabledIconPath + '" %}></td>';
         } else {
-            var officerCell = '<td><img class="tableIcon toggleIcon userNotOfficer" src="' + disabledIconPath + '" %}></td>';
+            var officerCell = '<td><img class="tableIcon officerToggle" src="' + disabledIconPath + '" %}></td>';
         }
 
         if (userData[x]["userData"] && userData[x]["userData"]["isRecordSecretary"]) {
-            var recordSecretaryCell = '<td><img class="tableIcon toggleIcon userRecordSec" src="' + enabledIconPath + '" %}></td>';
+            var recordSecretaryCell = '<td><img class="tableIcon recordToggle" src="' + enabledIconPath + '" %}></td>';
         } else {
-            var recordSecretaryCell = '<td><img class="tableIcon toggleIcon userNotRecordSec" src="' + disabledIconPath + '" %}></td>';
+            var recordSecretaryCell = '<td><img class="tableIcon recordToggle" src="' + disabledIconPath + '" %}></td>';
         }
 
         if (userData[x]["userData"] && userData[x]["userData"]["isTreasurer"]) {
-            var treasurerCell = '<td><img class="tableIcon toggleIcon userTreasurer" src="' + enabledIconPath + '" %}></td>';
+            var treasurerCell = '<td><img class="tableIcon treasurerToggle" src="' + enabledIconPath + '" %}></td>';
         } else {
-            var treasurerCell = '<td><img class="tableIcon toggleIcon userNotTreasurer" src="' + disabledIconPath + '" %}></td>';
+            var treasurerCell = '<td><img class="tableIcon treasurerToggle" src="' + disabledIconPath + '" %}></td>';
         }
 
         var userdataCell = '<td><img class="tableIcon userdataIcon" src="' + dataIconPath + '" %}></td>';

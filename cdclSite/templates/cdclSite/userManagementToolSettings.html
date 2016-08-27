@@ -64,6 +64,8 @@
         $(document).ready(function() {
 
             var pageMessage = {{pageMessage|safe}};
+
+            console.log(pageMessage);
             var userData = {{userData|safe}};
             
             var checkedIconFilepath = "{% static 'images/checkedIcon.png' %}";
@@ -72,9 +74,7 @@
             var dataIconFilepath = "{% static 'images/playerIcon.png' %}";
 
             handlePageMessage(pageMessage);
-            displayUserDataModal(userData);
-            displayPlayerDataModal(userData);
-            menuHover();
+
             initUI(
                 userData,
                 checkedIconFilepath,
@@ -82,6 +82,17 @@
                 playerIconFilepath,
                 dataIconFilepath
             );
+
+
+            displayUserDataModal(userData);
+            displayPlayerDataModal(userData);
+            menuHover();
+
+            toggleActivity();
+            toggleSuperuser();
+            toggleOfficer();
+            togglRecords();
+            toggleTreasurer();
 
         });
         

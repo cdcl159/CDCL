@@ -101,7 +101,13 @@ class ResultsSubmissionForm(forms.Form):
 
 class UserManagementToolsForm(forms.Form):
 
-	pass
+	selectedUserId = forms.IntegerField(required = False)
+
+	activeMode = forms.BooleanField(required = False)
+	superuserMode = forms.BooleanField(required = False)
+	officerMode = forms.BooleanField(required = False)
+	recordsMode = forms.BooleanField(required = False)
+	treasurerMode = forms.BooleanField(required = False)
 
 
 class RegistrationForm(forms.Form):
@@ -123,3 +129,5 @@ class RegistrationForm(forms.Form):
 
 	ecfCode = forms.CharField(required = False, max_length = 100)
 	club = forms.IntegerField(required = False)
+
+
