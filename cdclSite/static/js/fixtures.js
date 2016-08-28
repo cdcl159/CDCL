@@ -5,11 +5,83 @@ function displayUploadFixturesModal() {
     });
 }
 
-function displayEditFixturesModal() {
+function displayEditFixturesModal(fixturesData) {
     $(".editFixtureIcon").click(function() {
+
+        var selectedFixtureID = $(this).parent().parent().attr("id");
+        
+        $("#editFixtureTitle").text("Edit Fixture: " + selectedFixtureID);
+        
+        $(".editEventDropdown").val(fixturesData[selectedFixtureID]["event"]);
+        $(".editEventDropdown").text(fixturesData[selectedFixtureID]["event"]);
+        $(".editSeasonDropdown").val(fixturesData[selectedFixtureID]["season"]);
+        $(".editSeasonDropdown").text(fixturesData[selectedFixtureID]["season"]);
+
+        $("#editDate").val(fixturesData[selectedFixtureID]["date"])
+
+        $(".editHomeTeamDropdown").val(fixturesData[selectedFixtureID]["homeTeam"]);
+        $(".editAwayTeamDropdown").val(fixturesData[selectedFixtureID]["awayTeam"]);
+
         $("#editFixtureModal").modal("show");
+
     });
 }
+
+function editFixtureEvent() {
+    $(".editEventOption").click(function() {
+        $(".editSelectedEvent").removeClass("editSelectedEvent");
+        $(this).addClass("editSelectedEvent");
+        $(".editEventDropdown").val($(this).attr("id"));
+        $(".editEventDropdown").text($(this).text());
+        
+    });
+}
+
+function editFixtureSeason() {
+    $(".editSeasonOption").click(function() {
+        $(".editSelectedSeason").removeClass("editSelectedSeason");
+        $(this).addClass("editSelectedSeason");
+        $(".editSeasonDropdown").val($(this).attr("id"));
+        $(".editSeasonDropdown").text($(this).text());
+        
+    });
+}
+
+function editFixtureHomeTeam() {
+    $(".editHomeTeamOption").click(function() {
+        $(".editSelectedHomeTeam").removeClass("ediTeamtSelectedHome");
+        $(this).addClass("editSelectedHomeTeam");
+        $(".editHomeTeamDropdown").val($(this).attr("id"));
+        $(".editHomeTeamDropdown").text($(this).text());
+        
+    });
+}
+
+function editFixtureAwayTeam() {
+    $(".editAwayTeamOption").click(function() {
+        $(".editSelectedAwayTeam").removeClass("ediTeamtSelectedAway");
+        $(this).addClass("editSelectedAwayTeam");
+        $(".editAwayTeamDropdown").val($(this).attr("id"));
+        $(".editAwayTeamDropdown").text($(this).text());
+        
+    });
+}
+
+function submitFixtureChanges() {
+    $("#submitChanges").click(function() {
+        $("#id_selectedFixtureID").val($("#editFixtureTitle").text().split(": ")[1]);
+        $("#id_editFixtureSeason").val($(".editSeasonDropdown").val());
+        $("#id_editFixtureEvent").val($(".editEventDropdown").val());
+        $("#id_editFixtureDate").val($("#editDate").val());
+        $("#id_editFixtureHomeTeam").val($(".editHomeTeamDropdown").val());
+        $("#id_editFixtureAwayTeam").val($(".editAwayTeamDropdown").val());
+
+        $("#fixtureManagementForm").submit();
+    });
+    
+}
+
+
 
 function displayAddFixturesModal() {
     $("#addFixtureIcon").click(function() {

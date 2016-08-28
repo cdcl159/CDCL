@@ -761,13 +761,13 @@ def fixtures(request):
 						
 						# create the new fixture
 						newFixture = Fixture.objects.create(
-								date = datetime.datetime.strptime(row[2], "%d-%m-%y"),
-								homeTeam = homeTeam,
-								awayTeam = awayTeam,
-								season = locatedSeason,
-								event = locatedEvent,
-								status = "PENDING"
-							)
+							date = datetime.datetime.strptime(row[2], "%d-%m-%y"),
+							homeTeam = homeTeam,
+							awayTeam = awayTeam,
+							season = locatedSeason,
+							event = locatedEvent,
+							status = "PENDING"
+						)
 						
 				except Exception as e:
 					pageMessage = {
@@ -804,6 +804,16 @@ def fixtures(request):
 			"club": p.club.name
 		}
 
+	fixturesData = {}
+	for f in Fixtures.objects.all():
+
+		fixturesData[f.id] = {
+			"date": str(f.date),
+			"homeTeam": f.homeTeam.name,
+			"awayTeam": f.awayTeam.name,
+			"event": f.event.name,
+			"season": f.season.name
+		}
 
 
 	return render(request, "cdclSite/fixtures.html",
@@ -816,6 +826,7 @@ def fixtures(request):
 			"clubs": Club.objects.all(),
 			"teams": Team.objects.all(),
 			"players": json.dumps(players),
+			"fixturesData": json.dumps(fixturesData)
 		})
 
 
