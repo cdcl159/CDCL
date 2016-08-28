@@ -816,7 +816,7 @@ def fixtures(request):
 			"eventName": f.event.name,
 			"seasonName": f.season.name,
 			"eventID": f.event.id,
-			"seasonID": f.seasonid
+			"seasonID": f.season.id
 		}
 
 
