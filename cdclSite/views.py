@@ -805,7 +805,7 @@ def fixtures(request):
 		}
 
 	fixturesData = {}
-	for f in Fixtures.objects.all():
+	for f in Fixture.objects.all():
 
 		fixturesData[f.id] = {
 			"date": str(f.date),
