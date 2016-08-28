@@ -862,50 +862,51 @@ def fixtures(request):
 		}
 
 
-		if f.submission_set.all():
+		if f.homeSubmission:
+			
+			submission = f.homeSubmission
 
-			for s in f.submission_set.all():
+			fixturesData[f.id]["homeSubmission"] = {
+				"teamName": submission.team.name,
+				"games": []
+			}
 
-				if s.team.name == f.homeTeam.name:
+			for g in submission.games_set.all():
 
-					fixturesData[f.id]["homeSubmission"] = {
-						"teamName": s.team.name,
-						"games": []
+				fixturesData[f.id]["homeSubmission"]["games"].append(
+					{
+						"boardNumber": g.boardNumber,
+						"homePlayerID": g.homePlayerID,
+						"homePlayerName": Player.objects.get(id = g.homePlayerID),
+						"awayPlayerID": g.awayPlayerID,
+						"homePlayerName": Player.objects.get(id = g.awayPlayerID),
+						"homePlayerScore": g.homePlayerScore,
+						"awayPlayerScore": g.awayPlayerScore
 					}
+				)
 
-					for g in s.games_set.all():
+		if f.awaySubmission:
 
-						fixturesData[f.id]["homeSubmission"]["games"].append(
-							{
-								"boardNumber": g.boardNumber,
-								"homePlayerID": g.homePlayerID,
-								"homePlayerName": Player.objects.get(id = g.homePlayerID),
-								"awayPlayerID": g.awayPlayerID,
-								"homePlayerName": Player.objects.get(id = g.awayPlayerID),
-								"homePlayerScore": g.homePlayerScore,
-								"awayPlayerScore": g.awayPlayerScore
-							}
-						)
-				if s.team.name == f.homeTeam.name:
+			submission = f.awaySubmission
+		
+			fixturesData[f.id]["awaySubmission"] = {
+				"teamName": submission.team.name,
+				"games": []
+			}
 
-					fixturesData[f.id]["homeSubmission"] = {
-						"teamName": s.team.name,
-						"games": []
+			for g in submission.games_set.all():
+
+				fixturesData[f.id]["homeSubmission"]["games"].append(
+					{
+						"boardNumber": g.boardNumber,
+						"homePlayerID": g.homePlayerID,
+						"homePlayerName": Player.objects.get(id = g.homePlayerID),
+						"awayPlayerID": g.awayPlayerID,
+						"homePlayerName": Player.objects.get(id = g.awayPlayerID),
+						"homePlayerScore": g.homePlayerScore,
+						"awayPlayerScore": g.awayPlayerScore
 					}
-
-					for g in s.games_set.all():
-
-						fixturesData[f.id]["homeSubmission"]["games"].append(
-							{
-								"boardNumber": g.boardNumber,
-								"homePlayerID": g.homePlayerID,
-								"homePlayerName": Player.objects.get(id = g.homePlayerID),
-								"awayPlayerID": g.awayPlayerID,
-								"homePlayerName": Player.objects.get(id = g.awayPlayerID),
-								"homePlayerScore": g.homePlayerScore,
-								"awayPlayerScore": g.awayPlayerScore
-							}
-						)
+				)
 
 
 
