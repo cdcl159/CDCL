@@ -86,8 +86,12 @@
         
             displayUploadFixturesModal();
             displayAddFixturesModal();
-            // displayEditFixturesModal(fixturesData);
-            displaySubmission(fixturesData);
+            
+            if (fixturesData) {
+                displayEditFixturesModal(fixturesData);
+                displaySubmission(fixturesData);
+            }
+            
             menuHover();
             selectNewFixtureEvent();
 
