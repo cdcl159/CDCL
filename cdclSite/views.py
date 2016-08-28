@@ -809,10 +809,14 @@ def fixtures(request):
 
 		fixturesData[f.id] = {
 			"date": str(f.date),
-			"homeTeam": f.homeTeam.name,
-			"awayTeam": f.awayTeam.name,
-			"event": f.event.name,
-			"season": f.season.name
+			"homeTeamID": f.homeTeam.id,
+			"awayTeamID": f.awayTeam.id,
+			"homeTeamName": f.homeTeam.name,
+			"awayTeamName": f.awayTeam.name,
+			"eventName": f.event.name,
+			"seasonName": f.season.name,
+			"eventID": f.event.id,
+			"seasonID": f.seasonid
 		}
 
 

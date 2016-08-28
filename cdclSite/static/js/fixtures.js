@@ -16,15 +16,17 @@ function displayEditFixturesModal(fixturesData) {
         
         $("#editFixtureTitle").text("Edit Fixture: " + selectedFixtureID);
         
-        $(".editEventDropdown").val(fixturesData[selectedFixtureID]["event"]);
-        $(".editEventDropdown").text(fixturesData[selectedFixtureID]["event"]);
-        $(".editSeasonDropdown").val(fixturesData[selectedFixtureID]["season"]);
-        $(".editSeasonDropdown").text(fixturesData[selectedFixtureID]["season"]);
+        $(".editEventDropdown").val(fixturesData[selectedFixtureID]["eventID"]);
+        $(".editEventDropdown").text(fixturesData[selectedFixtureID]["eventName"]);
+        $(".editSeasonDropdown").val(fixturesData[selectedFixtureID]["seasonID"]);
+        $(".editSeasonDropdown").text(fixturesData[selectedFixtureID]["seasonName"]);
 
         $("#editDate").val(fixturesData[selectedFixtureID]["date"])
 
-        $(".editHomeTeamDropdown").val(fixturesData[selectedFixtureID]["homeTeam"]);
-        $(".editAwayTeamDropdown").val(fixturesData[selectedFixtureID]["awayTeam"]);
+        $(".editHomeTeamDropdown").text(fixturesData[selectedFixtureID]["homeTeamName"]);
+        $(".editAwayTeamDropdown").text(fixturesData[selectedFixtureID]["awayTeamName"]);
+        $(".editHomeTeamDropdown").val(fixturesData[selectedFixtureID]["homeTeamID"]);
+        $(".editAwayTeamDropdown").val(fixturesData[selectedFixtureID]["awayTeamID"]);
 
         $("#editFixtureModal").modal("show");
 
