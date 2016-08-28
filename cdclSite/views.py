@@ -679,7 +679,7 @@ def fixtures(request):
 				else:
 
 					try:
-						selectedFixture.date = datetime.datetime.strptime(form_editFixtureDate, "%Y-%m-%d")
+						selectedFixture.date = datetime.datetime.strptime(form_editFixtureDate, "%d-%m-%Y")
 						selectedFixture.homeTeam = Team.objects.get(id = form_editFixtureHomeTeam)
 						selectedFixture.awayTeam = Team.objects.get(id = form_editFixtureAwayTeam)
 						selectedFixture.event = Event.objects.get(id = form_editFixtureEvent)
@@ -741,7 +741,7 @@ def fixtures(request):
 					
 					# create the new fixture
 					newFixture = Fixture.objects.create(
-							date = datetime.datetime.strptime(form_newFixtureDate, "%Y-%m-%d"),
+							date = datetime.datetime.strptime(form_newFixtureDate, "%d-%m-%Y"),
 							homeTeam = homeTeam,
 							awayTeam = awayTeam,
 							season = locatedSeason,
@@ -811,7 +811,7 @@ def fixtures(request):
 						
 						# create the new fixture
 						newFixture = Fixture.objects.create(
-							date = datetime.datetime.strptime(row[2], "%Y-%m-%d"),
+							date = datetime.datetime.strptime(row[2], "%d-%m-%Y"),
 							homeTeam = homeTeam,
 							awayTeam = awayTeam,
 							season = locatedSeason,
