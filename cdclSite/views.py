@@ -698,7 +698,6 @@ def fixtures(request):
 			# if addMode is true, use the player details from the from to create a new player
 			if form_addMode:
 				
-
 				try:
 
 					# find or create the required teams

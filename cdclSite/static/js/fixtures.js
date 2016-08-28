@@ -75,6 +75,7 @@ function editFixtureAwayTeam() {
 
 function submitFixtureChanges() {
     $("#submitChanges").click(function() {
+        $("#id_editMode").val(true);
         $("#id_selectedFixtureID").val($("#editFixtureTitle").text().split(": ")[1]);
         $("#id_editFixtureSeason").val($(".editSeasonDropdown").val());
         $("#id_editFixtureEvent").val($(".editEventDropdown").val());
