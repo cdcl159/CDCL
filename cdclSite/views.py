@@ -133,7 +133,7 @@ def registrationPage(request):
 									forenames = form_forenames,
 									surname = form_surname,
 									ecfCode = form_ecfCode,
-									club = Club.objects.get(name = form_club)
+									club = Club.objects.get(id = form_club)
 								)
 							
 							else:
@@ -142,14 +142,14 @@ def registrationPage(request):
 									user = newUser,
 									forenames = form_forenames,
 									surname = form_surname,
-									club = Club.objects.get(name = form_club)
+									club = Club.objects.get(id = form_club)
 								)
+						else:
 
-
-						pageMessage = {
-							"type": "SUCCESS",
-							"message": "Account created successfully."
-						}
+							pageMessage = {
+								"type": "SUCCESS",
+								"message": "Account created successfully."
+							}
 		else:
 
 			pageMessage = {
