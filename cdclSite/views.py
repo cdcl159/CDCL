@@ -82,6 +82,7 @@ def registrationPage(request):
 			else:
 
 				try:
+
 					newUser = User.objects.create_user(username = form_username, password = form_password)
 
 					newUser.is_active = False
@@ -104,7 +105,7 @@ def registrationPage(request):
 							surname = form_surname,
 							address_1 = form_address_1,
 							address_2 = form_address_2,
-							aAddress_3 = form_address_3,
+							address_3 = form_address_3,
 							postcode = form_postcode,
 							primaryContactNumber = form_primaryContactNumber,
 							backupContactNumber = form_backupContactNumber,
@@ -189,7 +190,7 @@ def index(request):
 
 			authenticatedUser = authenticate(username = form_username, password = form_password)
 
-			if authenticatedUser:
+			if authenticatedUser and authenticatedUser.is_active:
 				login(request, authenticatedUser)
 
 				return HttpResponseRedirect("../dashboard")
