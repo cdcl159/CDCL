@@ -460,7 +460,7 @@
                             <tbody>
                                 <tbody>
                                     {% for f in fixtures %}
-                                        <tr class="fixture_{{f.status}}" i={{f.id}}>
+                                        <tr class="fixture_{{f.status}}" id={{f.id}}>
                                             <td class="fixtureTableCell">
                                                 <h5>{{f.event.name}}</h5>
                                             </td>
@@ -491,7 +491,7 @@
                                                 {% endif %}
                                             </td>
                                             <td class="fixtureTableCell">
-                                                <h5>Edit</h5>
+                                                <h5><img class="editFixtureIcon" src="{% static 'images/settingsIcon.png' %}" style="width:42px;height:42px;"></h5>
                                             </td>
                                             <td class="fixtureTableCell">
                                                 <h5>{{f.status}}</h5>

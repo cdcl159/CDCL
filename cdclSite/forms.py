@@ -61,6 +61,14 @@ class FixtureManagementForm(forms.Form):
 	newFixtureHomeTeam = forms.CharField(required = False, max_length = 100)
 	newFixtureAwayTeam = forms.CharField(required = False, max_length = 100)
 
+	selectedFixtureID = forms.IntegerField(required = False)
+	editFixtureSeason = forms.CharField(required = False, max_length = 100)
+	editFixtureDivision = forms.CharField(required = False, max_length = 100)
+	editFixtureEvent = forms.CharField(required = False, max_length = 100)
+	editFixtureDate = forms.CharField(required = False, max_length = 100)
+	editFixtureHomeTeam = forms.CharField(required = False, max_length = 100)
+	editFixtureAwayTeam = forms.CharField(required = False, max_length = 100)
+
 	teamData = forms.CharField(required = False, max_length = 1000)
 
 

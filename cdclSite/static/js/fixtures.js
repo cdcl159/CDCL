@@ -1,12 +1,12 @@
 
 function displayUploadFixturesModal() {
-    
     $("#openUpload").click(function() {
-    
         $("#fixturesUploadModal").modal("show");
-        
     });
-    
+}
+
+function displayEditFixturesModal() {
+    //$()
 }
 
 function displayAddFixturesModal() {
