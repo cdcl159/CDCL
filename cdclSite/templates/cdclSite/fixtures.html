@@ -80,13 +80,14 @@
             
             var pageMessage = {{pageMessage|safe}};
             var players = {{players|safe}};
+            var fixturesData = {{fixturesData|safe}};
                           
             handlePageMessage(pageMessage);
 
         
             displayUploadFixturesModal();
             displayAddFixturesModal();
-            displayEditFixturesModal();
+            displayEditFixturesModal(fixturesData);
             menuHover();
             selectNewFixtureEvent();
 
