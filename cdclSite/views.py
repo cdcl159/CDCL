@@ -878,9 +878,11 @@ def fixtures(request):
 						"boardNumber": g.boardNumber,
 						"homePlayerID": g.homePlayerID,
 						"homePlayerName": Player.objects.get(id = g.homePlayerID),
-						"awayPlayerID": g.awayPlayerID,
-						"homePlayerName": Player.objects.get(id = g.awayPlayerID),
+						"homePlayerGrade": Player.objects.get(id = g.homePlayerID).grading,
 						"homePlayerScore": g.homePlayerScore,
+						"awayPlayerID": g.awayPlayerID,
+						"awayPlayerName": Player.objects.get(id = g.awayPlayerID),
+						"awayPlayerGrade": Player.objects.get(id = g.awayPlayerID).grading,
 						"awayPlayerScore": g.awayPlayerScore
 					}
 				)

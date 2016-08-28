@@ -92,6 +92,7 @@
             displayUploadFixturesModal();
             displayAddFixturesModal();
             displayEditFixturesModal(fixturesData);
+            displaySubmission(fixturesData);
             menuHover();
             selectNewFixtureEvent();
 
@@ -99,6 +100,8 @@
             editFixtureSeason();
             editFixtureHomeTeam();
             editFixtureAwayTeam();
+
+
         
             selectClubForTeam(players);
             selectClubCaptain();
@@ -290,6 +293,184 @@
 
                         <div class="col-sm-12 row">
                             <button type="button" id="submitSingleFixture" class="btn btn-primary" data-dismiss="modal">Submit Fixture</button>
+                        </div>
+
+                    </div>
+                
+                </div>
+
+            </div>
+        </div>
+
+
+        <div id="submissionModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title submissionTitle"></h4>
+                    </div>
+                    <div class="modal-body">
+                        
+                        <div class="col-sm-12"><br><br></div>
+                        
+                        <div class="col-sm-12 submissionTableContainer">
+                        <table  class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <td></td>
+                                    <td colspan="3"><h4 id="homeTeamTitle">Home Team: </h4></td>
+                                    <td colspan="3"><h4 id="awayTeamTitle">Away Team: </h4></td>
+                                </tr>
+
+                                <tr>
+                                    <td><h4>BOARD</h4></td>
+                                    <td><h4>PLAYER</h4></td>
+                                    <td><h4>GRADE</h4></td>
+                                    <td><h4>SCORE</h4></td>
+                                    <td><h4>PLAYER</h4></td>
+                                    <td><h4>GRADE</h4></td>
+                                    <td><h4>SCORE</h4>
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>
+                                        <h4 id="b1_h_name"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b1_h_grade"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b1_h_score"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b1_a_name"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b1_a_grade"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b1_a_score"></h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>
+                                        <h4 id="b2_h_name"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b2_h_grade"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b2_h_score"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b2_a_name"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b2_a_grade"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b2_a_score"></h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>
+                                        <h4 id="b3_h_name"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b3_h_grade"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b3_h_score"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b3_a_name"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b3_a_grade"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b3_a_score"></h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>
+                                        <h4 id="b4_h_name"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b4_h_grade"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b4_h_score"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b4_a_name"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b4_a_grade"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b4_a_score"></h4>
+                                    </td>
+                                <tr>
+                                    <td>5</td>
+                                    <td>
+                                        <h4 id="b5_h_name"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b5_h_grade"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b5_h_score"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b5_a_name"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b5_a_grade"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b5_a_score"></h4>
+                                    </td>
+                                <tr>
+                                    <td>6</td>
+                                    <td>
+                                        <h4 id="b6_h_name"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b6_h_grade"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b6_h_score"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b6_a_name"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b6_a_grade"></h4>
+                                    </td>
+                                    <td>
+                                        <h4 id="b6_a_score"></h4>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    </div>
+
+                    <div class="modal-footer">
+
+                        <div class="col-sm-12">
+                            <hr>
                         </div>
 
                     </div>
@@ -596,14 +777,14 @@
                                                 {% if f.homeSubmission == None %}
                                                     <img class="pendingSubmissionIcon" src="{% static 'images/submissionPending.png' %}" style="width:42px;height:42px;">
                                                 {% else %}
-                                                    <img class="receivedSubmissionIcon" src="{% static 'images/submissionReceived.png' %}" style="width:42px;height:42px;">
+                                                    <img class="receivedSubmissionIcon" id="receivedHomeSubmission" src="{% static 'images/submissionReceived.png' %}" style="width:42px;height:42px;">
                                                 {% endif %}
                                             </td>
                                             <td class="fixtureTableCell">
                                                 {% if f.awaySubmission == None %}
                                                     <img class="pendingSubmissionIcon" src="{% static 'images/submissionPending.png' %}" style="width:42px;height:42px;">
                                                 {% else %}
-                                                    <img class="receivedSubmissionIcon" src="{% static 'images/submissionReceived.png' %}" style="width:42px;height:42px;">
+                                                    <img class="receivedSubmissionIcon" id="receivedAwaySubmission" src="{% static 'images/submissionReceived.png' %}" style="width:42px;height:42px;">
                                                 {% endif %}
                                             </td>
                                             <td class="fixtureTableCell">

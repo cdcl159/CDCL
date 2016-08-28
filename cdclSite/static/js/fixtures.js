@@ -242,3 +242,60 @@ function submitTeams() {
         
     });
 }
+
+
+
+function displaySubmission(fixturesData) {
+
+    $("#receivedHomeSubmission").click(function() {
+
+        var selectedFixtureID = $(this).parent().parent().attr("id");
+
+        var homeSubmission = fixturesData[selectedFixtureID]["homeSubmission"]
+
+        $("#submissionTitle").text("Submission From: " + homeSubmission["teamName"]);
+
+        for (var i = 1; i < homeSubmission["games"].length + 1; i++) {
+
+            var currentGame = homeSubmission["games"][i];
+
+            $("#b" + i.toString() + "_h_name").text(currentGame["homePlayerName"]);
+            $("#b" + i.toString() + "_h_grade").text(currentGame["homePlayerGrade"]);
+            $("#b" + i.toString() + "_h_score").text(currentGame["homePlayerScore"]);
+            $("#b" + i.toString() + "_a_name").text(currentGame["awayPlayerName"]);
+            $("#b" + i.toString() + "_a_grade").text(currentGame["awayPlayerGrade"]);
+            $("#b" + i.toString() + "_a_score").text(currentGame["awayPlayerScore"]);
+
+        }
+
+        $("#submissionModal").modal("show");
+
+    });
+
+    $("#receivedAwaySubmission").click(function() {
+        
+        var selectedFixtureID = $(this).parent().parent().attr("id");
+
+        var awaySubmission = fixturesData[selectedFixtureID]["awaySubmission"]
+
+        $("#submissionTitle").text("Submission From: " + awaySubmission["teamName"]);
+
+        for (var i = 1; i < awaySubmission["games"].length + 1; i++) {
+
+            var currentGame = homeSubmission["games"][i];
+
+            $("#b" + i.toString() + "_h_name").text(currentGame["homePlayerName"]);
+            $("#b" + i.toString() + "_h_grade").text(currentGame["homePlayerGrade"]);
+            $("#b" + i.toString() + "_h_score").text(currentGame["homePlayerScore"]);
+            $("#b" + i.toString() + "_a_name").text(currentGame["awayPlayerName"]);
+            $("#b" + i.toString() + "_a_grade").text(currentGame["awayPlayerGrade"]);
+            $("#b" + i.toString() + "_a_score").text(currentGame["awayPlayerScore"]);
+
+        }
+
+        $("#submissionModal").modal("show");
+        
+    });
+
+
+}
