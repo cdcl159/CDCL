@@ -617,6 +617,13 @@ def fixtures(request):
 			form_newFixtureHomeTeam = fixtureManagementForm.cleaned_data["newFixtureHomeTeam"]
 			form_newFixtureAwayTeam = fixtureManagementForm.cleaned_data["newFixtureAwayTeam"]
 
+			form_selectedFixtureID = fixtureManagementForm.cleaned_data["selectedFixtureID"]
+			form_editFixtureSeason = fixtureManagementForm.cleaned_data["editFixtureSeason"]
+			form_editFixtureEvent = fixtureManagementForm.cleaned_data["editFixtureEvent"]
+			form_editFixtureDate = fixtureManagementForm.cleaned_data["editFixtureDate"]
+			form_editFixtureHomeTeam = fixtureManagementForm.cleaned_data["editFixtureHomeTeam"]
+			form_editFixtureAwayTeam = fixtureManagementForm.cleaned_data["editFixtureAwayTeam"]
+
 			if form_teamMode:
 
 				teamData = json.loads(form_teamData)
@@ -650,7 +657,43 @@ def fixtures(request):
 			# if editMode is true, get the selected player
 			if form_editMode:
 
-				pass
+				try:
+
+					selectedFixture = Fixture.objects.get(id = form_selectedFixtureID)
+
+				except Fixture.DoesNotExist:
+
+					pageMessage = {
+						"type": "ERROR",
+						"message": "The selected fixture could not be found in the database."
+					}
+				
+				else:
+
+					try:
+						selectedFixture.date = datetime.datetime.strptime(form_editFixtureDate, "%d/%m/%Y")
+						selectedFixture.homeTeam = Team.objects.get(id = form_editFixtureHomeTeam)
+						selectedFixture.awayTeam = Team.objects.get(id = form_editFixtureAwayTeam)
+						selectedFixture.event = Event.objects.get(id = form_editFixtureEvent)
+						selectedFixture.season = Season.objects.get(id = form_editFixtureSeason)
+
+						selectedFixture.save()
+					
+					except Exception as e:
+
+						pageMessage = {
+							"type": "ERROR",
+							"message": "The changes to the fixture could not be made: " + str(e)
+						}
+
+					else:
+
+						pageMessage = {
+							"type": "SUCCESS",
+							"message": "The fixture was changed successfully."
+						}
+
+
 
 			# if addMode is true, use the player details from the from to create a new player
 			if form_addMode:
