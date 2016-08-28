@@ -861,58 +861,58 @@ def fixtures(request):
 			"seasonID": f.season.id
 		}
 
-		try:
+		# try:
 			
-			homeSubmission = f.homeSubmission
+		# 	homeSubmission = f.homeSubmission
 		
-		except Submission.DoesNotExist:
+		# except Submission.DoesNotExist:
 
-			pass
+		# 	pass
 		
-		else:
+		# else:
 
-			fixtureData[f.id]["homeSubmission"] = {
-				"team": homeSubmission.team.name,
-				"games": []
-			}
+		# 	fixtureData[f.id]["homeSubmission"] = {
+		# 		"team": homeSubmission.team.name,
+		# 		"games": []
+		# 	}
 
-			for game in Game.objects.filter(submission = homeSubmission):
+		# 	for game in Game.objects.filter(submission = homeSubmission):
 				
-				fixtureData[f.id]["homeSubmission"]["games"].append(
-					{
-						"boardNumber": game.boardNumber,
-						"homePlayerName": Player.objects.get(id = game.homePlayerID).name,
-						"awayPlayerName": Player.objects.get(id = game.awayPlayerID).name,
-						"homePlayerScore": game.homePlayerScore,
-						"awayPlayerScore": game.awayPlayerScore
-					}
-				)
-		try:
+		# 		fixtureData[f.id]["homeSubmission"]["games"].append(
+		# 			{
+		# 				"boardNumber": game.boardNumber,
+		# 				"homePlayerName": Player.objects.get(id = game.homePlayerID).name,
+		# 				"awayPlayerName": Player.objects.get(id = game.awayPlayerID).name,
+		# 				"homePlayerScore": game.homePlayerScore,
+		# 				"awayPlayerScore": game.awayPlayerScore
+		# 			}
+		# 		)
+		# try:
 		
-			awaySubmission = f.awaySubmission
+		# 	awaySubmission = f.awaySubmission
 	
-		except Submission.DoesNotExist:
+		# except Submission.DoesNotExist:
 
-			pass
+		# 	pass
 		
-		else:
+		# else:
 
-			fixtureData[f.id]["awaySubmission"] = {
-				"team": awaySubmission.team.name,
-				"games": []
-			}
+		# 	fixtureData[f.id]["awaySubmission"] = {
+		# 		"team": awaySubmission.team.name,
+		# 		"games": []
+		# 	}
 
-			for game in Game.objects.filter(submission = awaySubmission):
+		# 	for game in Game.objects.filter(submission = awaySubmission):
 				
-				fixtureData[f.id]["awaySubmission"]["games"].append(
-					{
-						"boardNumber": game.boardNumber,
-						"homePlayerName": Player.objects.get(id = game.homePlayerID).name,
-						"awayPlayerName": Player.objects.get(id = game.awayPlayerID).name,
-						"homePlayerScore": game.homePlayerScore,
-						"awayPlayerScore": game.awayPlayerScore
-					}
-				)
+		# 		fixtureData[f.id]["awaySubmission"]["games"].append(
+		# 			{
+		# 				"boardNumber": game.boardNumber,
+		# 				"homePlayerName": Player.objects.get(id = game.homePlayerID).name,
+		# 				"awayPlayerName": Player.objects.get(id = game.awayPlayerID).name,
+		# 				"homePlayerScore": game.homePlayerScore,
+		# 				"awayPlayerScore": game.awayPlayerScore
+		# 			}
+		# 		)
 
 
 	return render(request, "cdclSite/fixtures.html",
