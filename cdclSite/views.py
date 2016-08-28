@@ -761,7 +761,7 @@ def fixtures(request):
 						
 						# create the new fixture
 						newFixture = Fixture.objects.create(
-								date = datetime.datetime.strptime(row[2], "%d/%m/%Y"),
+								date = datetime.datetime.strptime(row[2], "%d-%m-%Y"),
 								homeTeam = homeTeam,
 								awayTeam = awayTeam,
 								season = locatedSeason,
