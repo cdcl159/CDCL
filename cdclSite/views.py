@@ -861,58 +861,52 @@ def fixtures(request):
 			"seasonID": f.season.id
 		}
 
-		# try:
-			
-		# 	homeSubmission = f.homeSubmission
-		
-		# except Submission.DoesNotExist:
 
-		# 	pass
-		
-		# else:
+		if f.submission_set.all():
 
-		# 	fixtureData[f.id]["homeSubmission"] = {
-		# 		"team": homeSubmission.team.name,
-		# 		"games": []
-		# 	}
+			for s in f.submission_set.all():
 
-		# 	for game in Game.objects.filter(submission = homeSubmission):
-				
-		# 		fixtureData[f.id]["homeSubmission"]["games"].append(
-		# 			{
-		# 				"boardNumber": game.boardNumber,
-		# 				"homePlayerName": Player.objects.get(id = game.homePlayerID).name,
-		# 				"awayPlayerName": Player.objects.get(id = game.awayPlayerID).name,
-		# 				"homePlayerScore": game.homePlayerScore,
-		# 				"awayPlayerScore": game.awayPlayerScore
-		# 			}
-		# 		)
-		# try:
-		
-		# 	awaySubmission = f.awaySubmission
-	
-		# except Submission.DoesNotExist:
+				if s.team.name == f.homeTeam.name:
 
-		# 	pass
-		
-		# else:
+					fixturesData[f.id]["homeSubmission"] = {
+						"teamName": s.team.name,
+						"games": []
+					}
 
-		# 	fixtureData[f.id]["awaySubmission"] = {
-		# 		"team": awaySubmission.team.name,
-		# 		"games": []
-		# 	}
+					for g in s.games_set.all():
 
-		# 	for game in Game.objects.filter(submission = awaySubmission):
-				
-		# 		fixtureData[f.id]["awaySubmission"]["games"].append(
-		# 			{
-		# 				"boardNumber": game.boardNumber,
-		# 				"homePlayerName": Player.objects.get(id = game.homePlayerID).name,
-		# 				"awayPlayerName": Player.objects.get(id = game.awayPlayerID).name,
-		# 				"homePlayerScore": game.homePlayerScore,
-		# 				"awayPlayerScore": game.awayPlayerScore
-		# 			}
-		# 		)
+						fixturesData[f.id]["homeSubmission"]["games"].append(
+							{
+								"boardNumber": g.boardNumber,
+								"homePlayerID": g.homePlayerID,
+								"homePlayerName": Player.objects.get(id = g.homePlayerID),
+								"awayPlayerID": g.awayPlayerID,
+								"homePlayerName": Player.objects.get(id = g.awayPlayerID),
+								"homePlayerScore": g.homePlayerScore,
+								"awayPlayerScore": g.awayPlayerScore
+							}
+						)
+				if s.team.name == f.homeTeam.name:
+
+					fixturesData[f.id]["homeSubmission"] = {
+						"teamName": s.team.name,
+						"games": []
+					}
+
+					for g in s.games_set.all():
+
+						fixturesData[f.id]["homeSubmission"]["games"].append(
+							{
+								"boardNumber": g.boardNumber,
+								"homePlayerID": g.homePlayerID,
+								"homePlayerName": Player.objects.get(id = g.homePlayerID),
+								"awayPlayerID": g.awayPlayerID,
+								"homePlayerName": Player.objects.get(id = g.awayPlayerID),
+								"homePlayerScore": g.homePlayerScore,
+								"awayPlayerScore": g.awayPlayerScore
+							}
+						)
+
 
 
 	return render(request, "cdclSite/fixtures.html",
