@@ -295,7 +295,14 @@ def announcementsPage(request):
 
 		pageMessage = {"type": "BLANK", "message": "NOTHING"}
 
-	return render(request, "cdclSite/announcementsPage.html", {"pageMessage": json.dumps(pageMessage)}) 
+	return render(
+		request,
+		"cdclSite/announcementsPage.html",
+		{
+			"announcementForm": announcementForm,
+			"pageMessage": json.dumps(pageMessage)
+		}
+	) 
 
 
 

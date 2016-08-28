@@ -8,7 +8,6 @@ function selectClub() {
 function submitForm() {
     $("#submitRequest").click(function() {
 
-        console.log("C");
         $("#id_username").val($("#username").val());
         $("#id_password").val($("#password").val());
         $("#id_passwordConfirm").val($("#passwordConfirm").val());
