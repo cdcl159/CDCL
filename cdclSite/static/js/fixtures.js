@@ -6,7 +6,9 @@ function displayUploadFixturesModal() {
 }
 
 function displayEditFixturesModal() {
-    //$()
+    $(".editFixtureIcon").click(function() {
+        $("#editFixtureModal").modal("show");
+    });
 }
 
 function displayAddFixturesModal() {
