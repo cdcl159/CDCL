@@ -325,8 +325,10 @@
                     <tbody>
                         <tr>
                             <td class="menuElement" id="postAnnouncementElement" align="middle">
-                                <img id="announcementIcon" class="menuIcon" src="{% static 'images/announcementIcon.png' %}">
-                                <p class="menuText">Announcements</p>
+                                <a href="{% url 'announcementsPage' %}">
+                                    <img id="announcementIcon" class="menuIcon" src="{% static 'images/announcementIcon.png' %}">
+                                    <p class="menuText">Announcements</p>
+                                </a>
                             </td>
                         </tr>
                         <tr>
@@ -339,32 +341,40 @@
                             <td class="menuElement" id="clubManagement" align="middle">
                                  <a href="{% url 'clubManagement' %}">
                                      <img id="clubManagementIcon" class="menuIcon" src="{% static 'images/clubManagementIcon.png' %}">
+                                    <p class="menuText">Clubs</p>
                                 </a>
-                                <p class="menuText">Clubs</p>
                             </td>
                         </tr>
                         <tr>
                             <td class="menuElement" id="players" align="middle">
-                                <img id="playersIcon" class="menuIcon" src="{% static 'images/playersIcon.png' %}">
-                                <p class="menuText">Players</p>
+                                <a href="{% url 'playerManagement' %}">
+                                    <img id="playersIcon" class="menuIcon" src="{% static 'images/playersIcon.png' %}">
+                                    <p class="menuText">Players</p>
+                                </a>
                             </td>
                         </tr>
                         <tr>
                             <td class="menuElement" id="fixtures" align="middle">
-                                <img id="fixuresIcon" class="menuIcon" src="{% static 'images/fixtures.png' %}">
-                                <p class="menuText">Fixtures</p>
+                                <a href="{% url 'fixtures' %}">
+                                    <img id="fixuresIcon" class="menuIcon" src="{% static 'images/fixtures.png' %}">
+                                    <p class="menuText">Fixtures</p>
+                                </a>
                             </td>
                         </tr>
                         <tr>
                             <td class="menuElement" id="addResults" align="middle">
-                                <img id="addResultsIcon" class="menuIcon" src="{% static 'images/resultsIcon.png' %}">
-                                <p class="menuText">Submit Results</p>
+                                <a href="{% url 'resultsSubmission' %}">
+                                    <img id="addResultsIcon" class="menuIcon" src="{% static 'images/resultsIcon.png' %}">
+                                    <p class="menuText">Submit Results</p>
+                                </a>
                             </td>
                         </tr>
                         <tr>
                             <td class="menuElement" id="userDetails" align="middle">
-                                <img id="userDetailsIcon" class="menuIcon" src="{% static 'images/userDetailsIcon.png' %}">
-                                <p class="menuText">User Details</p>
+                                <a href="{% url 'userDetails' %}">
+                                    <img id="userDetailsIcon" class="menuIcon" src="{% static 'images/userDetailsIcon.png' %}">
+                                    <p class="menuText">User Details</p>
+                                </a>
                             </td>
                         </tr>
                         <tr>
