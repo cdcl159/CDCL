@@ -10,6 +10,10 @@ function displayEditFixturesModal(fixturesData) {
 
         var selectedFixtureID = $(this).parent().parent().attr("id");
         
+        console.log(selectedFixtureID);
+        
+        console.log(fixturesData[selectedFixtureID]);
+        
         $("#editFixtureTitle").text("Edit Fixture: " + selectedFixtureID);
         
         $(".editEventDropdown").val(fixturesData[selectedFixtureID]["event"]);
