@@ -162,34 +162,42 @@
             <div class="col-sm-12 topNavBar" align="middle">
                 <div class="col-sm-2 home">
                     <br>
-                    <img id="aboutIcon" class="navbarIcon" src="{% static "images/homeIcon.png" %}">
+                    <a href="{% url 'index' %}">
+                    <img id="aboutIcon" class="navbarIcon" src="{% static 'images/homeIcon.png' %}">
                     <p class="navbarText">Home</p>
+                    </a>
                 </div>
                 <div class="col-sm-2 about">
                     <br>
-                    <img id="aboutIcon" class="navbarIcon" src="{% static "images/aboutIcon.png" %}">
-                    <p class="navbarText">About</p>
+                    <a href="{% url 'about' %}">
+                        <img id="aboutIcon" class="navbarIcon" src="{% static 'images/aboutIcon.png' %}">
+                        <p class="navbarText">About</p>
+                    </a>
                 </div>
                 <div class="col-sm-2 officers">
-                    
                     <br>
-                    <img id="officerIcon" class="navbarIcon" src="{% static "images/officerIcon.png" %}">
-                    <p class="navbarText">Officers</p>
-                    
+                    <a href="{% url 'officers' %}">
+                        <img id="officerIcon" class="navbarIcon" src="{% static 'images/officerIcon.png' %}">
+                        <p class="navbarText">Officers</p>
+                    </a>
                 </div>
                 <div class="col-sm-2 rules">
                     <br>
-                    <img id="rulesIcon" class="navbarIcon" src="{% static "images/rulesIcon.png" %}">
-                    <p class="navbarText">Rules &amp; Constitution</p>
+                    <a href="{% url 'constitution' %}">
+                        <img id="rulesIcon" class="navbarIcon" src="{% static 'images/rulesIcon.png' %}">
+                        <p class="navbarText">Rules &amp; Constitution</p>
+                    </a>
                 </div>
                 <div class="col-sm-2 clubs">
                     <br>
-                    <img id="clubIcon" class="navbarIcon" src="{% static "images/clubIcon.png" %}">
-                    <p class="navbarText">Clubs</p>
+                    <a href="{% url 'clubs' %}">
+                        <img id="clubIcon" class="navbarIcon" src="{% static 'images/clubIcon.png' %}">
+                        <p class="navbarText">Clubs</p>
+                    </a>
                 </div>
                 <div class="col-sm-2 results">
                     <br>
-                    <img id="resultsIcon" class="navbarIcon" src="{% static "images/resultsIcon.png" %}">
+                    <img id="resultsIcon" class="navbarIcon" src="{% static 'images/resultsIcon.png' %}">
                     <p class="navbarText">Results</p>
                 </div>
                  
