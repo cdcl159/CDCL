@@ -259,12 +259,6 @@ def announcementsPage(request):
 			form_body = announcementForm.cleaned_data["body"]
 			form_postTo = announcementForm.cleaned_data["postTo"]
 
-			print "- - - - -"
-			print form_title
-			print form_body
-			print form_postTo
-			print "- - - - -"
-
 			try:
 
 				newAnnouncement = Announcement.objects.create(
