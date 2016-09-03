@@ -190,15 +190,25 @@ def index(request):
 
 			authenticatedUser = authenticate(username = form_username, password = form_password)
 
-			if authenticatedUser and authenticatedUser.is_active:
-				login(request, authenticatedUser)
+			if authenticatedUser
+				
+				if authenticatedUser.is_active:
 
-				return HttpResponseRedirect("../dashboard")
+					login(request, authenticatedUser)
+
+					return HttpResponseRedirect("../dashboard")
+
+				else:
+
+					pageMessage = {
+						"type": "WARNING",
+						"message": "Account not active. If you have recently registered, your account application is under review and may not yet be approved. Otherwise, please contact site admin."
+					}
 
 			else:
 				pageMessage = {
-					"type": "WARNING", "message": "Username or password incorrect.\n"+
-					"Please apply for an account if not already a member."
+					"type": "WARNING",
+					"message": "Username or password incorrect. Please apply for an account if not already a member."
 				}
 
 
