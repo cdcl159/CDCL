@@ -190,7 +190,7 @@ def index(request):
 
 			authenticatedUser = authenticate(username = form_username, password = form_password)
 
-			if authenticatedUser
+			if authenticatedUser:
 				
 				if authenticatedUser.is_active:
 
