@@ -1102,25 +1102,30 @@ def resultsSubmission(request):
 	pageMessage = {"type": "BLANK", "message": "NOTHING"}
 
 	fixtureData = {}
+	
+	if request.user.is_superuser:
+	
+		for fixture in Fixture.objects.all():
+			
+				fixtureData[fixture.id] = {
+					"date": str(fixture.date),
+					"homeTeam": {"name": fixture.homeTeam.name, "club": fixture.homeTeam.club.name},
+					"awayTeam": {"name": fixture.awayTeam.name, "club": fixture.awayTeam.club.name},
+					"event": fixture.event.name
+				}
 
-	for fixture in Fixture.objects.all():
+	elif user.player:
+
+		for fixture in Fixture.objects.all():
+			
+			if fixture.homeTeam.captain == request.user.player or fixture.awayTeam.captain == request.user.player:
 		
-		if request.user.is_superuser:
-			fixtureData[fixture.id] = {
-				"date": str(fixture.date),
-				"homeTeam": {"name": fixture.homeTeam.name, "club": fixture.homeTeam.club.name},
-				"awayTeam": {"name": fixture.awayTeam.name, "club": fixture.awayTeam.club.name},
-				"event": fixture.event.name
-			}
-
-		elif fixture.homeTeam.captain == request.user.player or fixture.awayTeam.captain == request.user.player or user.is_superuser:
-
-			fixtureData[fixture.id] = {
-				"date": str(fixture.date),
-				"homeTeam": {"name": fixture.homeTeam.name, "club": fixture.homeTeam.club.name},
-				"awayTeam": {"name": fixture.awayTeam.name, "club": fixture.awayTeam.club.name},
-				"event": fixture.event.name
-			}
+				fixtureData[fixture.id] = {
+					"date": str(fixture.date),
+					"homeTeam": {"name": fixture.homeTeam.name, "club": fixture.homeTeam.club.name},
+					"awayTeam": {"name": fixture.awayTeam.name, "club": fixture.awayTeam.club.name},
+					"event": fixture.event.name
+				}
 
 	playerData = {}
 
@@ -1169,7 +1174,6 @@ def userManagementToolSettings(request):
 				form_officerMode = userManagementToolsForm.cleaned_data["officerMode"]
 				form_recordsMode = userManagementToolsForm.cleaned_data["recordsMode"]
 				form_treasurerMode = userManagementToolsForm.cleaned_data["treasurerMode"]
-
 
 				try:
 
