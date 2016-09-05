@@ -1107,18 +1107,24 @@ def resultsSubmission(request):
 	
 		for fixture in Fixture.objects.all():
 			
-				fixtureData[fixture.id] = {
-					"date": str(fixture.date),
-					"homeTeam": {"name": fixture.homeTeam.name, "club": fixture.homeTeam.club.name},
-					"awayTeam": {"name": fixture.awayTeam.name, "club": fixture.awayTeam.club.name},
-					"event": fixture.event.name
-				}
+			fixtureData[fixture.id] = {
+				"date": str(fixture.date),
+				"homeTeam": {"name": fixture.homeTeam.name, "club": fixture.homeTeam.club.name},
+				"awayTeam": {"name": fixture.awayTeam.name, "club": fixture.awayTeam.club.name},
+				"event": fixture.event.name
+			}
 	else:
+
 		try:
+		
 			request.user.player
+		
 		except Player.DoesNotExist:
+		
 			pass
+		
 		else:
+		
 			for fixture in Fixture.objects.all():
 				
 				if fixture.homeTeam.captain == request.user.player or fixture.awayTeam.captain == request.user.player:
@@ -1362,7 +1368,7 @@ def userManagementToolSettings(request):
 
 		try:
 
-			currentUserData = user.userdata
+			currentUserData = request.user.userdata
 		
 		except UserData.DoesNotExist:
 
@@ -1371,18 +1377,18 @@ def userManagementToolSettings(request):
 		else:
 
 			userDataDict[user.id]["userData"] = {
-				"isOfficer": user.userData.isOfficer,
-				"isRecordSecretary": user.userData.isRecordSecretary,
-				"isTreasurer": user.userData.isTreasurer,
-				"forenames": user.userData.forenames,
-				"surname": user.userData.surname,
-				"address_1": user.userData.address_1,
-				"address_2": user.userData.address_2,
-				"address_3": user.userData.address_3,
-				"postcode": user.userData.postcode,
-				"primaryContactNumber": user.userData.primaryContactNumber,
-				"backupContactNumber": user.userData.backupContactNumber,
-				"email": user.userData.email
+				"isOfficer": currentUserData.isOfficer,
+				"isRecordSecretary": currentUserData.isRecordSecretary,
+				"isTreasurer": currentUserData.isTreasurer,
+				"forenames": currentUserData.forenames,
+				"surname": currentUserData.surname,
+				"address_1": currentUserData.address_1,
+				"address_2": currentUserData.address_2,
+				"address_3": currentUserData.address_3,
+				"postcode": currentUserData.postcode,
+				"primaryContactNumber":currentUserData.primaryContactNumber,
+				"backupContactNumber": currentUserData.backupContactNumber,
+				"email": currentUserData.email
 			}
 
 		try:
