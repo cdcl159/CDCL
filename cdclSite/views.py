@@ -1114,8 +1114,11 @@ def resultsSubmission(request):
 					"event": fixture.event.name
 				}
 
-	elif request.user.player:
-
+	try:
+		request.user.player
+	except Player.DoesNotExist:
+		pass
+	else:
 		for fixture in Fixture.objects.all():
 			
 			if fixture.homeTeam.captain == request.user.player or fixture.awayTeam.captain == request.user.player:
