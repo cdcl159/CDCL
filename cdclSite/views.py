@@ -233,7 +233,7 @@ def index(request):
 		{
 			"loginForm": loginForm,
 			"pageMessage": json.dumps(pageMessage),
-			"announcements": SiteAnnouncement.objects.filter(postTo = "M")
+			"announcements": SiteAnnouncement.objects.filter(postTo = "m")
 		}
 	)
 
