@@ -1368,7 +1368,7 @@ def userManagementToolSettings(request):
 
 		try:
 
-			currentUserData = request.user.userdata
+			currentUserData = user.userdata
 		
 		except UserData.DoesNotExist:
 
