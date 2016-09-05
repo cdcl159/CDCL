@@ -1105,7 +1105,7 @@ def resultsSubmission(request):
 
 	for fixture in Fixture.objects.all():
 		
-		if user.is_superuser:
+		if request.user.is_superuser:
 			fixtureData[fixture.id] = {
 				"date": str(fixture.date),
 				"homeTeam": {"name": fixture.homeTeam.name, "club": fixture.homeTeam.club.name},
