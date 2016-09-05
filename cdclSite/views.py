@@ -312,6 +312,7 @@ def announcementsPage(request):
 		"cdclSite/announcementsPage.html",
 		{
 			"announcementForm": announcementForm,
+			"previousAnnouncements": SiteAnnouncement.objects.get(creator = request.user),
 			"pageMessage": json.dumps(pageMessage)
 		}
 	) 

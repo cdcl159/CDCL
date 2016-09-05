@@ -67,9 +67,9 @@
         $(document).ready(function() {
             
             var pageMessage = {{pageMessage|safe}};
-            alert(pageMessage["type"])
-            alert(pageMessage["message"])
+
             handlePageMessage(pageMessage);
+            
             menuHover();
             displayConfirmationModal();
             selectPostToLocation();

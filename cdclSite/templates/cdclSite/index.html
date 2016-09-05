@@ -234,7 +234,14 @@
             <div class="row mainContent">
 
                 <div class="col-sm-8 newsColumn">
-                    
+                    {% for a in announcements %}
+
+                        <h2 class="blog-post-title">{{a.title}}</h2>
+                        <p class="blog-post-meta">{{a.creationDateTime}} by <a href="#">{{a.creator.username}}</a></p>
+                        <p>
+                            {{a.body}}
+                        </p>
+                    {% endfor %}
                     <div class="blog-post">
                         <h2 class="blog-post-title">UPDATE!</h2>
                         <p class="blog-post-meta">July 23, 2016 by <a href="#">Rich</a></p>
