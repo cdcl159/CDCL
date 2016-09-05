@@ -307,12 +307,21 @@ def announcementsPage(request):
 
 		pageMessage = {"type": "BLANK", "message": "NOTHING"}
 
+	try:
+		previousAnnouncements = SiteAnnouncement.objects.get(creator = request.user)
+	except SiteAnnouncement.DoesNotExist:
+		previousAnnouncements = []
+	else:
+		pass 
+
+
+
 	return render(
 		request,
 		"cdclSite/announcementsPage.html",
 		{
 			"announcementForm": announcementForm,
-			"previousAnnouncements": SiteAnnouncement.objects.get(creator = request.user),
+			"previousAnnouncements": previousAnnouncements,
 			"pageMessage": json.dumps(pageMessage)
 		}
 	) 
