@@ -4,7 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class Announcement(models.Model):
+class SiteAnnouncement(models.Model):
 	title = models.CharField(max_length = 50)
 	creator = models.ForeignKey(User)
 	creationDateTime = models.DateTimeField()

@@ -200,6 +200,7 @@ def index(request):
 
 				else:
 
+
 					pageMessage = {
 						"type": "WARNING",
 						"message": "Account not active. If you have recently registered, your account application is under review and may not yet be approved. Otherwise, please contact site admin."
@@ -232,7 +233,7 @@ def index(request):
 		{
 			"loginForm": loginForm,
 			"pageMessage": json.dumps(pageMessage),
-			"announcements": Announcement.objects.filter(postTo = "M")
+			"announcements": SiteAnnouncement.objects.filter(postTo = "M")
 		}
 	)
 
@@ -271,7 +272,7 @@ def announcementsPage(request):
 
 			try:
 
-				newAnnouncement = Announcement.objects.create(
+				newAnnouncement = SiteAnnouncement.objects.create(
 					title = form_title,
 					creator = request.user,
 					creationDateTime = datetime.datetime.now(),
