@@ -1113,22 +1113,22 @@ def resultsSubmission(request):
 					"awayTeam": {"name": fixture.awayTeam.name, "club": fixture.awayTeam.club.name},
 					"event": fixture.event.name
 				}
-
-	try:
-		request.user.player
-	except Player.DoesNotExist:
-		pass
 	else:
-		for fixture in Fixture.objects.all():
+		try:
+			request.user.player
+		except Player.DoesNotExist:
+			pass
+		else:
+			for fixture in Fixture.objects.all():
+				
+				if fixture.homeTeam.captain == request.user.player or fixture.awayTeam.captain == request.user.player:
 			
-			if fixture.homeTeam.captain == request.user.player or fixture.awayTeam.captain == request.user.player:
-		
-				fixtureData[fixture.id] = {
-					"date": str(fixture.date),
-					"homeTeam": {"name": fixture.homeTeam.name, "club": fixture.homeTeam.club.name},
-					"awayTeam": {"name": fixture.awayTeam.name, "club": fixture.awayTeam.club.name},
-					"event": fixture.event.name
-				}
+					fixtureData[fixture.id] = {
+						"date": str(fixture.date),
+						"homeTeam": {"name": fixture.homeTeam.name, "club": fixture.homeTeam.club.name},
+						"awayTeam": {"name": fixture.awayTeam.name, "club": fixture.awayTeam.club.name},
+						"event": fixture.event.name
+					}
 
 	playerData = {}
 
