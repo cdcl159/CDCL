@@ -661,13 +661,15 @@ def fixtures(request):
 
 					for t in teamData:
 
-						team = Team.objects.get(id = t)
+						if teamData[t]["clubID"] and teamData[t]["captainID"]:
 
-						team.club = Club.objects.get(id = teamData[t]["clubID"])
+							team = Team.objects.get(id = t)
 
-						team.captain = Player.objects.get(id = teamData[t]["captainID"])
+							team.club = Club.objects.get(id = teamData[t]["clubID"])
 
-						team.save()
+							team.captain = Player.objects.get(id = teamData[t]["captainID"])
+
+							team.save()
 
 				except Exception as e:
 
@@ -680,7 +682,7 @@ def fixtures(request):
 
 					pageMessage = {
 						"type": "SUCCESS",
-						"message": "The teams were edited successfully."
+						"message": "The team(s) were edited successfully."
 					}
 
 			# if editMode is true, get the selected player
@@ -1111,7 +1113,7 @@ def resultsSubmission(request):
 				"event": fixture.event.name
 			}
 
-		elif fixture.homeTeam.captain == request.user.player or fixture.awayTeam.captain == request.user.player or user.is_superuser//:
+		elif fixture.homeTeam.captain == request.user.player or fixture.awayTeam.captain == request.user.player or user.is_superuser:
 
 			fixtureData[fixture.id] = {
 				"date": str(fixture.date),

@@ -223,7 +223,6 @@ function submitTeams() {
         var teamIDs = $(".teamRow").each(function() {
             
             var currentID = $(this).attr("id");
-            console.log(currentID);
             
             teamData[currentID] = {
                 "clubID": $("." + currentID+"_club").val(),
