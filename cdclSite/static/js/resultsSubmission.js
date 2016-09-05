@@ -10,7 +10,7 @@ function populateFixtureDropdown(fixtures) {
     
     for (f in fixtures) {
         console.log(f);
-        $(".fixtureDropdownMenu").append("<li class='fixtureOption' id='" + f + "'>" + fixtures[f].date + "</li>");
+        $(".fixtureDropdownMenu").append("<li class='fixtureOption' id='" + f + "'>" + fixtures[f].date + "(" + fixtures[f].event + ")" + "</li>");
     }
     
 }
