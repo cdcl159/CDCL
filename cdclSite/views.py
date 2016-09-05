@@ -1103,7 +1103,7 @@ def resultsSubmission(request):
 
 	for fixture in Fixture.objects.all():
 		
-		if fixture.homeTeam.captain == request.user.player or fixture.awayTeam.captain == request.user.player:
+		if fixture.homeTeam.captain == request.user.player or fixture.awayTeam.captain == request.user.player or user.is_superuser:
 
 			fixtureData[fixture.id] = {
 				"date": str(fixture.date),
