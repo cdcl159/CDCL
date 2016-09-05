@@ -19,7 +19,7 @@ function selectPostToLocation() {
 
 function submitAnnouncementForm() {
 
-    $("#submit").click(function() {
+    $("#submitForm").click(function() {
 
         $("#id_title").val($("#title").val());
         $("#id_body").val($("#body").val());

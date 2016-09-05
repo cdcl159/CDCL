@@ -63,13 +63,12 @@
 <!--    ALL JAVASCRIPT/JQUERY GOES HERE-->
     <script>
         
-        
         $(document).ready(function() {
             
             var pageMessage = {{pageMessage|safe}};
 
             handlePageMessage(pageMessage);
-            
+
             menuHover();
             displayConfirmationModal();
             selectPostToLocation();
@@ -140,7 +139,7 @@
                                 <button type="button" id="cancel" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                             </div>
                             <div class="col-sm-6">
-                                <button type="button" id="submit" class="btn btn-success" data-dismiss="modal">Accept</button>
+                                <button type="button" id="submitForm" class="btn btn-success">Accept</button>
                             </div>
                         </div>
 
