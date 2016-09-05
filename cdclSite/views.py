@@ -1114,7 +1114,7 @@ def resultsSubmission(request):
 					"event": fixture.event.name
 				}
 
-	elif user.player:
+	elif request.user.player:
 
 		for fixture in Fixture.objects.all():
 			
