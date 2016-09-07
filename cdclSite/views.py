@@ -128,22 +128,54 @@ def registrationPage(request):
 						except Player.DoesNotExist:
 							
 							if form_ecfCode:
-								userPlayer = Player.objects.create(
-									user = newUser,
-									forenames = form_forenames,
-									surname = form_surname,
-									ecfCode = form_ecfCode,
-									club = Club.objects.get(id = form_club)
-								)
+								
+
+								try:
+									userPlayer = Player.objects.create(
+										user = newUser,
+										forenames = form_forenames,
+										surname = form_surname,
+										ecfCode = form_ecfCode,
+										club = Club.objects.get(id = form_club)
+									)
+								except Exception as e:
+
+									pageMessage = {
+										"type": "WARNING",
+										"message": "User account created but corresponding player data could not be formed."
+									}
+								
+								else:
+
+									pageMessage = {
+										"type": "SUCCESS",
+										"message": "User account and player data was created successfully."
+									}
+
 							
 							else:
 
-								userPlayer = Player.objects.create(
-									user = newUser,
-									forenames = form_forenames,
-									surname = form_surname,
-									club = Club.objects.get(id = form_club)
-								)
+								try:
+
+									userPlayer = Player.objects.create(
+										user = newUser,
+										forenames = form_forenames,
+										surname = form_surname,
+										club = Club.objects.get(id = form_club)
+									)
+								except Exception as e:
+
+									pageMessage = {
+										"type": "WARNING",
+										"message": "User account created but corresponding player data could not be formed."
+									}
+								
+								else:
+
+									pageMessage = {
+										"type": "SUCCESS",
+										"message": "User account and player data was created successfully."
+									}
 						else:
 
 							pageMessage = {
@@ -156,7 +188,9 @@ def registrationPage(request):
 				"type": "ERROR",
 				"message": "One or more fields in the form were not completed correctly."
 			}
+
 	else:
+
 		registrationForm = RegistrationForm()
 
 		pageMessage = {
