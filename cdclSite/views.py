@@ -125,11 +125,14 @@ def registrationPage(request):
 							
 							userPlayer = Player.objects.get(ecfCode = form_ecfCode)
 
+							userPlayer.user = newUser
+
+							userPlayer.save()
+
 						except Player.DoesNotExist:
 							
 							if form_ecfCode:
 								
-
 								try:
 									userPlayer = Player.objects.create(
 										user = newUser,
