@@ -1094,7 +1094,7 @@ def resultsSubmission(request):
 				if team.name == form_homeTeam:
 					usersTeam = team
 					homeOrAway = "H"
-					break;
+					break
 				if team.name == form_awayTeam:
 					usersTeam = team
 					homeOrAway = "A" 
