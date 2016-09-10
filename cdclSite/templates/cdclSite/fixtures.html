@@ -815,8 +815,10 @@
                                                     <span class="caret"></span></button>
                                                     <ul class="dropdown-menu teamClubDropdownMenu">
                                                         <li id="pending">PENDING</li>
-                                                        <li id="approved">APPROVED</li>
-                                                        <li id="contested">CONTESTED</li>
+                                                        {% if f.homeSubmission and f.awaySubmission %}
+                                                            <li id="approved">APPROVED</li>
+                                                            <li id="contested">CONTESTED</li>
+                                                        {% endif %}
                                                     </ul>
                                                 </div>
                                             </td>
