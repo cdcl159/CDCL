@@ -809,9 +809,20 @@
                                             <td class="fixtureTableCell">
                                                 <img class="editFixtureIcon" src="{% static 'images/settingsIconB.png' %}" style="width:42px;height:42px;">
                                             </td>
-                                            <td class="fixtureTableCell">
-                                                <h5>{{f.status}}</h5>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-primary teamClubDropdown dropdown-toggle" type="button" data-toggle="dropdown" value="{{f.status}}">{{f.status}}
+                                                    <span class="caret"></span></button>
+                                                    <ul class="dropdown-menu teamClubDropdownMenu">
+                                                        <li id="pending">PENDING</li>
+                                                        <li id="approved">APPROVED</li>
+                                                        <li id="contested">CONTESTED</li>
+                                                    </ul>
+                                                </div>
                                             </td>
+                                            <!--<td class="fixtureTableCell">
+                                                <h5>{{f.status}}</h5>
+                                            </td>-->
                                         </tr>
                                     {% endfor %}
                                     <tr class="fixtureRow" id="newFixtureRow" align="middle">
