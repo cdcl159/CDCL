@@ -13,10 +13,10 @@ function submitForm() {
         $("#id_passwordConfirm").val($("#passwordConfirm").val());
         $("#id_forenames").val($("#fornames").val());
         $("#id_surname").val($("#surname").val());
-        $("#id_address_1").val($("#address1").val());
-        $("#id_address_2").val($("#address2").val());
-        $("#id_address_3").val($("#address3").val());
-        $("#id_postcode").val($("#postcode").val());
+        // $("#id_address_1").val($("#address1").val());
+        // $("#id_address_2").val($("#address2").val());
+        // $("#id_address_3").val($("#address3").val());
+        // $("#id_postcode").val($("#postcode").val());
         $("#id_primaryContactNumber").val($("#contactNumberA").val());
         $("#id_backupContactNumber").val($("#contactNumberB").val());
         $("#id_email").val($("#email").val());

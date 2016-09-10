@@ -62,10 +62,10 @@ def registrationPage(request):
 			form_passwordConfirm = registrationForm.cleaned_data["passwordConfirm"]
 			form_forenames = registrationForm.cleaned_data["forenames"]
 			form_surname = registrationForm.cleaned_data["surname"]
-			form_address_1 = registrationForm.cleaned_data["address_1"]
-			form_address_2 = registrationForm.cleaned_data["address_2"]
-			form_address_3 = registrationForm.cleaned_data["address_3"]
-			form_postcode = registrationForm.cleaned_data["postcode"]
+			# form_address_1 = registrationForm.cleaned_data["address_1"]
+			# form_address_2 = registrationForm.cleaned_data["address_2"]
+			# form_address_3 = registrationForm.cleaned_data["address_3"]
+			# form_postcode = registrationForm.cleaned_data["postcode"]
 			form_primaryContactNumber = registrationForm.cleaned_data["primaryContactNumber"]
 			form_backupContactNumber = registrationForm.cleaned_data["backupContactNumber"]
 			form_email = registrationForm.cleaned_data["email"]
@@ -99,14 +99,23 @@ def registrationPage(request):
 
 					try:
 
+						# newUserData = UserData.objects.create(
+						# 	user = newUser,
+						# 	forenames = form_forenames,
+						# 	surname = form_surname,
+						# 	address_1 = form_address_1,
+						# 	address_2 = form_address_2,
+						# 	address_3 = form_address_3,
+						# 	postcode = form_postcode,
+						# 	primaryContactNumber = form_primaryContactNumber,
+						# 	backupContactNumber = form_backupContactNumber,
+						# 	email = form_email
+						# )
+
 						newUserData = UserData.objects.create(
 							user = newUser,
 							forenames = form_forenames,
 							surname = form_surname,
-							address_1 = form_address_1,
-							address_2 = form_address_2,
-							address_3 = form_address_3,
-							postcode = form_postcode,
 							primaryContactNumber = form_primaryContactNumber,
 							backupContactNumber = form_backupContactNumber,
 							email = form_email
@@ -1413,20 +1422,33 @@ def userManagementToolSettings(request):
 		
 		else:
 
+			# userDataDict[user.id]["userData"] = {
+			# 	"isOfficer": currentUserData.isOfficer,
+			# 	"isRecordSecretary": currentUserData.isRecordSecretary,
+			# 	"isTreasurer": currentUserData.isTreasurer,
+			# 	"forenames": currentUserData.forenames,
+			# 	"surname": currentUserData.surname,
+			# 	"address_1": currentUserData.address_1,
+			# 	"address_2": currentUserData.address_2,
+			# 	"address_3": currentUserData.address_3,
+			# 	"postcode": currentUserData.postcode,
+			# 	"primaryContactNumber":currentUserData.primaryContactNumber,
+			# 	"backupContactNumber": currentUserData.backupContactNumber,
+			# 	"email": currentUserData.email
+			# }
+
 			userDataDict[user.id]["userData"] = {
 				"isOfficer": currentUserData.isOfficer,
 				"isRecordSecretary": currentUserData.isRecordSecretary,
 				"isTreasurer": currentUserData.isTreasurer,
 				"forenames": currentUserData.forenames,
 				"surname": currentUserData.surname,
-				"address_1": currentUserData.address_1,
-				"address_2": currentUserData.address_2,
-				"address_3": currentUserData.address_3,
-				"postcode": currentUserData.postcode,
 				"primaryContactNumber":currentUserData.primaryContactNumber,
 				"backupContactNumber": currentUserData.backupContactNumber,
 				"email": currentUserData.email
 			}
+
+
 
 		try:
 
