@@ -247,11 +247,15 @@ function submitTeams() {
 function displaySubmission(fixturesData) {
 
     $("#receivedHomeSubmission").click(function() {
+        
+        console.log(fixturesData);
 
         var selectedFixtureID = $(this).parent().parent().attr("id");
 
         var homeSubmission = fixturesData[selectedFixtureID]["homeSubmission"]
-
+        
+        console.log(homeSubmission);
+        
         $("#submissionTitle").text("Submission From: " + homeSubmission["teamName"]);
 
         for (var i = 1; i < homeSubmission["games"].length + 1; i++) {
