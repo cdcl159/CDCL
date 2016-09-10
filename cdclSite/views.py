@@ -1051,45 +1051,45 @@ def resultsSubmission(request):
 
 			boards = [
 				{
-					"homeplayerid": form_board1_homePlayerID,
+					"homePlayerid": form_board1_homePlayerID,
 					"awayPlayerid": form_board1_awayPlayerID,
-					"homeplayerscore": form_board1_homePlayerScore,
-					"awayplayerscore": form_board1_awayPlayerScore
+					"homePlayerscore": form_board1_homePlayerScore,
+					"awayPlayerscore": form_board1_awayPlayerScore
 
 				},
 				{
-					"homeplayerid": form_board2_homePlayerID,
+					"homePlayerid": form_board2_homePlayerID,
 					"awayPlayerid": form_board2_awayPlayerID,
-					"homeplayerscore": form_board2_homePlayerScore,
-					"awayplayerscore": form_board2_awayPlayerScore
+					"homePlayerscore": form_board2_homePlayerScore,
+					"awayPlayerscore": form_board2_awayPlayerScore
 
 				},
 				{
-					"homeplayerid": form_board3_homePlayerID,
+					"homePlayerid": form_board3_homePlayerID,
 					"awayPlayerid": form_board3_awayPlayerID,
-					"homeplayerscore": form_board3_homePlayerScore,
-					"awayplayerscore": form_board3_awayPlayerScore
+					"homePlayerscore": form_board3_homePlayerScore,
+					"awayPlayerscore": form_board3_awayPlayerScore
 
 				},
 				{
-					"homeplayerid": form_board4_homePlayerID,
+					"homePlayerid": form_board4_homePlayerID,
 					"awayPlayerid": form_board4_awayPlayerID,
-					"homeplayerscore": form_board4_homePlayerScore,
-					"awayplayerscore": form_board4_awayPlayerScore
+					"homePlayerscore": form_board4_homePlayerScore,
+					"awayPlayerscore": form_board4_awayPlayerScore
 
 				},
 				{
-					"homeplayerid": form_board5_homePlayerID,
+					"homePlayerid": form_board5_homePlayerID,
 					"awayPlayerid": form_board5_awayPlayerID,
-					"homeplayerscore": form_board5_homePlayerScore,
-					"awayplayerscore": form_board5_awayPlayerScore
+					"homePlayerscore": form_board5_homePlayerScore,
+					"awayPlayerscore": form_board5_awayPlayerScore
 
 				},
 				{
-					"homeplayerid": form_board6_homePlayerID,
+					"homePlayerid": form_board6_homePlayerID,
 					"awayPlayerid": form_board6_awayPlayerID,
-					"homeplayerscore": form_board6_homePlayerScore,
-					"awayplayerscore": form_board6_awayPlayerScore
+					"homePlayerscore": form_board6_homePlayerScore,
+					"awayPlayerscore": form_board6_awayPlayerScore
 
 				}
 			]
@@ -1116,10 +1116,10 @@ def resultsSubmission(request):
 
 				newGame = Game.objects.create(
 					boardNumber = i,
-					homePlayerID = boards[i]["homeplayerid"],
-					awayPlayerID = boards[i]["awayplayerid"],
-					homePlayerScore = boards[i]["homeplayerscore"],
-					awayPlayerScore = boards[i]["homeplayerscore"],
+					homePlayerID = boards[i]["homePlayerid"],
+					awayPlayerID = boards[i]["awayPlayerid"],
+					homePlayerScore = boards[i]["homePlayerscore"],
+					awayPlayerScore = boards[i]["homePlayerscore"],
 					submission = newSubmission
 				)
 
