@@ -187,19 +187,19 @@ function initUI(
             var superuserCell = '<td><img class="tableIcon superuserToggle" src="' + disabledIconPath + '" %}></td>';
         }
 
-        if (userData[x]["userData"]["isOffier"]) {
+        if (userData[x]["userData"] && userData[x]["userData"]["isOfficer"]) {
             var officerCell = '<td><img class="tableIcon officerToggle" src="' + enabledIconPath + '" %}></td>';
         } else {
             var officerCell = '<td><img class="tableIcon officerToggle" src="' + disabledIconPath + '" %}></td>';
         }
 
-        if (userData[x]["userData"]["isRecordSecretary"]) {
+        if (userData[x]["userData"] && userData[x]["userData"]["isRecordSecretary"]) {
             var recordSecretaryCell = '<td><img class="tableIcon recordToggle" src="' + enabledIconPath + '" %}></td>';
         } else {
             var recordSecretaryCell = '<td><img class="tableIcon recordToggle" src="' + disabledIconPath + '" %}></td>';
         }
 
-        if (userData[x]["userData"]["isTreasurer"]) {
+        if (userData[x]["userData"] && userData[x]["userData"]["isTreasurer"]) {
             var treasurerCell = '<td><img class="tableIcon treasurerToggle" src="' + enabledIconPath + '" %}></td>';
         } else {
             var treasurerCell = '<td><img class="tableIcon treasurerToggle" src="' + disabledIconPath + '" %}></td>';
