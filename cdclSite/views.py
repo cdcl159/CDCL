@@ -1110,51 +1110,69 @@ def resultsSubmission(request):
 
 
 			if not badScores:
-				userPlayer = request.user.player
 
-				captainedTeams = Team.objects.filter(captain = userPlayer)
-				
-				homeOrAway = "H"
-				for team in captainedTeams:
-					if team.name == form_homeTeam:
-						usersTeam = team
-						homeOrAway = "H"
-						break
-					if team.name == form_awayTeam:
-						usersTeam = team
-						homeOrAway = "A" 
-						break
+				try:
+					userPlayer = request.user.player
 
-				newSubmission = Submission.objects.create(team = usersTeam)
-
-				i = 0
-				while i < 6:
-
-					if boards[i]["awayPlayerid"] and boards[i]["awayPlayerid"]:
-
-						newGame = Game.objects.create(
-							boardNumber = i,
-							homePlayerID = boards[i]["homePlayerid"],
-							awayPlayerID = boards[i]["awayPlayerid"],
-							homePlayerScore = boards[i]["homePlayerscore"],
-							awayPlayerScore = boards[i]["homePlayerscore"],
-							submission = newSubmission
-						)
+					captainedTeams = Team.objects.filter(captain = userPlayer)
 					
+					homeOrAway = "H"
+					for team in captainedTeams:
+						if team.name == form_homeTeam:
+							usersTeam = team
+							homeOrAway = "H"
+							break
+						if team.name == form_awayTeam:
+							usersTeam = team
+							homeOrAway = "A" 
+							break
+
+					newSubmission = Submission.objects.create(team = usersTeam)
+
+					i = 0
+					while i < 6:
+
+						if boards[i]["awayPlayerid"] and boards[i]["awayPlayerid"]:
+
+							newGame = Game.objects.create(
+								boardNumber = i,
+								homePlayerID = boards[i]["homePlayerid"],
+								awayPlayerID = boards[i]["awayPlayerid"],
+								homePlayerScore = boards[i]["homePlayerscore"],
+								awayPlayerScore = boards[i]["homePlayerscore"],
+								submission = newSubmission
+							)
+						
+						else:
+
+							pass
+
+						i += 1
+
+					fixture = Fixture.objects.get(id = form_selectedFixtureID)
+
+					if homeOrAway == "H":
+						fixture.homeSubmission = newSubmission
 					else:
+						fixture.awaySubmission = newSubmission
 
-						pass
+					fixture.save()
+				
+				except Exception as e:
 
-					i += 1
+					pageMessage = {
+						"type": "ERROR",
+						"message": "The results could not be submitted: " + str(e)
+					}
 
-				fixture = Fixture.objects.get(id = form_selectedFixtureID)
-
-				if homeOrAway == "H":
-					fixture.homeSubmission = newSubmission
 				else:
-					fixture.awaySubmission = newSubmission
 
-				fixture.save()
+					pageMessage = {
+						"type": "SUCCESS",
+						"message": "The results were submitted successfully"
+					}
+
+
 
 		else:
 
