@@ -954,11 +954,11 @@ def fixtures(request):
 					{
 						"boardNumber": g.boardNumber,
 						"homePlayerID": g.homePlayerID,
-						"homePlayerName": Player.objects.get(id = g.homePlayerID),
+						"homePlayerName": Player.objects.get(id = g.homePlayerID).forenames,
 						"homePlayerGrade": Player.objects.get(id = g.homePlayerID).grading,
 						"homePlayerScore": g.homePlayerScore,
 						"awayPlayerID": g.awayPlayerID,
-						"awayPlayerName": Player.objects.get(id = g.awayPlayerID),
+						"awayPlayerName": Player.objects.get(id = g.awayPlayerID).forenames,
 						"awayPlayerGrade": Player.objects.get(id = g.awayPlayerID).grading,
 						"awayPlayerScore": g.awayPlayerScore
 					}
