@@ -737,7 +737,7 @@ def fixtures(request):
 
 						pageMessage = {
 							"type": "SUCCESS",
-							"message": "The selected team's status was deleted successfully."
+							"message": "The selected team was deleted successfully."
 						}
 
 
