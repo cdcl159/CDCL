@@ -125,7 +125,7 @@ function toggleTreasurer() {
 function togglRecords() {
 
 
-    $("#userTable").on("click", ".recordsToggle", function() {
+    $("#userTable").on("click", ".recordToggle", function() {
 
         var selectedUserID = $(this).parent().parent().attr("id");
 
