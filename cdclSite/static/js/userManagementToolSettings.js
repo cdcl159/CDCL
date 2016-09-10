@@ -38,11 +38,11 @@ function displayPlayerDataModal(userData) {
         alert(selectedUserID);
         if (userData[selectedUserID]["playerData"] != null) {
             
-            $("#playerdata_forenames").text();
-            $("#playerdata_surname").text();
-            $("#playerdata_ecf").text();
-            $("#playerdata_grading").text();
-            $("#playerdata_club").text();
+            $("#playerdata_forenames").text("");
+            $("#playerdata_surname").text("");
+            $("#playerdata_ecf").text("");
+            $("#playerdata_grading").text("");
+            $("#playerdata_club").text("");
 
             $("#playerdataTitle").text("Player Data for: " + userData[selectedUserID]["username"]);
 
