@@ -51,6 +51,7 @@ class FixtureManagementForm(forms.Form):
 	editMode = forms.BooleanField(required = False)
 	addMode = forms.BooleanField(required = False)
 	teamMode = forms.BooleanField(required = False)
+	statusMode = forms.BooleanField(required = False)
 
 	# csv file of fixtures
 	fixtureFile = forms.FileField(required = False)

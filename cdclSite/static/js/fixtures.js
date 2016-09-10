@@ -298,3 +298,13 @@ function displaySubmission(fixturesData) {
 
 
 }
+
+function selectStatus() {
+    $(".statusOption").click(function() {
+        $("#id_statusMode").val(true);
+        $("#id_selectedFixtureID").val($(this).parent().parent().parent().parent().attr("id"));
+
+        alert($("#id_selectedFixtureID").val());
+
+    });
+}

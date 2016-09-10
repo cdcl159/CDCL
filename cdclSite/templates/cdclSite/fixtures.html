@@ -107,6 +107,7 @@
             selectNewFixtureSeason();
             selectNewFixtureHomeTeam();
             selectNewFixtureAwayTeam();
+            selectStatus();
             handleFileUpload();
             submitFixureForm();
             submitTeams();
@@ -816,8 +817,8 @@
                                                     <ul class="dropdown-menu teamClubDropdownMenu">
                                                         <li id="pending">PENDING</li>
                                                         {% if f.homeSubmission and f.awaySubmission %}
-                                                            <li id="approved">APPROVED</li>
-                                                            <li id="contested">CONTESTED</li>
+                                                            <li class="statusOption" id="approved">APPROVED</li>
+                                                            <li class="statusOption" id="contested">CONTESTED</li>
                                                         {% endif %}
                                                     </ul>
                                                 </div>
