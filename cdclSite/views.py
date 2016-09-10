@@ -1114,14 +1114,20 @@ def resultsSubmission(request):
 			i = 0
 			while i < 6:
 
-				newGame = Game.objects.create(
-					boardNumber = i,
-					homePlayerID = boards[i]["homePlayerid"],
-					awayPlayerID = boards[i]["awayPlayerid"],
-					homePlayerScore = boards[i]["homePlayerscore"],
-					awayPlayerScore = boards[i]["homePlayerscore"],
-					submission = newSubmission
-				)
+				if boards[i]["awayPlayerid"] and boards[i]["awayPlayerid"]:
+
+					newGame = Game.objects.create(
+						boardNumber = i,
+						homePlayerID = boards[i]["homePlayerid"],
+						awayPlayerID = boards[i]["awayPlayerid"],
+						homePlayerScore = boards[i]["homePlayerscore"],
+						awayPlayerScore = boards[i]["homePlayerscore"],
+						submission = newSubmission
+					)
+				
+				else:
+
+					pass
 
 				i += 1
 
