@@ -71,6 +71,8 @@ class FixtureManagementForm(forms.Form):
 
 	teamData = forms.CharField(required = False, max_length = 1000)
 
+	newStatus = forms.CharField(required = False, max_length = 15)
+
 
 class ResultsSubmissionForm(forms.Form):
 

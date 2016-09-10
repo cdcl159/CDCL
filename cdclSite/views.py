@@ -682,6 +682,7 @@ def fixtures(request):
 			form_bulkMode = fixtureManagementForm.cleaned_data["bulkMode"]
 			form_editMode = fixtureManagementForm.cleaned_data["editMode"]
 			form_addMode = fixtureManagementForm.cleaned_data["addMode"]
+			form_statusMode = fixtureManagementForm.cleaned_data["statusMode"]
 			form_fixtureFile = fixtureManagementForm.cleaned_data["fixtureFile"]
 			form_teamMode = fixtureManagementForm.cleaned_data["teamMode"]
 			form_teamData = fixtureManagementForm.cleaned_data["teamData"]
@@ -698,6 +699,42 @@ def fixtures(request):
 			form_editFixtureDate = fixtureManagementForm.cleaned_data["editFixtureDate"]
 			form_editFixtureHomeTeam = fixtureManagementForm.cleaned_data["editFixtureHomeTeam"]
 			form_editFixtureAwayTeam = fixtureManagementForm.cleaned_data["editFixtureAwayTeam"]
+
+			form_newStatus = fixtureManagementForm.cleaned_data["newStatus"]
+
+			if form_statusMode:
+
+				try:
+					selectedFixture = Fixture.objects.get(id = form_selectedFixtureID)
+
+				except Fixture.objects.DoesNotExist:
+
+					pageMessage = {
+						"type": "ERROR",
+						"message": "The selected fixure could not be found."
+					}
+				
+				else:
+
+					try:
+
+						selectedFixture.status = form_newStatus
+						selectedFixture.save()
+
+					except Exception as e:
+
+						pageMessage = {
+							"type": "ERROR",
+							"message": "The selected fixture's status could not be changed: " + str(e)
+						}
+					
+					else:
+
+						pageMessage = {
+							"type": "SUCCESS",
+							"message": "The selected fixture's status was changed successfully."
+						}
+
 
 			if form_teamMode:
 
