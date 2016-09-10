@@ -35,8 +35,14 @@ function displayPlayerDataModal(userData) {
     $("#userTable").on("click", ".playerdataIcon", function() {
 
         var selectedUserID = $(this).parent().parent().attr("id");
-        
+        alert(selectedUserID);
         if (userData[selectedUserID]["playerData"] != null) {
+            
+            $("#playerdata_forenames").text();
+            $("#playerdata_surname").text();
+            $("#playerdata_ecf").text();
+            $("#playerdata_grading").text();
+            $("#playerdata_club").text();
 
             $("#playerdataTitle").text("Player Data for: " + userData[selectedUserID]["username"]);
 
