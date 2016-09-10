@@ -1094,51 +1094,67 @@ def resultsSubmission(request):
 				}
 			]
 
-			userPlayer = request.user.player
+			badScores = False
+			for board in boards:
 
-			captainedTeams = Team.objects.filter(captain = userPlayer)
-			
-			homeOrAway = "H"
-			for team in captainedTeams:
-				if team.name == form_homeTeam:
-					usersTeam = team
-					homeOrAway = "H"
+				if board["homePlayerscore"] not in [0, 1, 0.5] or board["awayPlayerscore"] not in [0, 1, 0.5]:
+
+					pageMessage = {
+						"type": "ERROR",
+						"message": "Please make sure the scores are of value 1, 0 or 0.5."
+					}
+
+					badScores = True
+
 					break
-				if team.name == form_awayTeam:
-					usersTeam = team
-					homeOrAway = "A" 
-					break
 
-			newSubmission = Submission.objects.create(team = usersTeam)
 
-			i = 0
-			while i < 6:
+			if not badScores:
+				userPlayer = request.user.player
 
-				if boards[i]["awayPlayerid"] and boards[i]["awayPlayerid"]:
-
-					newGame = Game.objects.create(
-						boardNumber = i,
-						homePlayerID = boards[i]["homePlayerid"],
-						awayPlayerID = boards[i]["awayPlayerid"],
-						homePlayerScore = boards[i]["homePlayerscore"],
-						awayPlayerScore = boards[i]["homePlayerscore"],
-						submission = newSubmission
-					)
+				captainedTeams = Team.objects.filter(captain = userPlayer)
 				
+				homeOrAway = "H"
+				for team in captainedTeams:
+					if team.name == form_homeTeam:
+						usersTeam = team
+						homeOrAway = "H"
+						break
+					if team.name == form_awayTeam:
+						usersTeam = team
+						homeOrAway = "A" 
+						break
+
+				newSubmission = Submission.objects.create(team = usersTeam)
+
+				i = 0
+				while i < 6:
+
+					if boards[i]["awayPlayerid"] and boards[i]["awayPlayerid"]:
+
+						newGame = Game.objects.create(
+							boardNumber = i,
+							homePlayerID = boards[i]["homePlayerid"],
+							awayPlayerID = boards[i]["awayPlayerid"],
+							homePlayerScore = boards[i]["homePlayerscore"],
+							awayPlayerScore = boards[i]["homePlayerscore"],
+							submission = newSubmission
+						)
+					
+					else:
+
+						pass
+
+					i += 1
+
+				fixture = Fixture.objects.get(id = form_selectedFixtureID)
+
+				if homeOrAway == "H":
+					fixture.homeSubmission = newSubmission
 				else:
+					fixture.awaySubmission = newSubmission
 
-					pass
-
-				i += 1
-
-			fixture = Fixture.objects.get(id = form_selectedFixtureID)
-
-			if homeOrAway == "H":
-				fixture.homeSubmission = newSubmission
-			else:
-				fixture.awaySubmission = newSubmission
-
-			fixture.save()
+				fixture.save()
 
 		else:
 

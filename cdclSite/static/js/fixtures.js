@@ -248,13 +248,9 @@ function displaySubmission(fixturesData) {
 
     $("#receivedHomeSubmission").click(function() {
         
-        console.log(fixturesData);
-
         var selectedFixtureID = $(this).parent().parent().attr("id");
 
         var homeSubmission = fixturesData[selectedFixtureID]["homeSubmission"]
-        
-        console.log(homeSubmission);
         
         $("#submissionTitle").text("Submission From: " + homeSubmission["teamName"]);
 
@@ -287,12 +283,12 @@ function displaySubmission(fixturesData) {
 
             var currentGame = homeSubmission["games"][i];
 
-            $("#b" + i.toString() + "_h_name").text(currentGame["homePlayerName"]);
-            $("#b" + i.toString() + "_h_grade").text(currentGame["homePlayerGrade"]);
-            $("#b" + i.toString() + "_h_score").text(currentGame["homePlayerScore"]);
-            $("#b" + i.toString() + "_a_name").text(currentGame["awayPlayerName"]);
-            $("#b" + i.toString() + "_a_grade").text(currentGame["awayPlayerGrade"]);
-            $("#b" + i.toString() + "_a_score").text(currentGame["awayPlayerScore"]);
+            $("#b" + (i + 1).toString() + "_h_name").text(currentGame["homePlayerName"]);
+            $("#b" + (i + 1).toString() + "_h_grade").text(currentGame["homePlayerGrade"]);
+            $("#b" + (i + 1).toString() + "_h_score").text(currentGame["homePlayerScore"]);
+            $("#b" + (i + 1).toString() + "_a_name").text(currentGame["awayPlayerName"]);
+            $("#b" + (i + 1).toString() + "_a_grade").text(currentGame["awayPlayerGrade"]);
+            $("#b" + (i + 1).toString() + "_a_score").text(currentGame["awayPlayerScore"]);
 
         }
 
