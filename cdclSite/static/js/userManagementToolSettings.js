@@ -73,8 +73,11 @@ function toggleActivity() {
 
         $("#id_selectedUserId").val(selectedUserID);
 
-        $("#id_superuserMode").val(false);
         $("#id_activeMode").val(true);
+        $("#id_officerMode").val(false);
+        $("#id_recordsMode").val(false);
+        $("#id_treasurerMode").val(false);
+        $("#id_superuserMode").val(false);
 
         $("#userManagementToolsForm").submit();
 
@@ -92,9 +95,11 @@ function toggleOfficer() {
 
         $("#id_selectedUserId").val(selectedUserID);
 
-        $("#id_superuserMode").val(false);
         $("#id_activeMode").val(false);
         $("#id_officerMode").val(true);
+        $("#id_recordsMode").val(false);
+        $("#id_treasurerMode").val(false);
+        $("#id_superuserMode").val(false);
 
         $("#userManagementToolsForm").submit();
 
@@ -111,10 +116,11 @@ function toggleTreasurer() {
 
         $("#id_selectedUserId").val(selectedUserID);
 
-        $("#id_superuserMode").val(false);
         $("#id_activeMode").val(false);
         $("#id_officerMode").val(false);
+        $("#id_recordsMode").val(false);
         $("#id_treasurerMode").val(true);
+        $("#id_superuserMode").val(false);
 
         $("#userManagementToolsForm").submit();
 
@@ -131,10 +137,11 @@ function togglRecords() {
 
         $("#id_selectedUserId").val(selectedUserID);
 
-        $("#id_superuserMode").val(false);
         $("#id_activeMode").val(false);
         $("#id_officerMode").val(false);
         $("#id_recordsMode").val(true);
+        $("#id_treasurerMode").val(false);
+        $("#id_superuserMode").val(false);
 
         $("#userManagementToolsForm").submit();
 
@@ -152,6 +159,8 @@ function toggleSuperuser() {
         $("#id_selectedUserId").val(selectedUserID);
         $("#id_activeMode").val(false);
         $("#id_officerMode").val(false);
+        $("#id_recordsMode").val(false);
+        $("#id_treasurerMode").val(false);
         $("#id_superuserMode").val(true);
 
         $("#userManagementToolsForm").submit();
