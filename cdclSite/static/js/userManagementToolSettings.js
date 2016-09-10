@@ -3,6 +3,17 @@ function displayUserDataModal(userData) {
     $("#userTable").on("click", ".userdataIcon", function() {
 
         var selectedUserID = $(this).parent().parent().attr("id");
+
+        $("#userdata_forenames").text("");
+        $("#userdata_surname").text("");
+        $("#userdata_address_1").text("");
+        $("#userdata_address_2").text("");
+        $("#userdata_address_3").text("");
+        $("#userdata_postcode").text("");
+        $("#userdata_primaryContactNumber").text("");
+        $("#userdata_backupContactNumber").text("");
+        $("#userdata_email").text("");
+
         if (userData[selectedUserID]["userData"] != null) {
 
             $("#userdataTitle").text("User Data for: " + userData[selectedUserID]["username"]);
