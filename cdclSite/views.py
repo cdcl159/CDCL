@@ -1246,7 +1246,7 @@ def userManagementToolSettings(request):
 								
 								selectedUser.userdata.isTreasurer = True
 							
-							selectedUser.save()
+							selectedUser.userdata.save()
 
 						except Exception as e:
 
@@ -1274,7 +1274,7 @@ def userManagementToolSettings(request):
 								
 								selectedUser.userdata.isRecordSecretary = True
 								
-							selectedUser.save()
+							selectedUser.userdata.save()
 
 						except Exception as e:
 
@@ -1304,7 +1304,7 @@ def userManagementToolSettings(request):
 								
 								selectedUser.userdata.isOfficer = True
 
-							selectedUser.save()
+							selectedUser.userdata.save()
 
 						except Exception as e:
 
@@ -1333,7 +1333,7 @@ def userManagementToolSettings(request):
 
 								selectedUser.is_superuser = True
 
-							selectedUser.save()
+							selectedUser.userdata.save()
 
 						except Exception as e:
 
