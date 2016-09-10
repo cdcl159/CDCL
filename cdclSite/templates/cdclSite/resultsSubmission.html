@@ -249,7 +249,7 @@
                                 <p class="menuText">Forum</p>
                             </td>
                         </tr>
-                        {% if request.user.is_superuser request.user.userdata.isTreasurer %}
+                        {% if request.user.is_superuser or request.user.userdata.isTreasurer %}
                             <tr>
                                 <td class="menuElement" id="finance" align="middle">
                                     <img id="financeIcon" class="menuIcon" src="{% static "images/financeIcon.png" %}">
