@@ -311,8 +311,10 @@
                         {% if request.user.is_superuser or request.user.userdata.isOfficer %}
                             <tr>
                                 <td class="menuElement" id="postAnnouncementElement" align="middle">
-                                    <img id="announcementIcon" class="menuIcon" src="{% static "images/announcementIcon.png" %}">
-                                    <p class="menuText">Announcements</p>
+                                    <a href="{% url 'announcements' %}">
+                                        <img id="announcementIcon" class="menuIcon" src="{% static "images/announcementIcon.png" %}">
+                                        <p class="menuText">Announcements</p>
+                                    </a>
                                 </td>
                             </tr>
                         {% endif %}
@@ -335,10 +337,8 @@
                         {% if request.user.is_superuser or request.user.userdata.isRecordSecretary %}
                         <tr>
                             <td class="menuElement" id="players" align="middle">
-                                <a href="{% url 'playerManagement' %}">
-                                    <img id="playersIcon" class="menuIcon" src="{% static "images/playersIcon.png" %}">
-                                    <p class="menuText">Players</p>
-                                </a>
+                                <img id="playersIcon" class="menuIcon" src="{% static "images/playersIcon.png" %}">
+                                <p class="menuText">Players</p>
                             </td>
                         </tr>
                         {% endif %}

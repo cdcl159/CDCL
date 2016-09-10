@@ -644,9 +644,11 @@
                     <tbody>
                         {% if request.user.is_superuser or request.user.userdata.isOfficer %}
                             <tr>
+                                <a href="{% url 'announcements' %}">
                                 <td class="menuElement" id="postAnnouncementElement" align="middle">
-                                    <img id="announcementIcon" class="menuIcon" src="{% static "images/announcementIcon.png" %}">
-                                    <p class="menuText">Announcements</p>
+                                        <img id="announcementIcon" class="menuIcon" src="{% static "images/announcementIcon.png" %}">
+                                        <p class="menuText">Announcements</p>
+                                    </a>
                                 </td>
                             </tr>
                         {% endif %}
@@ -679,10 +681,8 @@
                         {% if request.user.is_superuser or request.user.userdata.isRecordSecretary %}
                         <tr>
                             <td class="menuElement" id="fixtures" align="middle">
-                                <a href="{% url 'fixtures' %}">
-                                    <img id="fixuresIcon" class="menuIcon" src="{% static "images/fixtures.png" %}">
-                                    <p class="menuText">Fixtures</p>
-                                </a>
+                                <img id="fixuresIcon" class="menuIcon" src="{% static "images/fixtures.png" %}">
+                                <p class="menuText">Fixtures</p>
                             </td>
                         </tr>
                         {% endif %}

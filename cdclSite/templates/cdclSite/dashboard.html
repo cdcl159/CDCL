@@ -202,8 +202,10 @@
                         {% if request.user.is_superuser or request.user.userdata.isOfficer %}
                             <tr>
                                 <td class="menuElement" id="postAnnouncementElement" align="middle">
-                                    <img id="announcementIcon" class="menuIcon" src="{% static "images/announcementIcon.png" %}">
-                                    <p class="menuText">Announcements</p>
+                                    <a href="{% url 'announcements' %}">
+                                        <img id="announcementIcon" class="menuIcon" src="{% static "images/announcementIcon.png" %}">
+                                        <p class="menuText">Announcements</p>
+                                    </a>
                                 </td>
                             </tr>
                         {% endif %}

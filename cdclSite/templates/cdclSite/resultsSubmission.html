@@ -174,8 +174,10 @@
                         {% if request.user.is_superuser or request.user.userdata.isOfficer %}
                             <tr>
                                 <td class="menuElement" id="postAnnouncementElement" align="middle">
-                                    <img id="announcementIcon" class="menuIcon" src="{% static "images/announcementIcon.png" %}">
-                                    <p class="menuText">Announcements</p>
+                                    <a href="{% url 'announcements' %}">
+                                        <img id="announcementIcon" class="menuIcon" src="{% static "images/announcementIcon.png" %}">
+                                        <p class="menuText">Announcements</p>
+                                    </a>
                                 </td>
                             </tr>
                         {% endif %}
@@ -218,10 +220,8 @@
                         {% if request.user.is_superuser or request.user.player.isCaptain or request.user.userdata.isRecordSecretary %}
                             <tr>
                                 <td class="menuElement" id="addResults" align="middle">
-                                    <a href="{% url 'resultsSubmission' %}">
-                                        <img id="addResultsIcon" class="menuIcon" src="{% static "images/resultsIcon.png" %}">
-                                        <p class="menuText">Submit Results</p>
-                                    </a>
+                                    <img id="addResultsIcon" class="menuIcon" src="{% static "images/resultsIcon.png" %}">
+                                    <p class="menuText">Submit Results</p>
                                 </td>
                             </tr>
                         {% endif %}
