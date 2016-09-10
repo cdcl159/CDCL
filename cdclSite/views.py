@@ -682,6 +682,10 @@ def fixtures(request):
 			form_bulkMode = fixtureManagementForm.cleaned_data["bulkMode"]
 			form_editMode = fixtureManagementForm.cleaned_data["editMode"]
 			form_addMode = fixtureManagementForm.cleaned_data["addMode"]
+			
+			form_removeFixtureMode = fixtureManagementForm.cleaned_data["removeFixtureMode"]
+			form_removeTeamMode = fixtureManagementForm.cleaned_data["removeTeamMode"]
+
 			form_statusMode = fixtureManagementForm.cleaned_data["statusMode"]
 			form_fixtureFile = fixtureManagementForm.cleaned_data["fixtureFile"]
 			form_teamMode = fixtureManagementForm.cleaned_data["teamMode"]
@@ -701,6 +705,74 @@ def fixtures(request):
 			form_editFixtureAwayTeam = fixtureManagementForm.cleaned_data["editFixtureAwayTeam"]
 
 			form_newStatus = fixtureManagementForm.cleaned_data["newStatus"]
+
+			form_selectedTeamID = fixtureManagementForm.cleaned_data["selectedTeamID"]
+
+			if form_removeTeamMode:
+				
+				try:
+					selectedTeam = Team.objects.get(id = form_selectedTeamID)
+
+				except Team.objects.DoesNotExist:
+
+					pageMessage = {
+						"type": "ERROR",
+						"message": "The selected fixure could not be found."
+					}
+				
+				else:
+
+					try:
+
+						selectedTeam.delete()
+
+					except Exception as e:
+
+						pageMessage = {
+							"type": "ERROR",
+							"message": "The selected team could not be deleted: " + str(e)
+						}
+					
+					else:
+
+						pageMessage = {
+							"type": "SUCCESS",
+							"message": "The selected team's status was deleted successfully."
+						}
+
+
+			if form_removeFixtureMode:
+
+				try:
+					selectedFixture = Fixture.objects.get(id = form_selectedFixtureID)
+
+				except Fixture.objects.DoesNotExist:
+
+					pageMessage = {
+						"type": "ERROR",
+						"message": "The selected fixure could not be found."
+					}
+				
+				else:
+
+					try:
+
+						selectedFixture.delete()
+
+					except Exception as e:
+
+						pageMessage = {
+							"type": "ERROR",
+							"message": "The selected fixture could not be deleted: " + str(e)
+						}
+					
+					else:
+
+						pageMessage = {
+							"type": "SUCCESS",
+							"message": "The selected fixture status was deleted successfully."
+						}
+
 
 			if form_statusMode:
 

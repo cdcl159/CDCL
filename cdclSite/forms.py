@@ -52,6 +52,8 @@ class FixtureManagementForm(forms.Form):
 	addMode = forms.BooleanField(required = False)
 	teamMode = forms.BooleanField(required = False)
 	statusMode = forms.BooleanField(required = False)
+	removeFixtureMode = forms.BooleanField(required = False)
+	removeTeamMode = forms.BooleanField(required = False)
 
 	# csv file of fixtures
 	fixtureFile = forms.FileField(required = False)
@@ -72,6 +74,8 @@ class FixtureManagementForm(forms.Form):
 	teamData = forms.CharField(required = False, max_length = 1000)
 
 	newStatus = forms.CharField(required = False, max_length = 15)
+
+	selectedTeamID = forms.IntegerField(required = False)
 
 
 class ResultsSubmissionForm(forms.Form):

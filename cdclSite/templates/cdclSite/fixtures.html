@@ -100,7 +100,7 @@
             editFixtureHomeTeam();
             editFixtureAwayTeam();
 
-
+            removeTeam();
         
             selectClubForTeam(players);
             selectClubCaptain();
@@ -770,6 +770,9 @@
                                     <td>
                                         <h4>Status</h4>
                                     </td>
+                                    <td>
+                                        <h4>Delete</h4>
+                                    </td>
                                     
                                 </tr>
                             </thead>
@@ -823,13 +826,13 @@
                                                     </ul>
                                                 </div>
                                             </td>
-                                            <!--<td class="fixtureTableCell">
-                                                <h5>{{f.status}}</h5>
-                                            </td>-->
+                                            <td>
+                                                <img class="removeSubmission" src="{% static 'images/uncheckedIcon.png' %}" style="width:42px;height:42px;">
+                                            </td>
                                         </tr>
                                     {% endfor %}
                                     <tr class="fixtureRow" id="newFixtureRow" align="middle">
-                                        <td colspan="9">
+                                        <td colspan="10">
                                             <img id="addFixtureIcon" class="toolIcon" src="{% static 'images/addNew.png' %}">
                                         </td>
                                     </tr>
@@ -848,9 +851,10 @@
                     <table class="table teamTable">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Club</th>
-                                <th>Captain</th>
+                                <td><h4>Name</h4></td>
+                                <td><h4>Club</h4></td>
+                                <td><h4>Captain</h4></td>
+                                <td><h4>Remove</h4></td>
                             </tr>
                         </thead>
                         <tbody>
@@ -876,6 +880,9 @@
                                             
                                             </ul>
                                         </div>
+                                    </td>
+                                    <td>
+                                        <img class="removeTeam" src="{% static 'images/uncheckedIcon.png' %}" style="width:42px;height:42px;">
                                     </td>
                                 </tr>
                             {% endfor %}
