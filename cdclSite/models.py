@@ -82,6 +82,8 @@ class Player(models.Model):
 	# key to owner club
 	club = models.ForeignKey(Club)
 
+	isCaptain = models.BooleanField(default = False)
+
 
 class Season(models.Model):
 

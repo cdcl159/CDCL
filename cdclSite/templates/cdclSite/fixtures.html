@@ -642,80 +642,92 @@
                 <br>
                 <table>
                     <tbody>
-                        <tr>
-                            <td class="menuElement" id="postAnnouncementElement" align="middle">
-                                <a href="{% url 'announcementsPage' %}">
-                                    <img id="announcementIcon" class="menuIcon" src="{% static 'images/announcementIcon.png' %}">
+                        {% if request.user.is_superuser or request.user.userdata.isOfficer %}
+                            <tr>
+                                <td class="menuElement" id="postAnnouncementElement" align="middle">
+                                    <img id="announcementIcon" class="menuIcon" src="{% static "images/announcementIcon.png" %}">
                                     <p class="menuText">Announcements</p>
-                                </a>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
+                        {% endif %}
                         <tr>
                             <td class="menuElement" id="contactElement" align="middle">
-                                <img id="sendMailIcon" class="menuIcon" src="{% static 'images/sendMailIcon.png' %}">
+                                <img id="sendMailIcon" class="menuIcon" src="{% static "images/sendMailIcon.png" %}">
                                 <p class="menuText">Mailing</p>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="menuElement" id="clubManagement" align="middle">
-                                 <a href="{% url 'clubManagement' %}">
-                                     <img id="clubManagementIcon" class="menuIcon" src="{% static 'images/clubManagementIcon.png' %}">
-                                </a>
-                                <p class="menuText">Clubs</p>
-                            </td>
-                        </tr>
+                        {% if request.user.is_superuser or request.user.userdata.isRecordSecretary %}
+                            <tr>
+                                <td class="menuElement" id="clubManagement" align="middle">
+                                    <a href="{% url 'clubManagement' %}">
+                                        <img id="clubManagementIcon" class="menuIcon" src="{% static "images/clubManagementIcon.png" %}">
+                                        <p class="menuText">Clubs</p>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endif %}
+                        {% if request.user.is_superuser or request.user.userdata.isRecordSecretary %}
                         <tr>
                             <td class="menuElement" id="players" align="middle">
                                 <a href="{% url 'playerManagement' %}">
-                                    <img id="playersIcon" class="menuIcon" src="{% static 'images/playersIcon.png' %}">
+                                    <img id="playersIcon" class="menuIcon" src="{% static "images/playersIcon.png" %}">
                                     <p class="menuText">Players</p>
                                 </a>
                             </td>
                         </tr>
+                        {% endif %}
+                        {% if request.user.is_superuser or request.user.userdata.isRecordSecretary %}
                         <tr>
                             <td class="menuElement" id="fixtures" align="middle">
                                 <a href="{% url 'fixtures' %}">
-                                    <img id="fixuresIcon" class="menuIcon" src="{% static 'images/fixtures.png' %}">
+                                    <img id="fixuresIcon" class="menuIcon" src="{% static "images/fixtures.png" %}">
                                     <p class="menuText">Fixtures</p>
                                 </a>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="menuElement" id="addResults" align="middle">
-                                <a href="{% url 'resultsSubmission' %}">
-                                    <img id="addResultsIcon" class="menuIcon" src="{% static 'images/resultsIcon.png' %}">
-                                    <p class="menuText">Submit Results</p>
-                                </a>
-                            </td>
-                        </tr>
+                        {% endif %}
+                        {% if request.user.is_superuser or request.user.player.isCaptain or request.user.userdata.isRecordSecretary %}
+                            <tr>
+                                <td class="menuElement" id="addResults" align="middle">
+                                    <a href="{% url 'resultsSubmission' %}">
+                                        <img id="addResultsIcon" class="menuIcon" src="{% static "images/resultsIcon.png" %}">
+                                        <p class="menuText">Submit Results</p>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endif %}
                         <tr>
                             <td class="menuElement" id="userDetails" align="middle">
                                 <a href="{% url 'userDetails' %}">
-                                    <img id="userDetailsIcon" class="menuIcon" src="{% static 'images/userDetailsIcon.png' %}">
+                                    <img id="userDetailsIcon" class="menuIcon" src="{% static "images/userDetailsIcon.png" %}">
                                     <p class="menuText">User Details</p>
                                 </a>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="menuElement" id="toolSettings" align="middle">
-                                <a href="{% url 'userManagementToolSettings' %}">
-                                    <img id="settingsIcon" class="menuIcon" src="{% static 'images/settingsIcon.png' %}">
-                                    <p class="menuText">User Management &amp; Tool Settings</p>
-                                </a>
-                            </td>
-                        </tr>
+                        {% if request.user.is_superuser or request.user.userdata.isRecordSecretary %}
+                            <tr>
+                                <td class="menuElement" id="toolSettings" align="middle">
+                                    <a href="{% url 'userManagementToolSettings' %}">
+                                        <img id="settingsIcon" class="menuIcon" src="{% static "images/settingsIcon.png" %}">
+                                        <p class="menuText">User Management &amp; Tool Settings</p>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endif %}
                         <tr>
                             <td class="menuElement" id="forum" align="middle">
-                                <img id="forumIcon" class="menuIcon" src="{% static 'images/forumIcon.png' %}">
+                                <img id="forumIcon" class="menuIcon" src="{% static "images/forumIcon.png" %}">
                                 <p class="menuText">Forum</p>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="menuElement" id="finance" align="middle">
-                                <img id="financeIcon" class="menuIcon" src="{% static 'images/financeIcon.png' %}">
-                                <p class="menuText">Finance</p>
-                            </td>
-                        </tr>
+                        {% if request.user.is_superuser request.user.userdata.isTreasurer %}
+                            <tr>
+                                <td class="menuElement" id="finance" align="middle">
+                                    <img id="financeIcon" class="menuIcon" src="{% static "images/financeIcon.png" %}">
+                                    <p class="menuText">Finance</p>
+                                </td>
+                            </tr>
+                        {% endfor %}
                     
                     </tbody>
                 </table>

@@ -822,7 +822,13 @@ def fixtures(request):
 
 							team.club = Club.objects.get(id = teamData[t]["clubID"])
 
-							team.captain = Player.objects.get(id = teamData[t]["captainID"])
+							captainPlayer = Player.objects.get(id = teamData[t]["captainID"])
+
+							captainPlayer.isCaptain = True
+
+							captainPlayer.save()
+
+							team.captain = captainPlayer
 
 							team.save()
 
