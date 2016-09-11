@@ -85,48 +85,48 @@ class Player(models.Model):
 	isCaptain = models.BooleanField(default = False)
 
 
-	def getPlayedGames(self):
+	# def getPlayedGames(self):
 
-		gameData = {
-			"homeGames": [],
-			"awayGames": []
-		}
+	# 	gameData = {
+	# 		"homeGames": [],
+	# 		"awayGames": []
+	# 	}
 
-		for fixture in Fixture.objects.all():
+	# 	for fixture in Fixture.objects.all():
 
-			if fixture.homeTeam.club == self.club:
-				homeTeam = True
+	# 		if fixture.homeTeam.club == self.club:
+	# 			homeTeam = True
 
-			if fixture.awayTeam.club == self.club:
-				awayTeam = True
+	# 		if fixture.awayTeam.club == self.club:
+	# 			awayTeam = True
 			
-			if homeTeam or awayTeam:
+	# 		if homeTeam or awayTeam:
 
-				if fixture.status == "APPROVED":
+	# 			if fixture.status == "APPROVED":
 
-					if homeTeam:
+	# 				if homeTeam:
 
-						game = fixture.homeSubmission.game_set(homePlayerID = self.id):
+	# 					game = fixture.homeSubmission.game_set(homePlayerID = self.id):
 
-						gameData["homeGames"].append({
-							"score": game.homePlayerScore,
-							"opponent": Player.objects.get(id = game.awayPlayerID).forenames,
-							"opponentGrading": Player.objects.get(id = game.awayPlayerID).grading,
-							"playerTeam": fixture.homeTeam.name,
-							"opponentTeam": fixture.awayTeam.name,
-						})
+	# 					gameData["homeGames"].append({
+	# 						"score": game.homePlayerScore,
+	# 						"opponent": Player.objects.get(id = game.awayPlayerID).forenames,
+	# 						"opponentGrading": Player.objects.get(id = game.awayPlayerID).grading,
+	# 						"playerTeam": fixture.homeTeam.name,
+	# 						"opponentTeam": fixture.awayTeam.name,
+	# 					})
 
-					if awayTeam:
+	# 				if awayTeam:
 
-						game = fixture.homeSubmission.game_set(homePlayerID = self.id):
+	# 					game = fixture.homeSubmission.game_set(homePlayerID = self.id):
 
-						gameData["homeGames"].append({
-							"score": game.awayPlayerScore,
-							"opponent": Player.objects.get(id = game.homePlayerID).forenames,
-							"opponentGrading": Player.objects.get(id = game.homePlayerID).grading,
-							"playerTeam": fixture.awayTeam.name,
-							"opponentTeam": fixture.homeTeam.name,
-						})
+	# 					gameData["homeGames"].append({
+	# 						"score": game.awayPlayerScore,
+	# 						"opponent": Player.objects.get(id = game.homePlayerID).forenames,
+	# 						"opponentGrading": Player.objects.get(id = game.homePlayerID).grading,
+	# 						"playerTeam": fixture.awayTeam.name,
+	# 						"opponentTeam": fixture.homeTeam.name,
+	# 					})
 
 
 								
