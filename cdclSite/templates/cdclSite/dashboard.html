@@ -199,6 +199,12 @@
                 <br>
                 <table>
                     <tbody>
+                        <tr>
+                            <td class="menuElement" id="dashboardElement" align="middle">
+                                <img id="dashboardIcon" class="menuIcon" src="{% static "images/dashboardIcon.png" %}">
+                                <p class="menuText">Dashboard</p>
+                            </td>
+                        </tr>
                         {% if request.user.is_superuser or request.user.userdata.isOfficer %}
                             <tr>
                                 <td class="menuElement" id="postAnnouncementElement" align="middle">
