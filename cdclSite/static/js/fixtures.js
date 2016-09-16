@@ -278,6 +278,7 @@ function submitNewTeam() {
         $("#id_newTeamName").val($("#newTeamName").val());
         $("#id_newTeamClubID").val($("#newTeamClubDropdown").val());
         $("#id_newTeamCaptainID").val($("#newTeamCaptainDropdown").val());
+        $("#fixtureManagementForm").submit();
     });
 }
 
