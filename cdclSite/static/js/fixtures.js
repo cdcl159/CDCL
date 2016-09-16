@@ -224,8 +224,18 @@ function selectClubForNewTeam(players) {
     });
 }
 
+function selectNewTeamCaptain() {
+    $("#newTeamCaptainDropdownMenu").on("click", ".captainOption", function() {
+       
+        $(this).parent().parent().find("#newTeamCaptainDropdown").text($(this).text())
+        $(this).parent().parent().find("#newTeamCaptainDropdown").val($(this).attr("id"));
+        
+    });
 
-function selectClubCaptain() {
+}
+
+
+function selectTeamCaptain() {
     $(".teamCaptainDropdownMenu").on("click", ".captainOption", function() {
        
         $(this).parent().parent().find(".teamCaptainDropdown").text($(this).text())
