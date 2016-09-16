@@ -271,7 +271,6 @@ def index(request):
 	)
 
 
-
 # logs out the user and redirects them to the index page
 def logoutPage(request):
 	
@@ -1102,7 +1101,7 @@ def fixtures(request):
 			"pageMessage": json.dumps(pageMessage),
 			"events": Event.objects.all(),
 			"seasons": Season.objects.all(),
-			"fixtures": Fixture.objects.all(),
+			"fixtures": Fixture.objects.all().order_by("-date"),
 			"clubs": Club.objects.all(),
 			"teams": Team.objects.all(),
 			"players": json.dumps(players),
