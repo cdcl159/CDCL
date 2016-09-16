@@ -204,6 +204,31 @@ function selectClubForTeam(players) {
     });
 }
 
+
+function selectClubForNewTeam(players) {
+    $(".newTeamClubOption").click(function() {
+        
+        $(this).parent().parent().find("#newTeamClubDropdown").text($(this).text());
+        $(this).parent().parent().find("#newTeamClubDropdown").val($(this).attr("id"));
+
+        var dropdownMenu = $("#newTeamCaptainDropdownMenu");
+        
+        dropdownMenu.empty();
+  
+        for (p in players) {
+            if (players[p]["club"] == $(this).text()) {
+                
+                var newOption = "<li class='captainOption' id='" + p + "'>" + players[p]["name"] + "</li>";
+                
+                dropdownMenu.append(newOption);
+                
+            }
+        }
+        
+    });
+}
+
+
 function selectClubCaptain() {
     $(".teamCaptainDropdownMenu").on("click", ".captainOption", function() {
        
