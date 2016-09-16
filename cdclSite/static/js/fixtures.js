@@ -10,10 +10,6 @@ function displayEditFixturesModal(fixturesData) {
 
         var selectedFixtureID = $(this).parent().parent().attr("id");
         
-        console.log(selectedFixtureID);
-        
-        console.log(fixturesData[selectedFixtureID]);
-        
         $("#editFixtureTitle").text("Edit Fixture: " + selectedFixtureID);
         
         $(".editEventDropdown").val(fixturesData[selectedFixtureID]["eventID"]);
@@ -259,7 +255,6 @@ function submitTeams() {
         $("#id_teamMode").val(true);
         $("#id_bulkMode").val(false);
         
-        console.log(teamData);
         $("#id_teamData").val(JSON.stringify(teamData));
         
         $("#fixtureManagementForm").submit();
@@ -270,7 +265,9 @@ function submitTeams() {
 
 function submitNewTeam() {
     $("#submitNewTeam").click(function() {
-        
+        $("#id_newTeamName").val($("#newTeamName").val());
+        $("#id_newTeamClubID").val($("#newTeamClubDropdown").val());
+        $("#id_newTeamCaptainID").val($("#newTeamCaptainDropdown").val());
     });
 }
 
