@@ -1101,7 +1101,7 @@ def fixtures(request):
 			"pageMessage": json.dumps(pageMessage),
 			"events": Event.objects.all(),
 			"seasons": Season.objects.all(),
-			"fixtures": Fixture.objects.all().order_by("-date"),
+			"fixtures": reversed(list(Fixture.objects.all().order_by("-date"))),
 			"clubs": Club.objects.all(),
 			"teams": Team.objects.all(),
 			"players": json.dumps(players),
