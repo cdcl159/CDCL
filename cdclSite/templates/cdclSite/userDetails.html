@@ -295,7 +295,7 @@
                             <h4>Username:</h4>
                         </div>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control userDetailsInput" id="usernameInput">
+                            <input type="text" class="form-control userDetailsInput" id="usernameInput" value="{{request.user.username}}">
                         </div>
                     </div>
 
@@ -306,7 +306,7 @@
                             <h4>Forenames:</h4>
                         </div>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control userDetailsInput" id="forenamesInput">
+                            <input type="text" class="form-control userDetailsInput" id="forenamesInput" value="{{request.user.userdata.forenames}}">
                         </div>
                     </div>
 
@@ -317,63 +317,18 @@
                             <h4>Surname:</h4>
                         </div>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control userDetailsInput" id="surnameInput">
-                        </div>
-                    </div>
-
-                    <div class="col-sm-12"><br><br></div>
-<!--
-                    <div class="col-sm-12 row">
-                        <div class="col-sm-6">
-                            <h4>Address Line 1:</h4>
-                        </div>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control userDetailsInput" id="addressOneInput">
+                            <input type="text" class="form-control userDetailsInput" id="surnameInput" value="{{request.user.userdata.surname}}">
                         </div>
                     </div>
 
                     <div class="col-sm-12"><br></div>
-
-                    <div class="col-sm-12 row">
-                        <div class="col-sm-6">
-                            <h4>Address Line 2:</h4>
-                        </div>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control userDetailsInput" id="addressTwoInput">
-                        </div>
-                    </div>
-
-                    <div class="col-sm-12"><br></div>
-
-                    <div class="col-sm-12 row">
-                        <div class="col-sm-6">
-                            <h4>Address Line 3:</h4>
-                        </div>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control userDetailsInput" id="addressThreeInput">
-                        </div>
-                    </div>
-
-                    <div class="col-sm-12"><br></div>
-
-                    <div class="col-sm-12 row">
-                        <div class="col-sm-6">
-                            <h4>Postcode:</h4>
-                        </div>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control userDetailsInput" id="postcodeInput">
-                        </div>
-                    </div>-->
-
-                    <div class="col-sm-12"><br><br></div>
-                    
 
                     <div class="col-sm-12 row">
                         <div class="col-sm-6">
                             <h4>Primary Contact Number:</h4>
                         </div>
                         <div class="col-sm-6">
-                                <input type="text" class="form-control userDetailsInput" id="primaryNumberInput">
+                                <input type="text" class="form-control userDetailsInput" id="primaryNumberInput" value="{{request.user.userdata.primaryContactNumber}}">
                         </div>
                     </div>
 
@@ -384,7 +339,7 @@
                             <h4>Backup Contact Number:</h4>
                         </div>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control userDetailsInput" id="backupNumberInput">
+                            <input type="text" class="form-control userDetailsInput" id="backupNumberInput" value="{{request.user.userdata.backupContactNumber}}">
                         </div>
                     </div>
 
@@ -395,14 +350,13 @@
                             <h4>Email:</h4>
                         </div>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control userDetailsInput" id="emailInput">
+                            <input type="text" class="form-control userDetailsInput" id="emailInput" value="{{request.user.userdata.email}}">
                         </div>
                     </div>
                 </div>
                 
                 <div class="col-sm-12"><hr></div>
                 
- 
             </div>
             
         </div>
