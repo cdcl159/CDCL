@@ -99,19 +99,6 @@ def registrationPage(request):
 
 					try:
 
-						# newUserData = UserData.objects.create(
-						# 	user = newUser,
-						# 	forenames = form_forenames,
-						# 	surname = form_surname,
-						# 	address_1 = form_address_1,
-						# 	address_2 = form_address_2,
-						# 	address_3 = form_address_3,
-						# 	postcode = form_postcode,
-						# 	primaryContactNumber = form_primaryContactNumber,
-						# 	backupContactNumber = form_backupContactNumber,
-						# 	email = form_email
-						# )
-
 						newUserData = UserData.objects.create(
 							user = newUser,
 							forenames = form_forenames,
@@ -279,7 +266,7 @@ def index(request):
 		{
 			"loginForm": loginForm,
 			"pageMessage": json.dumps(pageMessage),
-			"announcements": SiteAnnouncement.objects.filter(postTo = "m")
+			"announcements": SiteAnnouncement.objects.filter(postTo = "m").reverse()
 		}
 	)
 
@@ -354,7 +341,7 @@ def announcementsPage(request):
 		pageMessage = {"type": "BLANK", "message": "NOTHING"}
 
 	try:
-		
+
 		previousAnnouncements = SiteAnnouncement.objects.filter(creator = request.user)
 
 	except SiteAnnouncement.DoesNotExist:
