@@ -266,7 +266,7 @@ def index(request):
 		{
 			"loginForm": loginForm,
 			"pageMessage": json.dumps(pageMessage),
-			"announcements": SiteAnnouncement.objects.filter(postTo = "m").reverse()
+			"announcements": SiteAnnouncement.objects.filter(postTo = "m").order_by("creationDateTime")
 		}
 	)
 
