@@ -133,13 +133,6 @@ class Player(models.Model):
 
 
 
-
-
-
-
-
-
-
 class Season(models.Model):
 
 	name = models.CharField(max_length = 10)

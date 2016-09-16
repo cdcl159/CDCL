@@ -354,10 +354,15 @@ def announcementsPage(request):
 		pageMessage = {"type": "BLANK", "message": "NOTHING"}
 
 	try:
-		previousAnnouncements = SiteAnnouncement.objects.get(creator = request.user)
+		
+		previousAnnouncements = SiteAnnouncement.objects.filter(creator = request.user)
+
 	except SiteAnnouncement.DoesNotExist:
+
 		previousAnnouncements = []
+
 	else:
+
 		pass 
 
 
@@ -1122,7 +1127,6 @@ def fixtures(request):
 # displays forms for captains to upload match results
 @login_required(login_url='index')
 def resultsSubmission(request):
-
 
 	if request.method == "POST":
 
