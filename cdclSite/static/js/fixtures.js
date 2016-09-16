@@ -275,6 +275,7 @@ function submitTeams() {
 
 function submitNewTeam() {
     $("#submitNewTeam").click(function() {
+        $("#id_addTeamMode").val(true);
         $("#id_newTeamName").val($("#newTeamName").val());
         $("#id_newTeamClubID").val($("#newTeamClubDropdown").val());
         $("#id_newTeamCaptainID").val($("#newTeamCaptainDropdown").val());
