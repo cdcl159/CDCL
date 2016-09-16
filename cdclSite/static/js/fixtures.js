@@ -321,3 +321,11 @@ function removeTeam() {
 
     });
 }
+
+function displayNewTeamModal() {
+    
+    $("#addTeamIcon").click(function() {
+        $("#newTeamModal").modal("show");
+    });
+    
+}

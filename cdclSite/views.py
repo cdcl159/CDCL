@@ -676,6 +676,7 @@ def fixtures(request):
 			
 			form_removeFixtureMode = fixtureManagementForm.cleaned_data["removeFixtureMode"]
 			form_removeTeamMode = fixtureManagementForm.cleaned_data["removeTeamMode"]
+			form_addTeamMode = fixtureManagementForm.cleaned_data["addTeamMode"]
 
 			form_statusMode = fixtureManagementForm.cleaned_data["statusMode"]
 			form_fixtureFile = fixtureManagementForm.cleaned_data["fixtureFile"]
@@ -698,6 +699,11 @@ def fixtures(request):
 			form_newStatus = fixtureManagementForm.cleaned_data["newStatus"]
 
 			form_selectedTeamID = fixtureManagementForm.cleaned_data["selectedTeamID"]
+
+			if form_addTeamMode:
+
+				pass
+
 
 			if form_removeTeamMode:
 				
