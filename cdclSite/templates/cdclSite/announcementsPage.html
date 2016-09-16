@@ -364,6 +364,16 @@
                         <div class="col-sm-12">
                             <h4>Previous Announcements:</h4>
                         </div>
+                        {% for a in previousAnnouncements %}
+                            <div class="col-sm-12">
+                                <div class="col-sm-6">
+                                    <h4>{{a.title}}</h4>
+                                </div>
+                                <div class="col-sm-6">
+                                    <h4>{{a.creationDateTime}}</h4>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
                 
