@@ -56,6 +56,10 @@ class FixtureManagementForm(forms.Form):
 	removeTeamMode = forms.BooleanField(required = False)
 	addTeamMode = forms.BooleanField(required = False)
 
+	newTeamName = forms.CharField(required = False, max_length = 50)
+	newTeamClubID = forms.IntegerField(required = False)
+	newTeamCaptainID = forms.IntegerField(required = False)
+
 	# csv file of fixtures
 	fixtureFile = forms.FileField(required = False)
 	newFixtureSeason = forms.CharField(required = False, max_length = 100)

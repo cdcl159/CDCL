@@ -677,7 +677,9 @@ def fixtures(request):
 			form_removeFixtureMode = fixtureManagementForm.cleaned_data["removeFixtureMode"]
 			form_removeTeamMode = fixtureManagementForm.cleaned_data["removeTeamMode"]
 			form_addTeamMode = fixtureManagementForm.cleaned_data["addTeamMode"]
-
+			form_newTeamName = fixtureManagementForm.cleaned_data["newTeamName"]
+			form_newTeamClubID = fixtureManagementForm.cleaned_data["newTeamClubID"]
+			form_newTeamCaptainID = fixtureManagementForm.cleaned_data["newTeamCaptainID"]
 			form_statusMode = fixtureManagementForm.cleaned_data["statusMode"]
 			form_fixtureFile = fixtureManagementForm.cleaned_data["fixtureFile"]
 			form_teamMode = fixtureManagementForm.cleaned_data["teamMode"]
@@ -702,7 +704,27 @@ def fixtures(request):
 
 			if form_addTeamMode:
 
-				pass
+				try:
+
+					newTeam = Team.objects.create(
+						name = form_newTeamName,
+						captain = Player.objects.get(id = form_newTeamCaptainID),
+						club = Club.objects.get(id = form_newTeamClubID)
+					)
+				
+				except Exception as e:
+
+					pageMessage = {
+						"type": "ERROR",
+						"message": "The team could not be created: " + str(e)
+					}
+				
+				else:
+
+					pageMessage = {
+						"type": "SUCCESS",
+						"message": "Team created successfully."
+					}
 
 
 			if form_removeTeamMode:

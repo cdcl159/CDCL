@@ -268,6 +268,13 @@ function submitTeams() {
 }
 
 
+function submitNewTeam() {
+    $("#submitNewTeam").click(function() {
+        
+    });
+}
+
+
 
 function displaySubmission(fixturesData) {
 
