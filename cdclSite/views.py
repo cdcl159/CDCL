@@ -636,7 +636,7 @@ def playerManagement(request):
 
 	playerData = {}
 
-	for player in reversed(list(Player.objects.all().order_by("-club.name"))):
+	for player in reversed(list(Player.objects.all().order_by("-club__name"))):
 
 		playerData[player.id] = {
 			"forenames": player.forenames,
