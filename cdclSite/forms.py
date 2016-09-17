@@ -138,10 +138,6 @@ class RegistrationForm(forms.Form):
 
 	forenames = forms.CharField(required = True, max_length = 100)
 	surname = forms.CharField(required = True, max_length = 100)
-	# address_1 = forms.CharField(required = False, max_length = 100)
-	# address_2 = forms.CharField(required = False, max_length = 100)
-	# address_3 = forms.CharField(required = False, max_length = 100)
-	# postcode = forms.CharField(required = False, max_length = 100)
 	primaryContactNumber = forms.CharField(required = False, max_length = 100)
 	backupContactNumber = forms.CharField(required = False, max_length = 100)
 	email = forms.CharField(required = False, max_length = 100)
