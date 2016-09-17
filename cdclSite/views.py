@@ -1224,18 +1224,18 @@ def resultsSubmission(request):
 			]
 
 			badScores = False
-			for board in boards:
+			# for board in boards:
 
-				if board["homePlayerscore"] not in [0, 1, 0.5] or board["awayPlayerscore"] not in [0, 1, 0.5]:
+			# 	if board["homePlayerscore"] not in [0, 1, 0.5] or board["awayPlayerscore"] not in [0, 1, 0.5]:
 
-					pageMessage = {
-						"type": "ERROR",
-						"message": "Please make sure the scores are of value 1, 0 or 0.5."
-					}
+			# 		pageMessage = {
+			# 			"type": "ERROR",
+			# 			"message": "Please make sure the scores are of value 1, 0 or 0.5."
+			# 		}
 
-					badScores = True
+			# 		badScores = True
 
-					break
+			# 		break
 
 
 			if not badScores:
