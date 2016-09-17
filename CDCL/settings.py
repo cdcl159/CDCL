@@ -25,7 +25,7 @@ SECRET_KEY = '*!x+9^be82@*_-fv15dk&sa#s^)+t*deo6i6e&q0$z-!0g03$d'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["www.pythonanywhere.com"]
+ALLOWED_HOSTS = ["http://cannockdistrictchessleague.pythonanywhere.com/"]
 
 
 # Application definition
