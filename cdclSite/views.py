@@ -1314,7 +1314,7 @@ def resultsSubmission(request):
 
 		resultsSubmissionForm = ResultsSubmissionForm()
 
-	pageMessage = {"type": "BLANK", "message": "NOTHING"}
+		pageMessage = {"type": "BLANK", "message": "NOTHING"}
 
 	fixtureData = {}
 	
