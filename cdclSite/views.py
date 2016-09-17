@@ -1246,14 +1246,16 @@ def resultsSubmission(request):
 					captainedTeams = Team.objects.filter(captain = userPlayer)
 					
 					homeOrAway = "H"
+					
 					for team in captainedTeams:
 						if team.name == form_homeTeam:
 							usersTeam = team
 							homeOrAway = "H"
 							break
+
 						if team.name == form_awayTeam:
 							usersTeam = team
-							homeOrAway = "A" 
+							homeOrAway = "A"
 							break
 
 					newSubmission = Submission.objects.create(team = usersTeam)
@@ -1300,8 +1302,6 @@ def resultsSubmission(request):
 						"type": "SUCCESS",
 						"message": "The results were submitted successfully"
 					}
-
-
 
 		else:
 
