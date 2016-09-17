@@ -1,4 +1,15 @@
+function initUI() {
 
+    $("#id_bulkMode").val(false);
+    $("#id_editMode").val(false);
+    $("#id_addMode").val(false);
+    $("#id_teamMode").val(false);
+    $("#id_statusMode").val(false);
+    $("#id_removeFixtureMode").val(false);
+    $("#id_removeTeamMode").val(false);
+    $("#id_addTeamMode").val(false);
+
+}
 function displayUploadFixturesModal() {
     $("#openUpload").click(function() {
         $("#fixturesUploadModal").modal("show");
