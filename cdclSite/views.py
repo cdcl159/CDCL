@@ -1111,10 +1111,10 @@ def fixtures(request):
 						"homePlayerID": g.homePlayerID,
 						"homePlayerName": Player.objects.get(id = g.homePlayerID).forenames + ", " + Player.objects.get(id = g.homePlayerID).surname,
 						"homePlayerGrade": Player.objects.get(id = g.homePlayerID).grading,
-						"awayPlayerID": g.awayPlayerID,
-						"homePlayerName": Player.objects.get(id = g.awayPlayerID).forenames + ", " + Player.objects.get(id = g.awayPlayerID).surname,
-						"awayPlayerGrade": Player.objects.get(id = g.awayPlayerID).grading,
 						"homePlayerScore": g.homePlayerScore,
+						"awayPlayerID": g.awayPlayerID,
+						"awayPlayerName": Player.objects.get(id = g.awayPlayerID).forenames + ", " + Player.objects.get(id = g.awayPlayerID).surname,
+						"awayPlayerGrade": Player.objects.get(id = g.awayPlayerID).grading,
 						"awayPlayerScore": g.awayPlayerScore
 					}
 				)
