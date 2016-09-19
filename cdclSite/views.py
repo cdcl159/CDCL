@@ -133,6 +133,11 @@ def registrationPage(request):
 										ecfCode = form_ecfCode,
 										club = Club.objects.get(id = form_club)
 									)
+
+									userPlayer.user = newUser
+
+									userPlayer.save()
+
 								except Exception as e:
 
 									pageMessage = {
@@ -158,6 +163,11 @@ def registrationPage(request):
 										surname = form_surname,
 										club = Club.objects.get(id = form_club)
 									)
+
+									userPlayer.user = newUser
+
+									userPlayer.save()
+									
 								except Exception as e:
 
 									pageMessage = {
