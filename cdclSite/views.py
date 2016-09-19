@@ -1103,7 +1103,7 @@ def fixtures(request):
 				"games": []
 			}
 
-			for g in submission.games_set.all():
+			for g in submission.game_set.all():
 
 				fixturesData[f.id]["homeSubmission"]["games"].append(
 					{
