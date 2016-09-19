@@ -335,7 +335,7 @@ function displaySubmission(fixturesData) {
 
         for (var i = 0; i < awaySubmission["games"].length; i++) {
 
-            var currentGame = homeSubmission["games"][i];
+            var currentGame = awaySubmission["games"][i];
 
             $("#b" + (i + 1).toString() + "_h_name").text(currentGame["homePlayerName"]);
             $("#b" + (i + 1).toString() + "_h_grade").text(currentGame["homePlayerGrade"]);
