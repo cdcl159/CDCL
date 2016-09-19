@@ -1260,7 +1260,7 @@ def resultsSubmission(request):
 								homePlayerID = boards[i]["homePlayerid"],
 								awayPlayerID = boards[i]["awayPlayerid"],
 								homePlayerScore = boards[i]["homePlayerscore"],
-								awayPlayerScore = boards[i]["homePlayerscore"],
+								awayPlayerScore = boards[i]["awayPlayerscore"],
 								submission = newSubmission
 							)
 						
