@@ -1105,7 +1105,7 @@ def fixtures(request):
 
 			for g in submission.game_set.all():
 
-				fixturesData[f.id]["homeSubmission"]["games"].append(
+				fixturesData[f.id]["awaySubmission"]["games"].append(
 					{
 						"boardNumber": g.boardNumber,
 						"homePlayerID": g.homePlayerID,
@@ -1230,6 +1230,7 @@ def resultsSubmission(request):
 			if not badScores:
 
 				try:
+
 					userPlayer = request.user.player
 
 					captainedTeams = Team.objects.filter(captain = userPlayer)
@@ -1252,7 +1253,7 @@ def resultsSubmission(request):
 					i = 0
 					while i < 6:
 
-						if boards[i]["awayPlayerid"] and boards[i]["awayPlayerid"]:
+						if boards[i]["awayPlayerid"] and boards[i]["homePlayerid"]:
 
 							newGame = Game.objects.create(
 								boardNumber = i,
