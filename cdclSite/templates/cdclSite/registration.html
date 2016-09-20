@@ -150,96 +150,40 @@
         
         <div class="container-fluid">
             
-            <div class="col-sm-12" align="middle">
-                <h3>Please fill out the form below to request an account.<h3>
-                <h4>Required fields will be marked, but please fill as many fields as possible</h4>
-                <br>
+            <div class="col-sm-12">
+                <h4><b>User Data</b></h4>
             </div>
 
-            <div class="formContainer" align="middle">
-                 <div class="col-sm-12 row">
-                    <div class="col-sm-6">
-                        <h4>Username (required)</h4>
-                    </div>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control registrationInput" id="username">
-                    </div>
+            <div class="col-sm-12" id="userDataContainer">
+                <div class="col-sm-6">
+                    <h4>forenames</h4>
                 </div>
-                <div class="col-sm-12 row">
-                    <div class="col-sm-6">
-                        <h4>Password (required)</h4>
-                    </div>
-                    <div class="col-sm-3">
-                        <input type="text" class="form-control registrationInput" id="password">
-                    </div>
-                    <div class="col-sm-3">
-                        <input type="text" class="form-control registrationInput" id="passwordConfirm" placeholder="confirm password">
-                    </div>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control registrationInput" id="fornames">
                 </div>
-
-                <div class="col-sm-12 row">
-                    <div class="col-sm-6">
-                        <h4>Forenames (required)</h4>
-                    </div>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control registrationInput" id="fornames">
-                    </div>
+                <div class="col-sm-6">
+                    <h4>surname</h4>
                 </div>
-                <div class="col-sm-12 row">
-                    <div class="col-sm-6">
-                        <h4>Surname (required)</h4>
-                   </div>
-                   <div class="col-sm-6">
-                       <input type="text" class="form-control registrationInput" id="surname">
-                   </div>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control registrationInput" id="surname">
                 </div>
-                <div class="col-sm-12 row">
-                    <div class="col-sm-6">
-                        <h4>Primary Contact Number (required)</h4>
-                   </div>
-                   <div class="col-sm-6">
-                       <input type="text" class="form-control registrationInput" id="contactNumberA">
-                   </div>
+                <div class="col-sm-6">
+                    <h4>primaryContactNumber</h4>
                 </div>
-                <div class="col-sm-12 row">
-                    <div class="col-sm-6">
-                        <h4>Secondary Contact Number</h4>
-                   </div>
-                   <div class="col-sm-6">
-                       <input type="text" class="form-control registrationInput" id="contactNumberB">
-                   </div>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control registrationInput" id="pcn">
                 </div>
-                <div class="col-sm-12 row">
-                    <div class="col-sm-6">
-                        <h4>Email</h4>
-                   </div>
-                   <div class="col-sm-6">
-                       <input type="text" class="form-control registrationInput" id="email">
-                   </div>
+                <div class="col-sm-6">
+                    <h4>backupContactNumber</h4>
                 </div>
-                <div class="col-sm-12 row">
-                    <div class="col-sm-6">
-                        <h4>ECF Code (if known)</h4>
-                   </div>
-                   <div class="col-sm-6">
-                       <input type="text" class="form-control registrationInput" id="ecfCode">
-                   </div>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control registrationInput" id="bcn">
                 </div>
-                <div class="col-sm-12 row">
-                    <div class="col-sm-6">
-                        <h4>Club (required)</h4>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="dropdown">
-                            <button class="btn btn-primary clubDropdown dropdown-toggle" type="button" data-toggle="dropdown">Select Club
-                            <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                                {% for c in clubs %}
-                                    <li class="clubOption" id="{{c.id}}">{{c.name}}</li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
+                <div class="col-sm-6">
+                    <h4>email</h4>
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control registrationInput" id="email">
                 </div>
             </div>
 
