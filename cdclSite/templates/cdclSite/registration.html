@@ -109,8 +109,10 @@
             <div class="col-sm-12 topNavBar" align="middle">
                 <div class="col-sm-2 home">
                     <br>
-                    <img id="aboutIcon" class="navbarIcon" src="{% static "images/homeIcon.png" %}">
-                    <p class="navbarText">Home</p>
+                    <a href="{% url 'index' %}">
+                        <img id="aboutIcon" class="navbarIcon" src="{% static "images/homeIcon.png" %}">
+                        <p class="navbarText">Home</p>
+                    </a>
                 </div>
                 <div class="col-sm-2 about">
                     <br>
