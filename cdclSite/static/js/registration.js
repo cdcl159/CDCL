@@ -1,7 +1,7 @@
 function selectClub() {
     $(".clubOption").click(function() {
-        $(".clubDropdown").val($(this).attr("id"));
-        $(".clubDropdown").text($(this).text());
+        $("#clubDropdown").val($(this).attr("id"));
+        $("#clubDropdown").text($(this).text());
     });
 }
 
