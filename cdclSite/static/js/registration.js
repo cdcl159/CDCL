@@ -13,11 +13,11 @@ function submitForm() {
         $("#id_passwordConfirm").val($("#passwordConfirm").val());
         $("#id_forenames").val($("#fornames").val());
         $("#id_surname").val($("#surname").val());
-        $("#id_primaryContactNumber").val($("#contactNumberA").val());
-        $("#id_backupContactNumber").val($("#contactNumberB").val());
+        $("#id_primaryContactNumber").val($("#pcn").val());
+        $("#id_backupContactNumber").val($("#bcn").val());
         $("#id_email").val($("#email").val());
-        $("#id_ecfCode").val();
-        $("#id_club").val($(".clubDropdown").val());
+        $("#id_ecfCode").val($("#ecf").val());
+        $("#id_club").val($("#clubDropdown").val());
 
         $("#registrationForm").submit();
 
