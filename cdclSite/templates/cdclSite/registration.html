@@ -9,6 +9,9 @@
         .dropdown-menu {
             width: 100%;
         }
+        .clubOption {
+            height: 110%;
+        }
     </style>
     
 <!--    INCLUDE STATIC FILES HERE-->
@@ -249,7 +252,7 @@
                             <span class="caret"></span></button>
                             <ul class="dropdown-menu">
                                 {% for c in clubs %}
-                                    <li class="clubOption" id="{{c.id}}">{{c.name}}</li>
+                                    <li class="clubOption" id="{{c.id}}" align="middle">{{c.name}}</li>
                                 {% endfor %}
                             </ul>
                         </div>
