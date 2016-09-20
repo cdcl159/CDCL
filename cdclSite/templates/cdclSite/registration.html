@@ -47,8 +47,9 @@
 
             var pageMessage = {{pageMessage|safe}};
             handlePageMessage(pageMessage);
+            
             selectClub();
-            submitForm();
+            
 
         });
         
@@ -63,8 +64,6 @@
             {{ field.as_hidden }}
             {% endfor %}
         {% endblock %}
-        
-        
         
         
  <!-- MESSAGE MODAL -->
