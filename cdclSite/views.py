@@ -77,116 +77,124 @@ def registrationPage(request):
 
 			else:
 
-				try:
-
-					newUser = User.objects.create_user(username = form_username, password = form_password)
-
-					newUser.is_active = False
-					newUser.save()
-				
-				except Exception as e:
-
-					pageMessage = {
-						"type": "ERROR",
-						"message": "User account could not be created: " + str(e)
-					}
-				
-				else:
+				if form_fornenames and form_password and form_passwordConfirm and form_surnames and form_club and form_username:
 
 					try:
 
-						newUserData = UserData.objects.create(
-							user = newUser,
-							forenames = form_forenames,
-							surname = form_surname,
-							primaryContactNumber = form_primaryContactNumber,
-							backupContactNumber = form_backupContactNumber,
-							email = form_email
-						)
+						newUser = User.objects.create_user(username = form_username, password = form_password)
+
+						newUser.is_active = False
+						newUser.save()
 					
 					except Exception as e:
 
 						pageMessage = {
-							"type": "WARNING",
-							"message": "Account created but user data (forenames, surname address etc) could not be created. " + str(e)
+							"type": "ERROR",
+							"message": "User account could not be created: " + str(e)
 						}
-
+					
 					else:
 
 						try:
-							
-							userPlayer = Player.objects.get(ecfCode = form_ecfCode)
 
-							userPlayer.user = newUser
-
-							userPlayer.save()
-
-						except Player.DoesNotExist:
-							
-							if form_ecfCode:
-								
-								try:
-									userPlayer = Player.objects.create(
-										user = newUser,
-										forenames = form_forenames,
-										surname = form_surname,
-										ecfCode = form_ecfCode,
-										club = Club.objects.get(id = form_club)
-									)
-
-									userPlayer.user = newUser
-
-									userPlayer.save()
-
-								except Exception as e:
-
-									pageMessage = {
-										"type": "WARNING",
-										"message": "User account created but corresponding player data could not be formed."
-									}
-								
-								else:
-
-									pageMessage = {
-										"type": "SUCCESS",
-										"message": "User account and player data was created successfully."
-									}
-
-							
-							else:
-
-								try:
-
-									userPlayer = Player.objects.create(
-										user = newUser,
-										forenames = form_forenames,
-										surname = form_surname,
-										club = Club.objects.get(id = form_club)
-									)
-
-									userPlayer.user = newUser
-
-									userPlayer.save()
-									
-								except Exception as e:
-
-									pageMessage = {
-										"type": "WARNING",
-										"message": "User account created but corresponding player data could not be formed."
-									}
-								
-								else:
-
-									pageMessage = {
-										"type": "SUCCESS",
-										"message": "User account and player data was created successfully."
-									}
-						else:
+							newUserData = UserData.objects.create(
+								user = newUser,
+								forenames = form_forenames,
+								surname = form_surname,
+								primaryContactNumber = form_primaryContactNumber,
+								backupContactNumber = form_backupContactNumber,
+								email = form_email
+							)
+						
+						except Exception as e:
 
 							pageMessage = {
-								"type": "SUCCESS",
-								"message": "Account created successfully."
+								"type": "WARNING",
+								"message": "Account created but user data (forenames, surname address etc) could not be created. " + str(e)
 							}
+
+						else:
+
+							try:
+								
+								userPlayer = Player.objects.get(ecfCode = form_ecfCode)
+
+								userPlayer.user = newUser
+
+								userPlayer.save()
+
+							except Player.DoesNotExist:
+								
+								if form_ecfCode:
+									
+									try:
+										userPlayer = Player.objects.create(
+											user = newUser,
+											forenames = form_forenames,
+											surname = form_surname,
+											ecfCode = form_ecfCode,
+											club = Club.objects.get(id = form_club)
+										)
+
+										userPlayer.user = newUser
+
+										userPlayer.save()
+
+									except Exception as e:
+
+										pageMessage = {
+											"type": "WARNING",
+											"message": "User account created but corresponding player data could not be formed."
+										}
+									
+									else:
+
+										pageMessage = {
+											"type": "SUCCESS",
+											"message": "User account and player data was created successfully."
+										}
+
+								
+								else:
+
+									try:
+
+										userPlayer = Player.objects.create(
+											user = newUser,
+											forenames = form_forenames,
+											surname = form_surname,
+											club = Club.objects.get(id = form_club)
+										)
+
+										userPlayer.user = newUser
+
+										userPlayer.save()
+										
+									except Exception as e:
+
+										pageMessage = {
+											"type": "WARNING",
+											"message": "User account created but corresponding player data could not be formed."
+										}
+									
+									else:
+
+										pageMessage = {
+											"type": "SUCCESS",
+											"message": "User account and player data was created successfully."
+										}
+							else:
+
+								pageMessage = {
+									"type": "SUCCESS",
+									"message": "Account created successfully."
+								}
+				else:
+
+					pageMessage = {
+						"type": "ERROR",
+						"message": "Please ensure all required fields are filled in."
+					}
 		else:
 
 			pageMessage = {
