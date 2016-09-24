@@ -77,7 +77,7 @@ def registrationPage(request):
 
 			else:
 
-				if form_fornenames and form_password and form_passwordConfirm and form_surnames and form_club and form_username:
+				if form_forenames and form_password and form_passwordConfirm and form_surname and form_club and form_username:
 
 					try:
 
