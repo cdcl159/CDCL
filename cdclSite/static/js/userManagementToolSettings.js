@@ -6,10 +6,6 @@ function displayUserDataModal(userData) {
 
         $("#userdata_forenames").text("");
         $("#userdata_surname").text("");
-        // $("#userdata_address_1").text("");
-        // $("#userdata_address_2").text("");
-        // $("#userdata_address_3").text("");
-        // $("#userdata_postcode").text("");
         $("#userdata_primaryContactNumber").text("");
         $("#userdata_backupContactNumber").text("");
         $("#userdata_email").text("");
@@ -20,10 +16,6 @@ function displayUserDataModal(userData) {
 
             $("#userdata_forenames").text(userData[selectedUserID]["userData"]["forenames"]);
             $("#userdata_surname").text(userData[selectedUserID]["userData"]["surname"]);
-            // $("#userdata_address_1").text(userData[selectedUserID]["userData"]["address_1"]);
-            // $("#userdata_address_2").text(userData[selectedUserID]["userData"]["address_2"]);
-            // $("#userdata_address_3").text(userData[selectedUserID]["userData"]["address_3"]);
-            // $("#userdata_postcode").text(userData[selectedUserID]["userData"]["postcode"]);
             $("#userdata_primaryContactNumber").text(userData[selectedUserID]["userData"]["primaryContactNumber"]);
             $("#userdata_backupContactNumber").text(userData[selectedUserID]["userData"]["backupContactNumber"]);
             $("#userdata_email").text(userData[selectedUserID]["userData"]["email"]);
@@ -60,7 +52,7 @@ function displayPlayerDataModal(userData) {
             $("#playerdata_forenames").text(userData[selectedUserID]["playerData"]["forenames"]);
             $("#playerdata_surname").text(userData[selectedUserID]["playerData"]["surname"]);
             $("#playerdata_ecf").text(userData[selectedUserID]["playerData"]["ecfCode"]);
-            $("#playerdata_grading").text(userData[selectedUserID]["userData"]["grading"]);
+            $("#playerdata_grading").text(userData[selectedUserID]["playerData"]["grading"]);
             $("#playerdata_club").text(userData[selectedUserID]["playerData"]["club"]);
             
         } else {
