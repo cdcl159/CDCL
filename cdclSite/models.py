@@ -168,9 +168,8 @@ class Season(models.Model):
 
 			seasonResults[f.awayTeam.name]["total"] += f.awayScore
 
-
-
-
+		
+		return seasonResults
 
 
 
