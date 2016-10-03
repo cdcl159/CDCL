@@ -137,6 +137,43 @@ class Season(models.Model):
 	endDate = models.DateField(null = True)
 
 
+	def aggregateResults(self):
+
+		seasonResults = {}
+
+		seasonFixtures = self.fixture_set.all()
+
+		for f in seasonFixtures:
+
+			if f.homeTeam.name not in teamScores:
+
+				seasonResults[f.homeTeam.name] = {
+					"total": 0,
+					"fixtureResults": []
+				}
+			
+			if f.awayTeam.name not in teamScores:
+
+				seasonResults[f.awayTeam.name] = {
+					"total": 0,
+					"fixtureResults": []
+				}
+
+
+			seasonResults[f.homeTeam.name]["fixtureResults"].append({"date": f.date, "result": f.homeScore})
+
+			seasonResults[f.homeTeam.name]["total"] += f.homeScore
+			
+			seasonResults[f.awayTeam.name]["fixtureResults"].append({"date": f.date, "result": f.awayScore})
+
+			seasonResults[f.awayTeam.name]["total"] += f.awayScore
+
+
+
+
+
+
+
 
 class Event(models.Model):
 
