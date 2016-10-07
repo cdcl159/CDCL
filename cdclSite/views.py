@@ -57,8 +57,6 @@ def registrationPage(request):
 
 		if registrationForm.is_valid():
 
-			print("this is a test")
-
 			form_username = registrationForm.cleaned_data["username"]
 			form_password = registrationForm.cleaned_data["password"]
 			form_passwordConfirm = registrationForm.cleaned_data["passwordConfirm"]
