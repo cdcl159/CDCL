@@ -132,36 +132,34 @@ function submitResults() {
         $("#id_board6_awayPlayerScore").val($("#board_6_awayScore").val());
 
 
-        console.log($("#id_selectedFixtureID").val());
-        console.log($("#id_homeTeam").val());
-        console.log($("#id_awayTeam").val());
+        alert("fixture id", $("#id_selectedFixtureID").val());
+        alert("home team", $("#id_homeTeam").val());
+        alert("away team", $("#id_awayTeam").val());
 
-        console.log($("#id_board1_homePlayerID").val());
-        console.log($("#id_board2_homePlayerID").val());
-        console.log($("#id_board3_homePlayerID").val());
-        console.log($("#id_board4_homePlayerID").val());
-        console.log($("#id_board5_homePlayerID").val());
-        console.log($("#id_board6_homePlayerID").val());
-        console.log($("#id_board1_awayPlayerID").val());
-        console.log($("#id_board2_awayPlayerID").val());
-        console.log($("#id_board3_awayPlayerID").val());
-        console.log($("#id_board4_awayPlayerID").val());
-        console.log($("#id_board5_awayPlayerID").val());
-        console.log($("#id_board6_awayPlayerID").val());
-        console.log($("#id_board1_homePlayerScore").val());
-        console.log($("#id_board2_homePlayerScore").val());
-        console.log($("#id_board3_homePlayerScore").val());
-        console.log($("#id_board4_homePlayerScore").val());
-        console.log($("#id_board5_homePlayerScore").val());
-        console.log($("#id_board6_homePlayerScore").val());
-        console.log($("#id_board1_awayPlayerScore").val());
-        console.log($("#id_board2_awayPlayerScore").val());
-        console.log($("#id_board3_awayPlayerScore").val());
-        console.log($("#id_board4_awayPlayerScore").val());
-        console.log($("#id_board5_awayPlayerScore").val());
-        console.log($("#id_board6_awayPlayerScore").val());
-
-
+        alert("board1_h_playerid", $("#id_board1_homePlayerID").val());
+        alert("board2_h_playerid", $("#id_board2_homePlayerID").val());
+        alert("board3_h_playerid", $("#id_board3_homePlayerID").val());
+        alert("board4_h_playerid", $("#id_board4_homePlayerID").val());
+        alert("board5_h_playerid", $("#id_board5_homePlayerID").val());
+        alert("board6_h_playerid", $("#id_board6_homePlayerID").val());
+        alert("board1_a_playerid", $("#id_board1_awayPlayerID").val());
+        alert("board2_a_playerid", $("#id_board2_awayPlayerID").val());
+        alert("board3_a_playerid", $("#id_board3_awayPlayerID").val());
+        alert("board4_a_playerid", $("#id_board4_awayPlayerID").val());
+        alert("board5_a_playerid", $("#id_board5_awayPlayerID").val());
+        alert("board6_a_playerid", $("#id_board6_awayPlayerID").val());
+        alert("board1_h_playerscore", $("#id_board1_homePlayerScore").val());
+        alert("board2_h_playerscore", $("#id_board2_homePlayerScore").val());
+        alert("board3_h_playerscore", $("#id_board3_homePlayerScore").val());
+        alert("board4_h_playerscore", $("#id_board4_homePlayerScore").val());
+        alert("board5_h_playerscore", $("#id_board5_homePlayerScore").val());
+        alert("board6_h_playerscore", $("#id_board6_homePlayerScore").val());
+        alert("board1_a_playerscore", $("#id_board1_awayPlayerScore").val());
+        alert("board2_a_playerscore", $("#id_board2_awayPlayerScore").val());
+        alert("board3_a_playerscore", $("#id_board3_awayPlayerScore").val());
+        alert("board4_a_playerscore", $("#id_board4_awayPlayerScore").val());
+        alert("board5_a_playerscore", $("#id_board5_awayPlayerScore").val());
+        alert("board6_a_playerscore", $("#id_board6_awayPlayerScore").val());
 
 
         $("#resultsForm").submit();
