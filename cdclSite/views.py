@@ -1164,7 +1164,6 @@ def resultsSubmission(request):
 
 		if resultsSubmissionForm.is_valid():
 
-			
 			form_selectedFixtureID = resultsSubmissionForm.cleaned_data["selectedFixtureID"] 
 
 			form_board1_homePlayerID = resultsSubmissionForm.cleaned_data["board1_homePlayerID"] 
