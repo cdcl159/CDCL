@@ -115,80 +115,33 @@ def registrationPage(request):
 
 						else:
 
-							try:
+
+							if form_ecfCode:
+
+								try:
+
+									userPlayer = Player.objects.get(ecfCode = form_ecfCode)
+
+									userPlayer.user = newUser
+
+									userPlayer.save()
 								
-								userPlayer = Player.objects.get(ecfCode = form_ecfCode)
+								except Player.DoesNotExist:
 
-								userPlayer.user = newUser
+									userPlayer = Player.objects.create(
+										user = newUser,
+										forenames = "TEMP",
+										surname = "TEMP",
+										ecfCode = "TEMP",
+										club = Club.objects.get(id = form_club)
+									)
 
-								userPlayer.save()
+									pageMessage = {
+										"type": "SUCCESS",
+										"message": "User account and player data was created successfully. Please await account activation"
+									}
 
-							except Player.DoesNotExist:
-								
-								if form_ecfCode:
-									
-									try:
-										userPlayer = Player.objects.create(
-											user = newUser,
-											forenames = form_forenames,
-											surname = form_surname,
-											ecfCode = form_ecfCode,
-											club = Club.objects.get(id = form_club)
-										)
 
-										userPlayer.user = newUser
-
-										userPlayer.save()
-
-									except Exception as e:
-
-										pageMessage = {
-											"type": "WARNING",
-											"message": "User account created but corresponding player data could not be formed."
-										}
-									
-									else:
-
-										pageMessage = {
-											"type": "SUCCESS",
-											"message": "User account and player data was created successfully."
-										}
-
-								
-								else:
-
-									try:
-
-										userPlayer = Player.objects.create(
-											user = newUser,
-											forenames = form_forenames,
-											surname = form_surname,
-											club = Club.objects.get(id = form_club)
-										)
-
-										userPlayer.user = newUser
-
-										userPlayer.save()
-										
-									except Exception as e:
-
-										pageMessage = {
-											"type": "WARNING",
-											"message": "User account created but corresponding player data could not be formed."
-										}
-									
-									else:
-
-										pageMessage = {
-											"type": "SUCCESS",
-											"message": "User account and player data was created successfully."
-										}
-							else:
-
-								pageMessage = {
-									"type": "SUCCESS",
-									"message": "Account created successfully."
-								}
 				else:
 
 					pageMessage = {
