@@ -141,6 +141,22 @@ def registrationPage(request):
 										"message": "User account and player data was created successfully. Please await account activation"
 									}
 
+							else:
+
+
+								userPlayer = Player.objects.create(
+									user = newUser,
+									forenames = "TEMP",
+									surname = "TEMP",
+									ecfCode = "TEMP",
+									club = Club.objects.get(id = form_club)
+								)
+
+								pageMessage = {
+									"type": "SUCCESS",
+									"message": "User account and temporary player data was created successfully. Please await account activation"
+								}
+
 
 				else:
 
