@@ -1130,6 +1130,8 @@ def resultsSubmission(request):
 
 	if request.method == "POST":
 
+		pprint.pprint(request.POST)
+
 		resultsSubmissionForm = ResultsSubmissionForm(request.POST)
 
 		if resultsSubmissionForm.is_valid():
