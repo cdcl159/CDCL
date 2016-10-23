@@ -1283,7 +1283,7 @@ def resultsSubmission(request):
 
 			errors = []
 
-			for field in resultsSubmissionForm.fields:
+			for field in resultsSubmissionForm:
 
 				for error in field.errors:
 
