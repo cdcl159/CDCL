@@ -1281,9 +1281,17 @@ def resultsSubmission(request):
 
 		else:
 
+			errors = []
+
+			for field in resultsSubmissionForm.fields:
+
+				for error in field.errors:
+
+					errors.append(field.name + ": " + error)
+
 			pageMessage = {
 				"type": "ERROR",
-				"message": "One or more fields were not completed correctly."
+				"message": ",".join(errors)
 			}
 
 	else:
