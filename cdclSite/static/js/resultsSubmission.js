@@ -116,19 +116,19 @@ function submitResults() {
         $("#id_board5_awayPlayerID").val($(".playerDropdown_b5_a").val());
         $("#id_board6_awayPlayerID").val($(".playerDropdown_b6_a").val());
 
-        $("#id_board1_homePlayerScore").val(parseFloat($("#board_1_homeScore").val()));
-        $("#id_board2_homePlayerScore").val(parseFloat($("#board_2_homeScore").val()));
-        $("#id_board3_homePlayerScore").val(parseFloat($("#board_3_homeScore").val()));
-        $("#id_board4_homePlayerScore").val(parseFloat($("#board_4_homeScore").val()));
-        $("#id_board5_homePlayerScore").val(parseFloat($("#board_5_homeScore").val()));
-        $("#id_board6_homePlayerScore").val(parseFloat($("#board_6_homeScore").val()));
+        $("#id_board1_homePlayerScore").val($("#board_1_homeScore").val());
+        $("#id_board2_homePlayerScore").val($("#board_2_homeScore").val());
+        $("#id_board3_homePlayerScore").val($("#board_3_homeScore").val());
+        $("#id_board4_homePlayerScore").val($("#board_4_homeScore").val());
+        $("#id_board5_homePlayerScore").val($("#board_5_homeScore").val());
+        $("#id_board6_homePlayerScore").val($("#board_6_homeScore").val());
 
-        $("#id_board1_awayPlayerScore").val(parseFloat($("#board_1_awayScore").val()));
-        $("#id_board2_awayPlayerScore").val(parseFloat($("#board_2_awayScore").val()));
-        $("#id_board3_awayPlayerScore").val(parseFloat($("#board_3_awayScore").val()));
-        $("#id_board4_awayPlayerScore").val(parseFloat($("#board_4_awayScore").val()));
-        $("#id_board5_awayPlayerScore").val(parseFloat($("#board_5_awayScore").val()));
-        $("#id_board6_awayPlayerScore").val(parseFloat($("#board_6_awayScore").val()));
+        $("#id_board1_awayPlayerScore").val($("#board_1_awayScore").val());
+        $("#id_board2_awayPlayerScore").val($("#board_2_awayScore").val());
+        $("#id_board3_awayPlayerScore").val($("#board_3_awayScore").val());
+        $("#id_board4_awayPlayerScore").val($("#board_4_awayScore").val());
+        $("#id_board5_awayPlayerScore").val($("#board_5_awayScore").val());
+        $("#id_board6_awayPlayerScore").val($("#board_6_awayScore").val());
 
         console.log("teams:");
         console.log($("#id_homeTeam").val());

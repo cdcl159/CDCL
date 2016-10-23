@@ -1245,8 +1245,8 @@ def resultsSubmission(request):
 							boardNumber = i,
 							homePlayerID = boards[i]["homePlayerid"],
 							awayPlayerID = boards[i]["awayPlayerid"],
-							homePlayerScore = boards[i]["homePlayerscore"],
-							awayPlayerScore = boards[i]["awayPlayerscore"],
+							homePlayerScore = float(boards[i]["homePlayerscore"]),
+							awayPlayerScore = float(boards[i]["awayPlayerscore"]),
 							submission = newSubmission
 						)
 					
