@@ -163,7 +163,7 @@ function submitResults() {
 
 
 
-        //$("#resultsForm").submit();
+        $("#resultsForm").submit();
 
     });
 }
