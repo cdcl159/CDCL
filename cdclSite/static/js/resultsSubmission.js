@@ -9,7 +9,6 @@ function initUI(fixtures) {
 function populateFixtureDropdown(fixtures) {
     
     for (f in fixtures) {
-        console.log(f);
         $(".fixtureDropdownMenu").append("<li class='fixtureOption' id='" + f + "'>" + fixtures[f].date + "(" + fixtures[f].event + ")" + "</li>");
     }
     
@@ -131,8 +130,10 @@ function submitResults() {
         $("#id_board5_awayPlayerScore").val(parseFloat($("#board_5_awayScore").val()));
         $("#id_board6_awayPlayerScore").val(parseFloat($("#board_6_awayScore").val()));
 
+        console.log("teams:");
         console.log($("#id_homeTeam").val());
         console.log($("#id_awayTeam").val());
+        console.log("player ids:");
         console.log($("#id_board1_homePlayerID").val());
         console.log($("#id_board2_homePlayerID").val());
         console.log($("#id_board3_homePlayerID").val());
@@ -145,6 +146,7 @@ function submitResults() {
         console.log($("#id_board4_awayPlayerID").val());
         console.log($("#id_board5_awayPlayerID").val());
         console.log($("#id_board6_awayPlayerID").val());
+        console.log("scores:");
         console.log($("#id_board1_homePlayerScore").val());
         console.log($("#id_board2_homePlayerScore").val());
         console.log($("#id_board3_homePlayerScore").val());
