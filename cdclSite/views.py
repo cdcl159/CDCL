@@ -584,6 +584,7 @@ def playerManagement(request):
 								errorPlayers.append(row)
 							
 							else:
+								
 								pass
 
 						else:

@@ -131,7 +131,37 @@ function submitResults() {
         $("#id_board5_awayPlayerScore").val(parseFloat($("#board_5_awayScore").val()));
         $("#id_board6_awayPlayerScore").val(parseFloat($("#board_6_awayScore").val()));
 
-        $("#resultsForm").submit();
+        console.log($("#id_homeTeam").val());
+        console.log($("#id_awayTeam").val());
+        console.log($("#id_board1_homePlayerID").val());
+        console.log($("#id_board2_homePlayerID").val());
+        console.log($("#id_board3_homePlayerID").val());
+        console.log($("#id_board4_homePlayerID").val());
+        console.log($("#id_board5_homePlayerID").val());
+        console.log($("#id_board6_homePlayerID").val());
+        console.log($("#id_board1_awayPlayerID").val());
+        console.log($("#id_board2_awayPlayerID").val());
+        console.log($("#id_board3_awayPlayerID").val());
+        console.log($("#id_board4_awayPlayerID").val());
+        console.log($("#id_board5_awayPlayerID").val());
+        console.log($("#id_board6_awayPlayerID").val());
+        console.log($("#id_board1_homePlayerScore").val());
+        console.log($("#id_board2_homePlayerScore").val());
+        console.log($("#id_board3_homePlayerScore").val());
+        console.log($("#id_board4_homePlayerScore").val());
+        console.log($("#id_board5_homePlayerScore").val());
+        console.log($("#id_board6_homePlayerScore").val());
+        console.log($("#id_board1_awayPlayerScore").val());
+        console.log($("#id_board2_awayPlayerScore").val());
+        console.log($("#id_board3_awayPlayerScore").val());
+        console.log($("#id_board4_awayPlayerScore").val());
+        console.log($("#id_board5_awayPlayerScore").val());
+        console.log($("#id_board6_awayPlayerScore").val());
+
+
+
+
+        //$("#resultsForm").submit();
 
     });
 }
