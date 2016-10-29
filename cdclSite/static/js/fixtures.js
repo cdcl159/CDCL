@@ -298,7 +298,7 @@ function submitNewTeam() {
 
 function displaySubmission(fixturesData) {
 
-    $("#receivedHomeSubmission").click(function() {
+    $(".receivedHomeSubmission").click(function() {
 
         console.log(fixturesData);
         
@@ -325,7 +325,7 @@ function displaySubmission(fixturesData) {
 
     });
 
-    $("#receivedAwaySubmission").click(function() {
+    $(".receivedAwaySubmission").click(function() {
         
         var selectedFixtureID = $(this).parent().parent().attr("id");
 
