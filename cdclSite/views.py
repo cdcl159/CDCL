@@ -80,7 +80,7 @@ def resultsPage(request):
 					resultsData[event.name]["teamData"][f.awayTeam.name] = f.awayScore
 		
 			
-		resultsData[event.name]["fixturesData"][f.id] = {
+		resultsData[event.name]["fixtureData"][f.id] = {
 			"date": str(f.date),
 			"homeTeamID": f.homeTeam.id,
 			"awayTeamID": f.awayTeam.id,
@@ -97,7 +97,7 @@ def resultsPage(request):
 
 		for g in submission.game_set.all():
 
-			resultsData[event.name]["fixturesData"][f.id]["games"].append(
+			resultsData[event.name]["fixtureData"][f.id]["games"].append(
 				{
 					"boardNumber": g.boardNumber,
 					"homePlayerID": g.homePlayerID,
