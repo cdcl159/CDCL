@@ -111,7 +111,7 @@ def resultsPage(request):
 
 	pprint.pprint(resultsData)			
 
-	return render(request, "cdclSite/resultsPage.html")
+	return render(request, "cdclSite/resultsPage.html", {"data": json.dumps(resultsData)})
 
 
 def registrationPage(request):
