@@ -63,17 +63,15 @@ def resultsPage(request):
 				
 				try:
 
-					resultsData[event.name]["teamData"][f.homeTeam.name] += f.homeScore
+					x = resultsData[event.name]["teamData"][f.homeTeam.name]
 				
 				except KeyError:
 
 					resultsData[event.name]["teamData"][f.homeTeam.name] = f.homeScore
-					
-				
 				
 				try:
 
-					resultsData[event.name]["teamData"][f.awayTeam.name] += f.awayScore
+					x = resultsData[event.name]["teamData"][f.awayTeam.name]
 					
 				except KeyError:
 
