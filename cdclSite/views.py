@@ -71,8 +71,7 @@ def resultsPage(request):
 				
 				else:
 
-					pass
-					# resultsData[event.name]["teamData"][f.homeTeam.name] += f.homeScore
+					resultsData[event.name]["teamData"][f.homeTeam.name] += f.homeScore
 				
 				try:
 
@@ -84,8 +83,7 @@ def resultsPage(request):
 				
 				else:
 
-					pass
-					# resultsData[event.name]["teamData"][f.homeTeam.name] += f.awayScore
+					resultsData[event.name]["teamData"][f.homeTeam.name] += f.awayScore
 				
 		
 					
