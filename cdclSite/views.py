@@ -79,39 +79,39 @@ def resultsPage(request):
 
 					resultsData[event.name]["teamData"][f.awayTeam.name] = f.awayScore
 		
-			
-		resultsData[event.name]["fixtureData"][f.id] = {
-			"date": str(f.date),
-			"homeTeamID": f.homeTeam.id,
-			"awayTeamID": f.awayTeam.id,
-			"homeTeamName": f.homeTeam.name,
-			"awayTeamName": f.awayTeam.name,
-			"eventName": f.event.name,
-			"seasonName": f.season.name,
-			"eventID": f.event.id,
-			"seasonID": f.season.id,
-			"games": []
-		}
-		
-		submission = f.homeSubmission
-
-		for g in submission.game_set.all():
-
-			resultsData[event.name]["fixtureData"][f.id]["games"].append(
-				{
-					"boardNumber": g.boardNumber,
-					"homePlayerID": g.homePlayerID,
-					"homePlayerName": Player.objects.get(id = g.homePlayerID).forenames + ", " + Player.objects.get(id = g.homePlayerID).surname,
-					"homePlayerGrade": Player.objects.get(id = g.homePlayerID).grading,
-					"homePlayerScore": g.homePlayerScore,
-					"awayPlayerID": g.awayPlayerID,
-					"awayPlayerName": Player.objects.get(id = g.awayPlayerID).forenames + ", " + Player.objects.get(id = g.awayPlayerID).surname,
-					"awayPlayerGrade": Player.objects.get(id = g.awayPlayerID).grading,
-					"awayPlayerScore": g.awayPlayerScore
+					
+				resultsData[event.name]["fixtureData"][f.id] = {
+					"date": str(f.date),
+					"homeTeamID": f.homeTeam.id,
+					"awayTeamID": f.awayTeam.id,
+					"homeTeamName": f.homeTeam.name,
+					"awayTeamName": f.awayTeam.name,
+					"eventName": f.event.name,
+					"seasonName": f.season.name,
+					"eventID": f.event.id,
+					"seasonID": f.season.id,
+					"games": []
 				}
-			)
+				
+				submission = f.homeSubmission
+				
+				for g in submission.game_set.all():
 
-	pprint.pprint(resultsData)			
+					resultsData[event.name]["fixtureData"][f.id]["games"].append(
+						{
+							"boardNumber": g.boardNumber,
+							"homePlayerID": g.homePlayerID,
+							"homePlayerName": Player.objects.get(id = g.homePlayerID).forenames + ", " + Player.objects.get(id = g.homePlayerID).surname,
+							"homePlayerGrade": Player.objects.get(id = g.homePlayerID).grading,
+							"homePlayerScore": g.homePlayerScore,
+							"awayPlayerID": g.awayPlayerID,
+							"awayPlayerName": Player.objects.get(id = g.awayPlayerID).forenames + ", " + Player.objects.get(id = g.awayPlayerID).surname,
+							"awayPlayerGrade": Player.objects.get(id = g.awayPlayerID).grading,
+							"awayPlayerScore": g.awayPlayerScore
+						}
+					)
+
+			pprint.pprint(resultsData)			
 
 	return render(request, "cdclSite/resultsPage.html", {"data": json.dumps(resultsData)})
 
