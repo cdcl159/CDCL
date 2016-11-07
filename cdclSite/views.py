@@ -84,6 +84,8 @@ def resultsPage(request):
 					"awayTeamID": f.awayTeam.id,
 					"homeTeamName": f.homeTeam.name,
 					"awayTeamName": f.awayTeam.name,
+					"homeScore": f.homeScore,
+					"awayScore": f.awayScore,
 					"eventName": f.event.name,
 					"seasonName": f.season.name,
 					"eventID": f.event.id,
