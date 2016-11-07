@@ -87,7 +87,7 @@ def resultsPage(request):
 			"eventName": f.event.name,
 			"seasonName": f.season.name,
 			"eventID": f.event.id,
-			"seasonID": f.season.id
+			"seasonID": f.season.id,
 			"games": []
 		}
 		
