@@ -46,7 +46,72 @@ def clubsPage(request):
 # page displaying results so far
 def resultsPage(request):
 
-	return render(request, "cdclSite/results.html")
+	resultsData = {}
+
+	events = Event.objects.all()
+
+	for event in events:
+
+		resultsData[event.name] = {
+			"fixtureData": {},
+			"teamData": {}
+		}
+
+		for f in event.fixture_set.all():
+
+			if f.status == "APPROVED":
+				
+				if resultsData[event.name]["teamData"][f.homeTeam.name]:
+
+					resultsData[event.name]["teamData"][f.homeTeam.name] += f.homeTeamScore
+					
+				else:
+
+					resultsData[event.name]["teamData"][f.homeTeam.name] = f.homeTeamScore
+				
+				if resultsData[event.name]["teamData"][f.awayTeam.name]:
+
+					resultsData[event.name]["teamData"][f.awayTeam.name] += f.awayTeamScore
+					
+				else:
+
+					resultsData[event.name]["teamData"][f.awayTeam.name] = f.awayTeamScore
+		
+			
+		resultsData[event.name]["fixturesData"][f.id] = {
+			"date": str(f.date),
+			"homeTeamID": f.homeTeam.id,
+			"awayTeamID": f.awayTeam.id,
+			"homeTeamName": f.homeTeam.name,
+			"awayTeamName": f.awayTeam.name,
+			"eventName": f.event.name,
+			"seasonName": f.season.name,
+			"eventID": f.event.id,
+			"seasonID": f.season.id
+			"games": []
+		}
+		
+		submission = f.homeSubmission
+
+		for g in submission.game_set.all():
+
+			resultsData[event.name]["fixturesData"][f.id]["games"].append(
+				{
+					"boardNumber": g.boardNumber,
+					"homePlayerID": g.homePlayerID,
+					"homePlayerName": Player.objects.get(id = g.homePlayerID).forenames + ", " + Player.objects.get(id = g.homePlayerID).surname,
+					"homePlayerGrade": Player.objects.get(id = g.homePlayerID).grading,
+					"homePlayerScore": g.homePlayerScore,
+					"awayPlayerID": g.awayPlayerID,
+					"awayPlayerName": Player.objects.get(id = g.awayPlayerID).forenames + ", " + Player.objects.get(id = g.awayPlayerID).surname,
+					"awayPlayerGrade": Player.objects.get(id = g.awayPlayerID).grading,
+					"awayPlayerScore": g.awayPlayerScore
+				}
+			)
+
+	pprint.pprint(resultsData)			
+
+	return render(request, "cdclSite/resultsPage.html")
 
 
 def registrationPage(request):

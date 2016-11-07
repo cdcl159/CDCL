@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<!-- ADD STYLING HERE-->
+    <style>
+        
+        .mainContent {
+            padding-top: 30px;
+            padding-left: 30px;
+        }
+        
+        .pageHeader {
+            padding-top: 30px;
+            padding-left: 30px;
+        }
+        
+        .sidebarIcon {
+            width: 64px;
+            height: 64px;
+        }
+        
+        .linksColumn {
+            padding-top: 30px;
+        }
+
+        .mainTextBody {
+            font-size: 16px;
+        }
+        
+        
+    </style>
+    
+<!--    INCLUDE STATIC FILES HERE-->
+    <head>
+        <title>CDCL</title>
+        
+        <meta chatset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        
+        <!-- Latest compiled and minified CSS -->
+        <link
+              rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+              integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+              crossorigin="anonymous">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous">
+        </script>
+        
+        <link rel="stylesheet" href="{% static 'css/common.css' %}">
+        <script src="{% static 'js/indexPage.js' %}"></script>
+        <script src="{% static 'js/common.js' %}"></script>
+        
+    </head>
+<!--    ALL JAVASCRIPT/JQUERY GOES HERE-->
+    <script>
+        
+        
+        $(document).ready(function() {
+            
+        });
+        
+    </script>
+
+    <body>
+        
+        
+        <!-- TOP NAV BAR -->
+        <div class="container-fluid navbarContainer row">
+            <div class="col-sm-12 topNavBar" align="middle">
+                <div class="col-sm-2 home">
+                    <br>
+                    <a href="{% url 'index' %}">
+                        <img id="aboutIcon" class="navbarIcon" src="{% static 'images/homeIcon.png' %}">
+                        <p class="navbarText">Home</p>
+                    </a>
+                </div>
+                <div class="col-sm-2 about">
+                    <br>
+                    <img id="aboutIcon" class="navbarIcon" src="{% static 'images/aboutIcon.png' %}">
+                    <p class="navbarText">About</p>
+                </div>
+                <div class="col-sm-2 officers">
+                    <br>
+                    <a href="{% url 'officers' %}">                    
+                        <img id="officerIcon" class="navbarIcon" src="{% static 'images/officerIcon.png' %}">
+                        <p class="navbarText">Officers</p>
+                    </a>
+                </div>
+                <div class="col-sm-2 rules">
+                    <br>
+                    <a href="{% url 'constitution' %}">                    
+                        <img id="rulesIcon" class="navbarIcon" src="{% static 'images/rulesIcon.png' %}">
+                        <p class="navbarText">Rules &amp Constitution</p>
+                    </a>                    
+                </div>
+                <div class="col-sm-2 clubs">
+                    <br>
+                    <a href="{% url 'clubs' %}">                    
+                        <img id="clubIcon" class="navbarIcon" src="{% static 'images/clubIcon.png' %}">
+                        <p class="navbarText">Clubs</p>
+                    </a>
+                </div>
+                <div class="col-sm-2 results">
+                    <br>
+                    <img id="resultsIcon" class="navbarIcon" src="{% static 'images/resultsIcon.png' %}">
+                    <p class="navbarText">Results</p>
+                </div>
+                 
+            </div>
+        </div>
+        
+        <div class="container-fluid">
+            <div class="pageHeader">
+                <h1 class="homepageTile">CANNOCK &amp; DISTRICT CHESS LEAGUE: Results So Far</h1>
+            </div>
+            <hr>
+        </div>
+        
+        <div class="container-fluid">
+            
+        </div>
+        
+    </body>
+</html>
