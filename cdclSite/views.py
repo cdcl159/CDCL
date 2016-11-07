@@ -61,19 +61,21 @@ def resultsPage(request):
 
 			if f.status == "APPROVED":
 				
-				if resultsData[event.name]["teamData"][f.homeTeam.name]:
+				try:
 
 					resultsData[event.name]["teamData"][f.homeTeam.name] += f.homeTeamScore
-					
-				else:
+				
+				except KeyError:
 
 					resultsData[event.name]["teamData"][f.homeTeam.name] = f.homeTeamScore
+					
 				
-				if resultsData[event.name]["teamData"][f.awayTeam.name]:
+				
+				try:
 
 					resultsData[event.name]["teamData"][f.awayTeam.name] += f.awayTeamScore
 					
-				else:
+				except KeyError:
 
 					resultsData[event.name]["teamData"][f.awayTeam.name] = f.awayTeamScore
 		
