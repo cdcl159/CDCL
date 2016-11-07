@@ -872,6 +872,32 @@ def fixtures(request):
 					try:
 
 						selectedFixture.status = form_newStatus
+
+						if form_newStatus == "APPROVED":
+
+							homeGameTotal = 0
+							awayGameTotal = 0
+
+							for game in selectedFixture.homeSubmission.game_set.all():
+
+								homeGameTotal += game.homePlayerScore
+								awayGameTotal += game.awayPlayerScore
+
+							if homeGameTotal > awayGameTotal:
+
+								selectedFixture.homeScore = 3
+								selectedFixture.awayScore = 0
+
+							elif homeGameTotal < awayGameTotal:
+								
+								selectedFixture.homeScore = 0
+								selectedFixture.awayScore = 3
+							
+							else:
+
+								selectedFixture.homeScore = 1
+								selectedFixture.awayScore = 1
+
 						selectedFixture.save()
 
 					except Exception as e:
