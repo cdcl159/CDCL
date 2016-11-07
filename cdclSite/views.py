@@ -69,6 +69,10 @@ def resultsPage(request):
 
 					resultsData[event.name]["teamData"][f.homeTeam.name] = f.homeScore
 				
+				else:
+
+					resultsData[event.name]["teamData"][f.homeTeam.name] += f.homeScore
+				
 				try:
 
 					x = resultsData[event.name]["teamData"][f.awayTeam.name]
@@ -76,6 +80,11 @@ def resultsPage(request):
 				except KeyError:
 
 					resultsData[event.name]["teamData"][f.awayTeam.name] = f.awayScore
+				
+				else:
+
+					resultsData[event.name]["teamData"][f.homeTeam.name] += f.awayScore
+				
 		
 					
 				resultsData[event.name]["fixtureData"][f.id] = {
