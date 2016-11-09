@@ -83,7 +83,7 @@ def resultsPage(request):
 				
 				else:
 
-					resultsData[event.name]["teamData"][f.homeTeam.name] += f.awayScore
+					resultsData[event.name]["teamData"][f.awayTeam.name] += f.awayScore
 				
 		
 					
@@ -118,9 +118,7 @@ def resultsPage(request):
 							"awayPlayerGrade": Player.objects.get(id = g.awayPlayerID).grading,
 							"awayPlayerScore": g.awayPlayerScore
 						}
-					)
-
-			pprint.pprint(resultsData)			
+					)		
 
 	return render(request, "cdclSite/resultsPage.html", {"data": json.dumps(resultsData)})
 
