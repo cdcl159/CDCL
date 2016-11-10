@@ -52,7 +52,7 @@ function populateEventLeaderTable(eventName, data) {
 		console.log(newRow);
 		console.log("- - - ")
 
-		$("#" + eventName +"_leaderTable").append(newRow);
+		$("[id='" + eventName + "_leaderTable']").append(newRow);
 		
 	}
 
