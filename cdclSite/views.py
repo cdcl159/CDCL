@@ -132,7 +132,7 @@ def resultsPage(request):
 		"cdclSite/resultsPage.html",
 		{
 			"data": json.dumps(resultsData),
-			"eventNames": json.dumps([e.name.strip() for e in Event.objects.all().order_by("name")]),
+			"eventNames": json.dumps([e.name.replace(" ", "") for e in Event.objects.all().order_by("name")]),
 			"events": Event.objects.all().order_by("name")
 		}
 	)
