@@ -67,7 +67,7 @@ def resultsPage(request):
 				
 				except KeyError:
 
-					resultsData[event.name]["teamData"][f.homeTeam.name] = {"score": f.homeScore, "boardsFor": 0, "boardsAgainst": 0}
+					resultsData[event.name]["teamData"][f.homeTeam.name] = {"score": f.homeScore, "boardsFor": 0, "boardsAgainst": 0, "name": f.homeTeam.name}
 				
 				else:
 
@@ -79,7 +79,7 @@ def resultsPage(request):
 					
 				except KeyError:
 
-					resultsData[event.name]["teamData"][f.awayTeam.name] =  {"score": f.awayScore, "boardsFor": 0, "boardsAgainst": 0}
+					resultsData[event.name]["teamData"][f.awayTeam.name] =  {"score": f.awayScore, "boardsFor": 0, "boardsAgainst": 0, "name": f.awayTeam.name}
 				
 				else:
 
