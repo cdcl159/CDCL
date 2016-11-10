@@ -126,7 +126,30 @@
         </div>
         
         <div class="container-fluid">
-            
+            {% for e in events %}
+                <div class="col-sm-12 eventHeader">
+                    <h3>{{e.name}}</h3>
+                    <hr>
+                </div>
+                <div class="col-sm-12 row-eq-height">
+                    <div class="col-sm-8 leaderTableContainer">
+                        <table class="table table-hover leaderTable" id="{{e.name}}_leaderTable">
+                            <thead>
+                                <tr>
+                                    <th>Team Name</th>
+                                    <th>Score</th>
+                                    <th>Boards For</th>
+                                    <th>Boards Against</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="col-sm-4 fixtureTableContainer">
+                        <table class="table table-hover fixtureTable" id="{{e.name}}_fixtureTable">
+                        </table>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
         
     </body>
