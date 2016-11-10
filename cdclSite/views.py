@@ -79,7 +79,7 @@ def resultsPage(request):
 					
 				except KeyError:
 
-					resultsData[event.name]["teamData"][f.awayTeam.name] =  {"score": f.awayTeam, "boardsFor": 0, "boardsAgainst": 0}
+					resultsData[event.name]["teamData"][f.awayTeam.name] =  {"score": f.awayScore, "boardsFor": 0, "boardsAgainst": 0}
 				
 				else:
 
