@@ -67,11 +67,11 @@ def resultsPage(request):
 				
 				except KeyError:
 
-					resultsData[event.name]["teamData"][f.homeTeam.name] = f.homeScore
+					resultsData[event.name]["teamData"][f.homeTeam.name] = {"score": f.homeScore, "boardsFor": 0, "boardsAgainst": 0}
 				
 				else:
 
-					resultsData[event.name]["teamData"][f.homeTeam.name] += f.homeScore
+					resultsData[event.name]["teamData"][f.homeTeam.name]["score"] += f.homeScore
 				
 				try:
 
@@ -79,11 +79,11 @@ def resultsPage(request):
 					
 				except KeyError:
 
-					resultsData[event.name]["teamData"][f.awayTeam.name] = f.awayScore
+					resultsData[event.name]["teamData"][f.awayTeam.name] =  {"score": f.awayTeam, "boardsFor": 0, "boardsAgainst": 0}
 				
 				else:
 
-					resultsData[event.name]["teamData"][f.awayTeam.name] += f.awayScore
+					resultsData[event.name]["teamData"][f.awayTeam.name]["score"] += f.awayScore
 				
 		
 					
@@ -103,9 +103,14 @@ def resultsPage(request):
 				}
 				
 				submission = f.homeSubmission
-				
+
 				for g in submission.game_set.all():
 
+					resultsData[event.name]["teamData"][f.homeTeam.name]["boardsFor"] += g.homePlayerScore
+					resultsData[event.name]["teamData"][f.awayTeam.name]["boardsFor"] += g.awayPlayerScore
+					resultsData[event.name]["teamData"][f.homeTeam.name]["boardsAgainst"] += g.awayPlayerScore
+					resultsData[event.name]["teamData"][f.awayTeam.name]["boardsAgainst"] += g.homePlayerScore
+					
 					resultsData[event.name]["fixtureData"][f.id]["games"].append(
 						{
 							"boardNumber": g.boardNumber,
@@ -118,9 +123,11 @@ def resultsPage(request):
 							"awayPlayerGrade": Player.objects.get(id = g.awayPlayerID).grading,
 							"awayPlayerScore": g.awayPlayerScore
 						}
-					)		
+					)
 
-	return render(request, "cdclSite/resultsPage.html", {"data": json.dumps(resultsData)})
+
+
+	return render(request, "cdclSite/resultsPage.html", {"data": json.dumps(resultsData), "events": Events.objects.all()})
 
 
 def registrationPage(request):
