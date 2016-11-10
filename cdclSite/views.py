@@ -127,7 +127,15 @@ def resultsPage(request):
 
 
 
-	return render(request, "cdclSite/resultsPage.html", {"data": json.dumps(resultsData), "events": Event.objects.all().order_by("name")})
+	return render(
+		request,
+		"cdclSite/resultsPage.html",
+		{
+			"data": json.dumps(resultsData),
+			"eventNames": json.dumps([e.name.strip() for e in Event.objects.all().order_by("name")]),
+			"events": Event.objects.all().order_by("name")
+		}
+	)
 
 
 def registrationPage(request):

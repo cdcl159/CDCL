@@ -64,7 +64,10 @@
         $(document).ready(function() {
 
 			var data = {{data|safe}};
+            var eventNames = {{eventNames|safe}};
+
             console.log(data);
+            console.log(eventNames);
             for (eventName in data) {
                 console.log("EN:", eventName);
                 populateEventLeaderTable(eventName, data);
