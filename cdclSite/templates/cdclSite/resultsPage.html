@@ -67,6 +67,7 @@
 
             for (eventName in data) {
                 populateEventLeaderTable(eventName, data);
+                populateFixtureTable(eventName, data);
             }
 
         });
@@ -165,6 +166,8 @@
                                     <th>Date</th>
                                     <th>Home Team</th>
                                     <th>Away Team</th>
+                                    <th>Home Score</th>
+                                    <th>Away Score</th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -48,3 +48,47 @@ function populateEventLeaderTable(eventName, data) {
 
 }
 
+function sortFixturesByDate(eventName, data) {
+
+	var fixtureData = data[eventName]["fixtureData"];
+
+	var orderable = [];
+
+	for (fixture in fixtureData) {
+		orderable.push(fixtureData[fixture]);
+	}
+
+	orderable.sort(function(a, b) {
+
+		var aDate = new Date(a["date"]);
+		var bDate = new Date(b["date"]);
+
+		return aDate - bDate;
+
+	});
+	
+	return orderable.reverse();
+
+}
+
+
+function populateFixtureTable(eventName, data) {
+	
+	var fixtureData = sortFixturesByDate(eventName, data);
+
+	for (var i = 0; i < fixtureData.length; i++) {
+		
+		var currentEntry = fixtureData[i];
+
+		var newRow = "<tr>" +
+			"<td>" + currentEntry["date"] + "</td>" +
+			"<td>" + currentEntry["homeTeamName"] + "</td>" +
+			"<td>" + currentEntry["awayTeamName"] + "</td>" +
+			"<td>" + currentEntry["homeScore"] + "</td>" +
+			"<td>" + currentEntry["awayScore"] + "</td>" +
+			"</tr>";
+
+		$("[id='" + eventName + "_fixtureTable']").append(newRow);
+		
+	}
+}
