@@ -65,10 +65,7 @@
 
 			var data = {{data|safe}};
 
-            console.log(data);
-            
             for (eventName in data) {
-                console.log("EN:", eventName);
                 populateEventLeaderTable(eventName, data);
             }
 
@@ -139,7 +136,7 @@
                 </div>
                 <div class="col-sm-12 row">
                     <div class="col-sm-8">
-                        <h4>Leader Board</h4>
+
                     </div>
                     <div class="col-sm-4">
                         <h4>Event Fixtures</h4>

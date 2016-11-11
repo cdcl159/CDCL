@@ -30,16 +30,10 @@ function sortEventLeaders(eventName, data) {
 function populateEventLeaderTable(eventName, data) {
 
 	var leaderData = sortEventLeaders(eventName, data);
-	console.log("ld:");
-	console.log(leaderData);
-	console.log("- - - ");
 
 	for (var i = 0; i < leaderData.length; i++) {
 		
 		var currentEntry = leaderData[i];
-		console.log("ce:");
-		console.log(currentEntry);
-		console.log("- - - ");
 
 		var newRow = "<tr>" +
 			"<td>" + currentEntry["name"] + "</td>" +
@@ -48,12 +42,9 @@ function populateEventLeaderTable(eventName, data) {
 			"<td>" + currentEntry["boardsAgainst"] + "</td>" +
 			"</tr>";
 
-		console.log("nr:");
-		console.log(newRow);
-		console.log("- - - ")
-
 		$("[id='" + eventName + "_leaderTable']").append(newRow);
 		
 	}
 
 }
+
