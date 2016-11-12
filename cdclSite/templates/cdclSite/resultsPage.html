@@ -65,6 +65,8 @@
 
 			var data = {{data|safe}};
 
+            console.log(data);
+
             for (eventName in data) {
                 populateEventLeaderTable(eventName, data);
                 populateFixtureTable(eventName, data);
