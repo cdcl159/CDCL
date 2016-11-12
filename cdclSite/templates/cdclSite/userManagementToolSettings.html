@@ -157,22 +157,6 @@
                             <div class="col-sm-6"><h3 align="right">Surname:</h3></div>
                             <div class="col-sm-6"><h5 class="userdataText" id="userdata_surname"></h5></div>
                         </div>
-                        <!--<div class="col-sm-12 row">
-                            <div class="col-sm-6"><h3 align="right">Address 1:</h3></div>
-                            <div class="col-sm-6"><h5 class="userdataText" id="userdata_address_1"></h5></div>
-                        </div>
-                        <div class="col-sm-12 row">
-                            <div class="col-sm-6"><h3 align="right">Address 2:</h3></div>
-                            <div class="col-sm-6"><h5 class="userdataText" id="userdata_address_2"></h5></div>
-                        </div>
-                        <div class="col-sm-12 row">
-                            <div class="col-sm-6"><h3 align="right">Address 3:</h3></div>
-                            <div class="col-sm-6"><h5 class="userdataText" id="userdata_address_3"></h5></div>
-                        </div>
-                        <div class="col-sm-12 row">
-                            <div class="col-sm-6"><h3 align="right">Postcode:</h3></div>
-                            <div class="col-sm-6"><h5 class="userdataText" id="userdata_postcode"></h5></div>
-                        </div>-->
                         <div class="col-sm-12 row">
                             <div class="col-sm-6"><h3 align="right">Primary Contact Number:</h3></div>
                             <div class="col-sm-6"><h5 class="userdataText" id="userdata_primaryContactNumber"></h5></div>
@@ -306,8 +290,10 @@
                 </div>
                 <div class="col-sm-2 results">
                     <br>
-                    <img id="resultsIcon" class="navbarIcon" src="{% static 'images/resultsIcon.png' %}">
-                    <p class="navbarText">Results</p>
+                    <a href="{% url 'resultsPage' %}">
+                        <img id="resultsIcon" class="navbarIcon" src="{% static "images/resultsIcon.png" %}">
+                        <p class="navbarText">Results</p>
+                    </a>
                 </div>
                  
             </div>

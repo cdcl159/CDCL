@@ -96,7 +96,7 @@
                     <br>
                     <a href="{% url 'constitution' %}">                    
                         <img id="rulesIcon" class="navbarIcon" src="{% static 'images/rulesIcon.png' %}">
-                        <p class="navbarText">Rules &amp Constitution</p>
+                        <p class="navbarText">Rules &amp; Constitution</p>
                     </a>                    
                 </div>
                 <div class="col-sm-2 clubs">
@@ -108,8 +108,10 @@
                 </div>
                 <div class="col-sm-2 results">
                     <br>
-                    <img id="resultsIcon" class="navbarIcon" src="{% static 'images/resultsIcon.png' %}">
-                    <p class="navbarText">Results</p>
+                    <a href="{% url 'resultsPage' %}">
+                        <img id="resultsIcon" class="navbarIcon" src="{% static "images/resultsIcon.png" %}">
+                        <p class="navbarText">Results</p>
+                    </a>
                 </div>
                  
             </div>
