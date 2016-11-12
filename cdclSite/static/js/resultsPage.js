@@ -84,8 +84,8 @@ function populateFixtureTable(eventName, data) {
 			"<td>" + currentEntry["date"] + "</td>" +
 			"<td>" + currentEntry["homeTeamName"] + "</td>" +
 			"<td>" + currentEntry["awayTeamName"] + "</td>" +
-			"<td>" + currentEntry["homeScore"] + "</td>" +
-			"<td>" + currentEntry["awayScore"] + "</td>" +
+			"<td>" + currentEntry["homeBoards"] + "</td>" +
+			"<td>" + currentEntry["awayBoards"] + "</td>" +
 			"</tr>";
 
 		$("[id='" + eventName + "_fixtureTable']").append(newRow);

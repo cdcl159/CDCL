@@ -99,12 +99,17 @@ def resultsPage(request):
 					"seasonName": f.season.name,
 					"eventID": f.event.id,
 					"seasonID": f.season.id,
-					"games": []
+					"games": [],
+					"homeBoards": 0,
+					"awayBoards": 0
 				}
 				
 				submission = f.homeSubmission
 
 				for g in submission.game_set.all():
+
+					resultsData[event.name]["fixtureData"][f.id]["homeBoards"] += g.homePlayerScore
+					resultsData[event.name]["fixtureData"][f.id]["awayBoards"] += g.awayPlayerScore
 
 					resultsData[event.name]["teamData"][f.homeTeam.name]["boardsFor"] += g.homePlayerScore
 					resultsData[event.name]["teamData"][f.awayTeam.name]["boardsFor"] += g.awayPlayerScore
