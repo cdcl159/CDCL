@@ -363,8 +363,8 @@ def dashboard(request):
 
 	try:
 
-		fixtures = Fixture.objects.filter(club = request.user.player.club)
-	
+		fixtures = reversed(list(Fixture.objects.filter(club = request.user.player.club).order_by("-date")))
+
 	except Exception as e:
 
 		fixtures = []
