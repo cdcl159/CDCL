@@ -360,8 +360,17 @@ def logoutPage(request):
 def dashboard(request):
 
 	pageMessage = {"type": "BLANK", "message": "NOTHING"}
+	
+	fixtures = Fixture.objects.filter(club = request.user.player.club)
 
-	return render(request, "cdclSite/dashboard.html", {"pageMessage": json.dumps(pageMessage)})
+	return render(
+		request,
+		"cdclSite/dashboard.html",
+		{
+			"pageMessage": json.dumps(pageMessage),
+			"userFixtures": fixtures
+		}
+	)
 
 
 

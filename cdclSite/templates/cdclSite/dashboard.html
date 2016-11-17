@@ -192,8 +192,6 @@
         </div>
         
         
-        
-        
         <div class="container-fluid dashContainer row">
 
             <div class="col-sm-2 menuContainer" align="middle">
@@ -314,6 +312,33 @@
             <div class="col-sm-3 fixturesContainer">
                 <div class="col-sm-12">
                     <h3>Upcoming Fixtures:</h3>
+                    <hr>
+                </div>
+                <div class="col-sm-12">
+                    <div class="col-sm-12">
+                        <div class="col-sm-4">
+                            <h4>Date</h4>
+                        </div>
+                        <div class="col-sm-4">
+                            <h4>Home Team</h4>
+                        </div>
+                        <div class="col-sm-4">
+                            <h4>Away Team</h4>
+                        </div>
+                    </div>
+                    {% for f in fixtures %}
+                        <div class="col-sm-12 row">
+                            <div class="col-sm-4">
+                                <h4>{{f.date}}</h4>
+                            </div>
+                            <div class="col-sm-4">
+                                <h4>{{f.homeTeam.name}}</h4>
+                            </div>
+                            <div class="col-sm-4">
+                                <h4>{{f.awayTeam.name}}</h4>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
             
