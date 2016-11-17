@@ -360,8 +360,20 @@ def logoutPage(request):
 def dashboard(request):
 
 	pageMessage = {"type": "BLANK", "message": "NOTHING"}
+
+	try:
+
+		fixtures = Fixture.objects.filter(club = request.user.player.club)
 	
-	fixtures = Fixture.objects.filter(club = request.user.player.club)
+	except Exception as e:
+
+		fixtures = []
+
+		pageMessage = {
+			"type": "ERROR",
+			"message": "The fixtures for your club could not be loaded: " + str(e)
+		}
+	
 
 	return render(
 		request,
@@ -413,6 +425,7 @@ def announcementsPage(request):
 		
 		else:
 
+		
 			pageMessage = {
 				"type": "ERROR",
 				"message": "The form could not be submitted. Please make sure all fields are complete."
