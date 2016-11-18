@@ -361,15 +361,27 @@ def dashboard(request):
 
 	pageMessage = {"type": "BLANK", "message": "NOTHING"}
 
-	fixtures = []
+	try:
 
-	for f in Fixture.objects.all():
+		for f in Fixture.objects.all():
 
-		if f.homeTeam.club == request.user.player.club or f.awayTeam.club == request.user.player.club:
+			if f.homeTeam.club == request.user.player.club or f.awayTeam.club == request.user.player.club:
 
-			fixtures.append(f)
+				fixtures.append(f)
 
-	fixtures.sort(key = lambda x: x.date, reverse = True)
+		fixtures.sort(key = lambda x: x.date, reverse = True)
+	
+	except Exception as e:
+
+
+		fixtures = []
+
+		pageMessage = {
+			"type": "ERROR",
+			"message": "The fixtures for your club could not be loaded: " + str(e)
+		}
+
+		
 
 	return render(
 		request,
