@@ -365,7 +365,7 @@ def dashboard(request):
 
 	for f in Fixture.objects.all():
 
-		if f.homeTeam.club == user.player.club or f.awayTeam.club == user.player.club:
+		if f.homeTeam.club == request.user.player.club or f.awayTeam.club == request.user.player.club:
 
 			fixtures.append(f)
 
