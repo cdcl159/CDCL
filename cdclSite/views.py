@@ -363,6 +363,8 @@ def dashboard(request):
 
 	try:
 
+		fixtures = []
+
 		for f in Fixture.objects.all():
 
 			if f.homeTeam.club == request.user.player.club or f.awayTeam.club == request.user.player.club:
