@@ -69,7 +69,8 @@
         $(document).ready(function() {
             
             var pageMessage = {{pageMessage|safe}};
-            
+            var results = {{results|safe}};
+            console.log(results)
             handlePageMessage(pageMessage);
         
             var sampleBarData = {"wins": 5, "losses": 4, "draws": 3};
