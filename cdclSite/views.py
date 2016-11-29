@@ -361,18 +361,31 @@ def dashboard(request):
 
 	pageMessage = {"type": "BLANK", "message": "NOTHING"}
 
+	# JUST A TEST
+	try:
+
+		results = request.user.player.getResults()
+	
+	except Exception as e:
+
+		results = {"results": "NONE"}
+	
+	else:
+
+		pass
+
 	try:
 
 		fixtures = []
 
 		for f in Fixture.objects.all():
 
-			if f.homeTeam.club == request.user.player.club or f.awayTeam.club == request.user.player.club:
+			if f.homeTeam.club == request.user.player.club or f.awayTeam.club == request.user.player.club and f.status == "APPROVED":
 
 				fixtures.append(f)
 
 		fixtures.sort(key = lambda x: x.date, reverse = True)
-	
+
 	except Exception as e:
 
 
@@ -383,14 +396,14 @@ def dashboard(request):
 			"message": "The fixtures for your club could not be loaded: " + str(e)
 		}
 
-		
 
 	return render(
 		request,
 		"cdclSite/dashboard.html",
 		{
 			"pageMessage": json.dumps(pageMessage),
-			"userFixtures": fixtures
+			"userFixtures": fixtures,
+			"results": json.dumps(results)
 		}
 	)
 

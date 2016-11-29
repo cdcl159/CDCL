@@ -81,6 +81,55 @@ class Player(models.Model):
 	isCaptain = models.BooleanField(default = False)
 
 
+	def getResults(self):
+		
+		results = {
+			"homeTotal": 0,
+			"awayTotal": 0,
+			"historic": []
+		}
+
+		fixtures = []
+
+		for f in Fixture.objects.all():
+
+			if f.homeTeam.club == self.club or f.awayTeam.club == self.club:
+
+				if f.status == "APPROVED":
+
+					fixtures.append(f)
+
+		for f in fixtures:
+
+			for g in fixture.homeSubmission.game_set.all():
+
+				if g.homePlayerID == self.id:
+
+					results["homeTotal"] += g.homePlayerScore
+					results["historic"].append(
+						{
+							"date": f.date,
+							"score": g.homePlayerScore,
+							"opponentName": Player.objects.get(id = g.awayPlayerID).name
+						}
+					)
+
+				elif g.awayPlayerID == self.id:
+					results["awayTotal"] += g.awayPlayerScore
+					results["historic"].append(
+						{
+							"date": f.date,
+							"score": g.awayPlayerScore,
+							"opponentName": Player.objects.get(id = g.homePlayerID).name
+						}
+					)
+
+				else:
+
+					pass
+
+		return results
+
 
 
 class Season(models.Model):
