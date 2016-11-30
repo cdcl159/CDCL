@@ -167,3 +167,13 @@ function submitResults() {
 
     });
 }
+
+
+function selectResult() {
+    $(".resultOption").click(function() {
+
+        $(this).parent().parent().find("button").text($(this).text());
+        $(this).parent().parent().find("button").val($(this).text());
+
+    });
+}
