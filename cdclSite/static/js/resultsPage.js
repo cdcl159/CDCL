@@ -1,4 +1,20 @@
+function handlePanelSlide(eventName) {
+	$("#" + eventName + "_panelToggle").click(function() {
+		if ($(this).hasClass("down")) {
+            var newSrc = $(this).attr("src").replace("downArrow", "upArrow");
+            $(this).attr("src", newSrc);
+            $(this).removeClass("down");
+            $(this).addClass("up");
+        } else {
+            var newSrc = $(this).attr("src").replace("upArrow", "downArrow");
+            $(this).attr("src", newSrc);
+            $(this).removeClass("up");
+            $(this).addClass("down");
+        }
+        $("#" + eventName + "_panel").slideToggle();
+	});
 
+}
 
 
 function sortEventLeaders(eventName, data) {
