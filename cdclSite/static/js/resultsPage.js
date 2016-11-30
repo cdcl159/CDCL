@@ -1,5 +1,5 @@
 function handlePanelSlide(eventName) {
-	$("#" + eventName + "Toggle").click(function() {
+	$("[id='" + eventName + "Toggle']").click(function() {
 		if ($(this).hasClass("down")) {
             var newSrc = $(this).attr("src").replace("downArrow", "upArrow");
             $(this).attr("src", newSrc);
@@ -11,7 +11,7 @@ function handlePanelSlide(eventName) {
             $(this).removeClass("up");
             $(this).addClass("down");
         }
-        $("#" + eventName + "Panel").slideToggle();
+        $("[id='" + eventName + "Panel']").slideToggle();
 	});
 
 }
