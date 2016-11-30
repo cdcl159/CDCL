@@ -68,13 +68,12 @@
         $(document).ready(function() {
 
 			var data = {{data|safe}};
-
+            initUI();
             console.log(data);
 
             for (eventName in data) {
                 populateEventLeaderTable(eventName, data);
                 populateFixtureTable(eventName, data);
-                $("#" + eventName.replace(/\s+/g, '') + "Panel").slideUp();
                 handlePanelSlide(eventName);
             }
 
@@ -150,7 +149,7 @@
                     </div>
                 </div>
                 <div class="col-sm-12"><hr></div>
-                <div class="col-sm-12 well" id="{{e.name}}Panel">
+                <div class="col-sm-12 well resultsPanel" id="{{e.name}}Panel">
                     <div class="col-sm-12 row">
                         <div class="col-sm-8">
 

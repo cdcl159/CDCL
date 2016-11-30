@@ -16,6 +16,10 @@ function handlePanelSlide(eventName) {
 
 }
 
+function initUI() {
+	$(".resultsPanel").slideUp();
+}
+
 
 function sortEventLeaders(eventName, data) {
 
