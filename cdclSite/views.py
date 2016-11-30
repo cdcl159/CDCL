@@ -161,102 +161,131 @@ def registrationPage(request):
 			form_ecfCode = registrationForm.cleaned_data["ecfCode"]
 			form_club = registrationForm.cleaned_data["club"]
 
-			if form_password != form_passwordConfirm:
+			try:
 
-				pageMessage = {
-					"type": "ERROR",
-					"message": "The password and confirmed password did not match."
-				}
+				User.objects.get(username = form_username)
+			
+			except User.DoesNotExist:
 
-			else:
+				try:
 
-				if form_forenames and form_password and form_passwordConfirm and form_surname and form_club and form_username:
+					UserData.objects.get(email = form_email)
+				
+				except UserData.DoesNotExist:
 
-					try:
-
-						newUser = User.objects.create_user(username = form_username, password = form_password)
-
-						newUser.is_active = False
-						newUser.save()
-					
-					except Exception as e:
+							
+					if form_password != form_passwordConfirm:
 
 						pageMessage = {
 							"type": "ERROR",
-							"message": "User account could not be created: " + str(e)
+							"message": "The password and confirmed password did not match."
 						}
-					
+
 					else:
 
-						try:
+						if form_forenames and form_password and form_passwordConfirm and form_surname and form_club and form_username:
 
-							newUserData = UserData.objects.create(
-								user = newUser,
-								forenames = form_forenames,
-								surname = form_surname,
-								primaryContactNumber = form_primaryContactNumber,
-								backupContactNumber = form_backupContactNumber,
-								email = form_email
-							)
-						
-						except Exception as e:
+							try:
 
-							pageMessage = {
-								"type": "WARNING",
-								"message": "Account created but user data (forenames, surname address etc) could not be created. " + str(e)
-							}
+								newUser = User.objects.create_user(username = form_username, password = form_password)
 
-						else:
+								newUser.is_active = False
+								newUser.save()
+							
+							except Exception as e:
 
-
-							if form_ecfCode:
+								pageMessage = {
+									"type": "ERROR",
+									"message": "User account could not be created: " + str(e)
+								}
+							
+							else:
 
 								try:
 
-									userPlayer = Player.objects.get(ecfCode = form_ecfCode)
-
-									userPlayer.user = newUser
-
-									userPlayer.save()
-								
-								except Player.DoesNotExist:
-
-									userPlayer = Player.objects.create(
+									newUserData = UserData.objects.create(
 										user = newUser,
-										forenames = "TEMP",
-										surname = "TEMP",
-										ecfCode = "TEMP",
-										club = Club.objects.get(id = form_club)
+										forenames = form_forenames,
+										surname = form_surname,
+										primaryContactNumber = form_primaryContactNumber,
+										backupContactNumber = form_backupContactNumber,
+										email = form_email
 									)
+								
+								except Exception as e:
 
 									pageMessage = {
-										"type": "SUCCESS",
-										"message": "User account and player data was created successfully. Please await account activation"
+										"type": "WARNING",
+										"message": "Account created but user data (forenames, surname address etc) could not be created. " + str(e)
 									}
 
-							else:
+								else:
 
 
-								userPlayer = Player.objects.create(
-									user = newUser,
-									forenames = "TEMP",
-									surname = "TEMP",
-									ecfCode = "TEMP",
-									club = Club.objects.get(id = form_club)
-								)
+									if form_ecfCode:
 
-								pageMessage = {
-									"type": "SUCCESS",
-									"message": "User account and temporary player data was created successfully. Please await account activation"
-								}
+										try:
 
+											userPlayer = Player.objects.get(ecfCode = form_ecfCode)
+
+											userPlayer.user = newUser
+
+											userPlayer.save()
+										
+										except Player.DoesNotExist:
+
+											userPlayer = Player.objects.create(
+												user = newUser,
+												forenames = "TEMP",
+												surname = "TEMP",
+												ecfCode = "TEMP",
+												club = Club.objects.get(id = form_club)
+											)
+
+											pageMessage = {
+												"type": "SUCCESS",
+												"message": "User account and player data was created successfully. Please await account activation."
+											}
+
+									else:
+
+
+										userPlayer = Player.objects.create(
+											user = newUser,
+											forenames = "TEMP",
+											surname = "TEMP",
+											ecfCode = "TEMP",
+											club = Club.objects.get(id = form_club)
+										)
+
+										pageMessage = {
+											"type": "SUCCESS",
+											"message": "User account and temporary player data was created successfully. Please await account activation."
+										}
+
+
+						else:
+
+							pageMessage = {
+								"type": "ERROR",
+								"message": "Please ensure all required fields are filled in."
+							}
 
 				else:
 
 					pageMessage = {
 						"type": "ERROR",
-						"message": "Please ensure all required fields are filled in."
+						"message": "A user with the email address '" + form_email + "' already exists. If you have previously tried to create an account please wait for it to be activated."
 					}
+
+			
+			else:
+
+				pageMessage = {
+					"type": "ERROR",
+					"message": "A user with the username '" + form_username + "' already exists. If you have previously tried to create an account please wait for it to be activated."
+				}
+
 		else:
 
 			pageMessage = {
