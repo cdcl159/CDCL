@@ -338,8 +338,7 @@
                                     <td><h4>SCORE</h4></td>
                                     <td><h4>PLAYER</h4></td>
                                     <td><h4>GRADE</h4></td>
-                                    <td><h4>SCORE</h4>
-                                    </td>
+                                    <td><h4>SCORE</h4></td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -357,7 +356,20 @@
                                         </div>
                                     </td>
                                     <td class="gradingCell_h"><h4 class="playerGrading"></h4></td>
-                                    <td><input type="text" class="form-control scoreInput" id="board_1_homeScore"></td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary resultDropdown dropdown-toggle" id = "board_1_homeScore" type="button" data-toggle="dropdown">
+                                                Result
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li class="resultOption">1</li>
+                                                <li class="resultOption">0.5</li>
+                                                <li class="resultOption">0</li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    <!--<td><input type="text" class="form-control scoreInput" id="board_1_homeScore"></td>-->
                                     <td>
                                         <div class="dropdown">
                                             <button class="btn btn-primary playerDropdown_b1_a dropdown-toggle playerDropdown" type="button" data-toggle="dropdown">
