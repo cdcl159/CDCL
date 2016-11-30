@@ -26,6 +26,10 @@
         .mainTextBody {
             font-size: 16px;
         }
+        .panelToggle {
+            width: 32px;
+            height: 32px;
+        }
         
         
     </style>
@@ -135,6 +139,16 @@
         
         <div class="container-fluid">
             {% for e in events %}
+                <div class="col-sm-12 row" align="middle">
+                    <div class="col-sm-6">
+                        <h3>
+                            <b>{{e.name}}</b>
+                        </h3>
+                    </div>
+                    <div class="col-sm-6">
+                        <img id="{{e.name}}Toggle" class="panelToggle down" src="{% static 'images/downArrow_grey.png' %}">
+                    </div>
+                </div>
                 <!--<div class="col-sm-10 eventHeader">
                     <h3>{{e.name}}</h3>
                     <hr>
