@@ -255,6 +255,7 @@ def registrationPage(request):
 											forenames = "TEMP",
 											surname = "TEMP",
 											ecfCode = "TEMP",
+											grading = 0,
 											club = Club.objects.get(id = form_club)
 										)
 
