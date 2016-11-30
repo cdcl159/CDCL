@@ -74,7 +74,7 @@
             for (eventName in data) {
                 populateEventLeaderTable(eventName, data);
                 populateFixtureTable(eventName, data);
-                $("#" + eventName + "Panel").slideUp();
+                $("#" + eventName.replace(/\s+/g, '') + "Panel").slideUp();
                 handlePanelSlide(eventName);
             }
 
