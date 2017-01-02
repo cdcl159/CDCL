@@ -59,7 +59,7 @@ def generateFixtureReport():
 				homePlayer = Player.objects.get(id = g.homePlayerID)
 				awayPlayer = Player.objects.get(id = g.awayPlayerID)
 
-				row = [homePlayer.pk, awayPlayer.py]
+				row = [homePlayer.pk, awayPlayer.pk]
 
 				if g.homePlayerScore == g.awayPlayerScore:
 
