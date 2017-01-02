@@ -1,3 +1,36 @@
+function generatePlayerReport() {
+    $("#playerReportRequest").click(function() {
+
+        $("#id_activeMode").val(false);
+        $("#id_officerMode").val(false);
+        $("#id_recordsMode").val(false);
+        $("#id_treasurerMode").val(false);
+        $("#id_superuserMode").val(false);
+        $("#id_playerReportMode").val(true)
+        $("#id_fixtureReportMode").val(false)
+
+        $("#userManagementToolsForm").submit();        
+
+    });
+}
+
+function generateFixtureReport() {
+    $("#playerReportRequest").click(function() {
+
+        $("#id_activeMode").val(false);
+        $("#id_officerMode").val(false);
+        $("#id_recordsMode").val(false);
+        $("#id_treasurerMode").val(false);
+        $("#id_superuserMode").val(false);
+        $("#id_playerReportMode").val(false)
+        $("#id_fixtureReportMode").val(true)
+
+        $("#userManagementToolsForm").submit();        
+
+    });
+}
+
+
 function displayUserDataModal(userData) {
     
     $("#userTable").on("click", ".userdataIcon", function() {
@@ -171,7 +204,6 @@ function toggleSuperuser() {
     });
 
 }
-
 
 
 function initUI(
