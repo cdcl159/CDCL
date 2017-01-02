@@ -64,7 +64,13 @@ def generateFixtureReport():
 				
 				else:
 
-					row.append(str(int(g.homePlayerScore)) + str(int(g.awayPlayerScore)))
+					if g.homePlayerScore == 0:
+
+						row.append("01")
+					
+					else:
+						
+						row.append("10")
 				
 				if gCount % 2 == 0:
 
