@@ -127,6 +127,8 @@ class UserManagementToolsForm(forms.Form):
 	officerMode = forms.BooleanField(required = False)
 	recordsMode = forms.BooleanField(required = False)
 	treasurerMode = forms.BooleanField(required = False)
+	playerReportMode = forms.BooleanField(required = False)
+	fixtureReportMode = forms.BooleanField(required = False)
 
 
 class RegistrationForm(forms.Form):

@@ -15,6 +15,90 @@ import json
 import csv
 
 
+
+def generatePlayerReport():
+
+	data = [["PK", "ECF Code", "Name", "Club Code", "Club Name"]]
+	for p in Player.objects.all():
+
+		row = [
+			p.pk,
+			p.ecfCode,
+			p.surname + " " + p.forenames,
+			"CC",
+			p.club.name.replace("Chess", "").replace("Club", "")
+		]
+
+	data.append(row)
+
+	return data
+
+def generateFixtureReport():
+
+	data = [["Home Player PK", "Away Player PK", "Result", "Home Player Color", "Fixture Date", "Board", "Comment"]]
+
+	for f in Fixture.objects.all():
+		rows = []
+
+		if not f.homeSubmission:
+
+			for i in range(0, 6):
+
+				rows.append(["", "", "", "", f.date, "", f.homeTeam.name + " vs " + f.awayTeam.name])
+			
+			data.append(rows)
+	
+		else:
+
+			gCount = 0
+			for g in f.homeSubmission.game_set.all():
+				
+				
+				homePlayer = Player.objects.get(id = g.homePlayerID)
+				awayPlayer = Player.objects.get(id = g.awayPlayerID)
+
+				row = [homePlayer.pk, awayPlayer.py]
+
+				if g.homePlayerScore == g.awayPlayerScore:
+
+					row.append("55")
+				
+				else:
+
+					row.append(str(g.homePlayerScore) + str(g.awayPlayerScore))
+				
+				if gCount % 2 == 0:
+
+					row.append("Black")
+				
+				else:
+
+					row.append("White")
+				
+				row.append(f.date)
+
+				row.append(g.boardNumber)
+
+				row.append(f.homeTeam.name + " vs " + f.awayTeam.name)
+
+				rows.append(row)
+				
+				gCount += 1
+
+		data.append(rows)
+	
+	return data
+
+
+def saveReport(data, reportName):
+
+	with open(reportName + ".csv") as csvFile:
+
+		writer = csv.writer(csvFile)
+
+		writer.writerows(data)
+
+
 # page displaying information about cdcl
 def aboutPage(request):
 
@@ -1576,6 +1660,8 @@ def userManagementToolSettings(request):
 				form_officerMode = userManagementToolsForm.cleaned_data["officerMode"]
 				form_recordsMode = userManagementToolsForm.cleaned_data["recordsMode"]
 				form_treasurerMode = userManagementToolsForm.cleaned_data["treasurerMode"]
+				form_playerReportMode = userManagementToolsForm.cleaned_data["playerReportMode"]
+				form_fixtureReportMode = userManagementToolsForm.cleaned_data["fixtureReportMode"]
 
 				try:
 
@@ -1589,6 +1675,51 @@ def userManagementToolSettings(request):
 					}
 				
 				else:
+
+					if form_playerReportMode:
+
+						try:
+
+							data = generatePlayerReport()
+							
+							saveReport(data, "playerReport")
+						
+						except Exception as e:
+
+							pageMessage = {
+								"type": "ERROR",
+								"message": "The report could not be generated: " + str(e)
+							}
+						
+						else:
+
+							pageMessage = {
+								"type": "SUCCESS",
+								"message": "Generation complete."
+							}
+					
+					if form_fixtureReportMode:
+
+						try:
+
+							data = generateFixtureReport()
+							
+							saveReport(data, "fixtureReport")
+						
+						except Exception as e:
+
+							pageMessage = {
+								"type": "ERROR",
+								"message": "The report could not be generated: " + str(e)
+							}
+						
+						else:
+
+							pageMessage = {
+								"type": "SUCCESS",
+								"message": "Generation complete."
+							}
+
 
 					if form_treasurerMode:
 
@@ -1813,3 +1944,6 @@ def userManagementToolSettings(request):
 			
 		}
 	)
+
+
+
