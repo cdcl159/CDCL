@@ -23,7 +23,7 @@ def generatePlayerReport():
 	for p in Player.objects.all():
 
 		row = [
-			count,
+			p.pk,
 			p.ecfCode,
 			p.surname + " " + p.forenames,
 			"CC",
@@ -1665,208 +1665,208 @@ def userManagementToolSettings(request):
 				form_playerReportMode = userManagementToolsForm.cleaned_data["playerReportMode"]
 				form_fixtureReportMode = userManagementToolsForm.cleaned_data["fixtureReportMode"]
 
-				try:
+				if not form_fixtureReportMode and not form_playerReportMode:
+					try:
 
-					selectedUser = User.objects.get(id = form_selectedUserId)
+						selectedUser = User.objects.get(id = form_selectedUserId)
 
-				except User.DoesNotExist:
+					except User.DoesNotExist:
 
-					pageMessage = {
-						"type": "ERROR",
-						"message": "User could not be found: id = " + str(form_selectedUserId)
-					}
+						pageMessage = {
+							"type": "ERROR",
+							"message": "User could not be found: id = " + str(form_selectedUserId)
+						}
 				
-				else:
 
-					if form_playerReportMode:
+				if form_playerReportMode:
 
-						try:
+					try:
 
-							data = generatePlayerReport()
-							
-							saveReport(data, "playerReport")
+						data = generatePlayerReport()
 						
-						except Exception as e:
-
-							pageMessage = {
-								"type": "ERROR",
-								"message": "The report could not be generated: " + str(e)
-							}
-						
-						else:
-
-							pageMessage = {
-								"type": "SUCCESS",
-								"message": "Generation complete."
-							}
+						saveReport(data, "playerReport")
 					
-					if form_fixtureReportMode:
+					except Exception as e:
 
-						try:
+						pageMessage = {
+							"type": "ERROR",
+							"message": "The report could not be generated: " + str(e)
+						}
+					
+					else:
 
-							data = generateFixtureReport()
-							
-							saveReport(data, "fixtureReport")
+						pageMessage = {
+							"type": "SUCCESS",
+							"message": "Generation complete."
+						}
+				
+				if form_fixtureReportMode:
+
+					try:
+
+						data = generateFixtureReport()
 						
-						except Exception as e:
+						saveReport(data, "fixtureReport")
+					
+					except Exception as e:
 
-							pageMessage = {
-								"type": "ERROR",
-								"message": "The report could not be generated: " + str(e)
-							}
+						pageMessage = {
+							"type": "ERROR",
+							"message": "The report could not be generated: " + str(e)
+						}
+					
+					else:
+
+						pageMessage = {
+							"type": "SUCCESS",
+							"message": "Generation complete."
+						}
+
+
+				if form_treasurerMode:
+
+					try:
+
+						if selectedUser.userdata.isTreasurer:
+						
+							selectedUser.userdata.isTreasurer = False
+						
+						else:
+							
+							selectedUser.userdata.isTreasurer = True
+						
+						selectedUser.userdata.save()
+
+					except Exception as e:
+
+						pageMessage = {
+							"type": "ERROR",
+							"message": "Could not change treasurer status of user: " + str(e)
+						}
+
+					else:
+
+						pageMessage = {
+							"type": "SUCCESS",
+							"message": "Treasurer status changed successfully."
+						}
+
+				if form_recordsMode:
+
+					try:
+
+						if selectedUser.userdata.isRecordSecretary:
+						
+							selectedUser.userdata.isRecordSecretary = False
+						
+						else:
+							
+							selectedUser.userdata.isRecordSecretary = True
+							
+						selectedUser.userdata.save()
+
+					except Exception as e:
+
+						pageMessage = {
+							"type": "ERROR",
+							"message": "Could not change record secretary status of user: " + str(e)
+						}
+
+					else:
+
+						pageMessage = {
+							"type": "SUCCESS",
+							"message": "Record secretary status changed successfully."
+						}
+
+
+
+				if form_officerMode:
+
+					try:
+
+						if selectedUser.userdata.isOfficer:
+						
+							selectedUser.userdata.isOfficer = False
+						
+						else:
+							
+							selectedUser.userdata.isOfficer = True
+
+						selectedUser.userdata.save()
+
+					except Exception as e:
+
+						pageMessage = {
+							"type": "ERROR",
+							"message": "Could not change officer status of user: " + str(e)
+						}
+
+					else:
+
+						pageMessage = {
+							"type": "SUCCESS",
+							"message": "Officer status changed successfully."
+						}
+
+
+				if form_superuserMode:
+
+					try:
+
+						if selectedUser.is_superuser:
+
+							selectedUser.is_superuser = False
 						
 						else:
 
-							pageMessage = {
-								"type": "SUCCESS",
-								"message": "Generation complete."
-							}
+							selectedUser.is_superuser = True
+
+						selectedUser.userdata.save()
+
+					except Exception as e:
+
+						pageMessage = {
+							"type": "ERROR",
+							"message": "Could not change the user's superuser status: " + str(e)
+						}
+
+					else:
+
+						pageMessage = {
+							"type": "SUCCESS",
+							"message": "Superuser status changed successfully."
+						}
 
 
-					if form_treasurerMode:
 
-						try:
+				if form_activeMode:
 
-							if selectedUser.userdata.isTreasurer:
+					try:
 							
-								selectedUser.userdata.isTreasurer = False
-							
-							else:
-								
-								selectedUser.userdata.isTreasurer = True
-							
-							selectedUser.userdata.save()
+						if selectedUser.is_active:
 
-						except Exception as e:
-
-							pageMessage = {
-								"type": "ERROR",
-								"message": "Could not change treasurer status of user: " + str(e)
-							}
-
+							selectedUser.is_active = False
+						
 						else:
 
-							pageMessage = {
-								"type": "SUCCESS",
-								"message": "Treasurer status changed successfully."
-							}
+							selectedUser.is_active = True
 
-					if form_recordsMode:
+						selectedUser.save()
 
-						try:
+					except Exception as e:
 
-							if selectedUser.userdata.isRecordSecretary:
-							
-								selectedUser.userdata.isRecordSecretary = False
-							
-							else:
-								
-								selectedUser.userdata.isRecordSecretary = True
-								
-							selectedUser.userdata.save()
+						pageMessage = {
+							"type": "ERROR",
+							"message": "Could not change the user's enabled status: " + str(e)
+						}
 
-						except Exception as e:
+					else:
 
-							pageMessage = {
-								"type": "ERROR",
-								"message": "Could not change record secretary status of user: " + str(e)
-							}
-
-						else:
-
-							pageMessage = {
-								"type": "SUCCESS",
-								"message": "Record secretary status changed successfully."
-							}
-
-
-
-					if form_officerMode:
-
-						try:
-
-							if selectedUser.userdata.isOfficer:
-							
-								selectedUser.userdata.isOfficer = False
-							
-							else:
-								
-								selectedUser.userdata.isOfficer = True
-
-							selectedUser.userdata.save()
-
-						except Exception as e:
-
-							pageMessage = {
-								"type": "ERROR",
-								"message": "Could not change officer status of user: " + str(e)
-							}
-
-						else:
-
-							pageMessage = {
-								"type": "SUCCESS",
-								"message": "Officer status changed successfully."
-							}
-
-
-					if form_superuserMode:
-
-						try:
-
-							if selectedUser.is_superuser:
-
-								selectedUser.is_superuser = False
-							
-							else:
-
-								selectedUser.is_superuser = True
-
-							selectedUser.userdata.save()
-
-						except Exception as e:
-
-							pageMessage = {
-								"type": "ERROR",
-								"message": "Could not change the user's superuser status: " + str(e)
-							}
-
-						else:
-
-							pageMessage = {
-								"type": "SUCCESS",
-								"message": "Superuser status changed successfully."
-							}
-
-
-
-					if form_activeMode:
-
-						try:
-								
-							if selectedUser.is_active:
-
-								selectedUser.is_active = False
-							
-							else:
-
-								selectedUser.is_active = True
-
-							selectedUser.save()
-
-						except Exception as e:
-
-							pageMessage = {
-								"type": "ERROR",
-								"message": "Could not change the user's enabled status: " + str(e)
-							}
-
-						else:
-
-							pageMessage = {
-								"type": "SUCCESS",
-								"message": "Account activity changed successfully."
-							}
+						pageMessage = {
+							"type": "SUCCESS",
+							"message": "Account activity changed successfully."
+						}
 
 		
 		else:
