@@ -18,16 +18,18 @@ import csv
 
 def generatePlayerReport():
 
-	data = [["PK", "ECF Code", "Name", "Club Code", "Club Name"]]
+	data = [["Index", "ECF Code", "Name", "Club Code", "Club Name"]]
+	count = 0
 	for p in Player.objects.all():
 
 		row = [
-			p.pk,
+			count,
 			p.ecfCode,
 			p.surname + " " + p.forenames,
 			"CC",
 			p.club.name.replace("Chess", "").replace("Club", "")
 		]
+		count += 1
 
 	data.append(row)
 
