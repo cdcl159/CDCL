@@ -64,7 +64,7 @@ def generateFixtureReport():
 				
 				else:
 
-					if g.homePlayerScore == 0:
+					if not g.homePlayerScore:
 
 						row.append("01")
 					
