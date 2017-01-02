@@ -15,7 +15,7 @@ function generatePlayerReport() {
 }
 
 function generateFixtureReport() {
-    $("#playerReportRequest").click(function() {
+    $("#fixtureReportRequest").click(function() {
 
         $("#id_activeMode").val(false);
         $("#id_officerMode").val(false);
