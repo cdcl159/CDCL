@@ -20,7 +20,7 @@ import os
 def generatePlayerReport():
 
 	data = [["Index", "ECF Code", "Name", "Club Code", "Club Name"]]
-	count = 0
+
 	for p in Player.objects.all():
 
 		row = [
@@ -30,9 +30,8 @@ def generatePlayerReport():
 			"CC",
 			p.club.name.replace("Chess", "").replace("Club", "")
 		]
-		count += 1
 
-	data.append(row)
+		data.append(row)
 
 	return data
 
