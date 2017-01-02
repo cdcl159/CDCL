@@ -40,15 +40,12 @@ def generateFixtureReport():
 	data = [["Home Player PK", "Away Player PK", "Result", "Home Player Color", "Fixture Date", "Board", "Comment"]]
 
 	for f in Fixture.objects.all():
-		rows = []
 
 		if not f.homeSubmission:
 
 			for i in range(0, 6):
 
-				rows.append(["", "", "", "", f.date, "", f.homeTeam.name + " vs " + f.awayTeam.name])
-			
-			data.append(rows)
+				data.append(["", "", "", "", f.date, "", f.homeTeam.name + " vs " + f.awayTeam.name])
 	
 		else:
 
@@ -83,11 +80,9 @@ def generateFixtureReport():
 
 				row.append(f.homeTeam.name + " vs " + f.awayTeam.name)
 
-				rows.append(row)
+				data.append(row)
 				
 				gCount += 1
-
-		data.append(rows)
 	
 	return data
 
