@@ -94,7 +94,7 @@ def generateFixtureReport():
 
 def saveReport(data, reportName):
 
-	with open(reportName + ".csv") as csvFile:
+	with open(reportName + ".csv", "w") as csvFile:
 
 		writer = csv.writer(csvFile)
 
