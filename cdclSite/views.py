@@ -94,7 +94,10 @@ def generateFixtureReport():
 
 def saveReport(data, reportName):
 
-	with open(reportName + ".csv", "w") as csvFile:
+	if not os.isdir("CDCL/data"):
+		os.makedir("CDCL/data")
+	
+	with open("CDCL/data/" + reportName + ".csv", "w") as csvFile:
 
 		writer = csv.writer(csvFile)
 
