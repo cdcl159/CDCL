@@ -68,6 +68,7 @@ function editClub() {
             $("#id_clubNight").val($("#existingClubNight").val());
             $("#id_clubVenue").val($("#existingClubVenue").val());
             $("#id_clubAddress").val($("#existingClubAddress").val());
+            $("#id_clubCode").val($("#existingClubCode").val());
 
             $("#clubManagementForm").submit();
         }
@@ -95,6 +96,7 @@ function selectClub(clubdata) {
             $("#existingClubNight").val(clubInfo["night"]);
             $("#existingClubVenue").val(clubInfo["venue"]);
             $("#existingClubAddress").val(clubInfo["address"]);
+            $("#existingClubCode").val(clubInfo["code"]);
                         
         }
         

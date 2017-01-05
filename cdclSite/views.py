@@ -628,6 +628,7 @@ def clubManagement(request):
 			form_clubNight = clubManagementForm.cleaned_data["clubNight"]
 			form_clubVenue = clubManagementForm.cleaned_data["clubVenue"]
 			form_clubAddress = clubManagementForm.cleaned_data["clubAddress"]
+			form_clubCode = clubManagementForm.cleaned_data["clubCode"]
 
 			# use data to create a new club
 			if form_addMode:
@@ -642,7 +643,8 @@ def clubManagement(request):
 						website = form_clubWebsite,
 						night = form_clubNight,
 						venue = form_clubVenue,
-						address = form_clubAddress
+						address = form_clubAddress,
+						code = form_clubCode
 					)
 				
 				except Exception as e:
@@ -666,6 +668,7 @@ def clubManagement(request):
 					selectedClub.night = form_clubNight
 					selectedClub.venue = form_clubVenue
 					selectedClub.address = form_clubAddress
+					selectedClub.code = form_clubCode
 
 					selectedClub.save()
 
@@ -702,7 +705,8 @@ def clubManagement(request):
 			"website": club.website,
 			"night": club.night,
 			"venue": club.venue,
-			"address": club.address
+			"address": club.address,
+			"code": club.code
 		}
 	
 	return render(request,
