@@ -58,6 +58,8 @@ class Club(models.Model):
 	venue = models.CharField(max_length = 50)
 	address = models.CharField(max_length = 200)
 
+	code = models.CharField(max_length = 8, null = True)
+
 	
 
 
