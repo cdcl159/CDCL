@@ -23,6 +23,7 @@ class ClubManagementForm(forms.Form):
 	clubNight = forms.CharField(max_length = 20, required = False)
 	clubVenue = forms.CharField(max_length = 50, required = False)
 	clubAddress = forms.CharField(max_length = 200, required = False)
+	clubCode = forms.CharField(max_length = 10, required = False)
 
 
 class PlayerManagementForm(forms.Form):
