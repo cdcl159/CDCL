@@ -982,7 +982,7 @@ def fixtures(request):
 
 					pageMessage = {
 						"type": "ERROR",
-						"message": "The selected fixure could not be found."
+						"message": "The selected fixture could not be found."
 					}
 				
 				else:
@@ -1015,7 +1015,7 @@ def fixtures(request):
 
 					pageMessage = {
 						"type": "ERROR",
-						"message": "The selected fixure could not be found."
+						"message": "The selected fixture could not be found."
 					}
 				
 				else:
@@ -1048,7 +1048,7 @@ def fixtures(request):
 
 					pageMessage = {
 						"type": "ERROR",
-						"message": "The selected fixure could not be found."
+						"message": "The selected fixture could not be found."
 					}
 				
 				else:

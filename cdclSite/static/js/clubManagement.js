@@ -7,18 +7,14 @@ function initUI(clubData) {
 function populateClubTable(clubData) {
     
     for (x in clubData) {
+
         var currentClub = clubData[x];
-        console.log(currentClub);
-        
-        console.log(x);
-        console.log(currentClub.name);
-        
-        
         var newRowHTML = "<tr class='clubRow' id='" + x + "'><td>" + currentClub.name + "</td></tr>"
         
         $('.clubTable').append(newRowHTML);
         
     }
+    
     
 }
 
