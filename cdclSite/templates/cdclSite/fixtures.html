@@ -41,6 +41,10 @@
         .fixture_APPROVED {
             background-color: #7bc8a4;
         }
+        #teamTableContainer {
+            height: 400px;
+            overflow-y: auto;
+        }
 
     </style>
     
@@ -945,8 +949,8 @@
                 <div class="col-sm-12">
                     <h4>Teams:</h4>
                 </div>
-                <div class="col-sm-12">
-                    <table class="table table-hover">
+                <div class="col-sm-12" id="teamTableContainer">
+                    <table class="table table-hover" id="teamTable">
                         <thead>
                             <tr>
                                 <th>Team</th>
