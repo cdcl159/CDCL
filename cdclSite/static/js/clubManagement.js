@@ -69,7 +69,7 @@ function editClub() {
             $("#id_clubVenue").val($("#existingClubVenue").val());
             $("#id_clubAddress").val($("#existingClubAddress").val());
             $("#id_clubCode").val($("#existingClubCode").val());
-
+            alert($("#id_clubCode").val());
             $("#clubManagementForm").submit();
         }
 
