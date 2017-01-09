@@ -1319,6 +1319,15 @@ def fixtures(request):
 		pageMessage = {"type": "BLANK", "message": "NOTHING"}
 
 		fixtureManagementForm = FixtureManagementForm()
+	
+	teamData = {}
+
+	for t in Team.objects.all():
+
+		teamData[t.id] = {
+			"clubID": t.club.id,
+			"captain": t.captain.id
+		}
 
 	players = {}
 
@@ -1406,6 +1415,7 @@ def fixtures(request):
 			"fixtures": reversed(list(Fixture.objects.all().order_by("-date"))),
 			"clubs": Club.objects.all(),
 			"teams": Team.objects.all(),
+			"teamData": json.dumps(teamData),
 			"players": json.dumps(players),
 			"fixturesData": json.dumps(fixturesData)
 		})

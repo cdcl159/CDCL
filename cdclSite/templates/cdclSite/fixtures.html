@@ -85,6 +85,7 @@
             var pageMessage = {{pageMessage|safe}};
             var players = {{players|safe}};
             var fixturesData = {{fixturesData|safe}};
+            var teamData = {{teamData|safe}};
 
             initUI();
                           
@@ -121,6 +122,8 @@
             submitTeams();
             submitNewTeam();
             submitFixtureChanges();
+
+            selectTeam(teamData);
         });
         
     </script>
@@ -151,6 +154,68 @@
                         
                         <div class="col-sm-12">
                             <h3 id="messageBody"></h3>
+                        </div>
+                        
+                    </div>
+
+                    <div class="modal-footer">
+
+                    </div>
+                
+                </div>
+
+            </div>
+        </div>
+
+        <div id="editTeamModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <div class="modal-content">
+                    <div class="modal-header teamModalHeader">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h2 class="modal-title" id="teamModalTitle"></h2>
+                    </div>
+                    <div class="modal-body">
+                        
+                        <div class="col-sm-12"><br></div>
+                        
+                        <div class="col-sm-12 row">
+                            <div class="col-sm-6">
+                                <h4>Name:</h4>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control editTeam" id="editTeamName">
+                            </div>
+                        </div>
+                        <div class="col-sm-12 row">
+                            <div class="col-sm-6">
+                                <h4>Club:</h4>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle" id="editTeamClubDropdown" type="button" data-toggle="dropdown">Club
+                                    <span class="caret"></span></button>
+                                    <ul class="dropdown-menu teamClubDropdownMenu">
+                                        {% for c in clubs %}
+                                            <li class="editTeamClubOption" id="{{c.id}}">{{c.name}}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 row">
+                            <div class="col-sm-6">
+                                <h4>Captain:</h4>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle" id="editTeamCaptainDropdown" type="button" data-toggle="dropdown">Captain
+                                    <span class="caret"></span></button>
+                                    <ul class="dropdown-menu" id="editTeamCaptainDropdownMenu">
+
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                         
                     </div>

@@ -294,6 +294,15 @@ function submitNewTeam() {
     });
 }
 
+function selectTeam(teamData) {
+    $(".editTeamIcon").click(function() {
+        
+        var data = teamData[$(this).parent().parent().attr("id")];
+
+        $("#editTeamModal").modal("show");
+
+    });
+}
 
 
 function displaySubmission(fixturesData) {
