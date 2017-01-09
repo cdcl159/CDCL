@@ -1338,7 +1338,8 @@ def fixtures(request):
 
 		players[p.id] = {
 			"name": p.forenames + ", " + p.surname,
-			"club": p.club.name
+			"club": p.club.name,
+			"id": p.id
 		}
 
 	fixturesData = {}

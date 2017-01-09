@@ -294,7 +294,7 @@ function submitNewTeam() {
     });
 }
 
-function selectTeam(teamData) {
+function selectTeam(teamData, players) {
     $(".editTeamIcon").click(function() {
         
         var data = teamData[$(this).parent().parent().attr("id")];
@@ -305,10 +305,36 @@ function selectTeam(teamData) {
         $("#editTeamClubDropdown").text(data["clubName"]);
         $("#editTeamClubDropdown").val(data["clubID"]);
 
+        $("#editTeamCaptainDropdownMenu").empty();
+
+        var initialPlayers = populatePlayerDropdown(players, data["clubName"]);
+
+        for (player in initialPlayers) {
+            var option = "<li class='editCaptainOption' id='" + player["id"] + "'>" + player["name"] + "</li>"
+            $("#editTeamCaptainDropdownMenu").append(option);
+        }
+
         $("#editTeamModal").modal("show");
 
     });
 }
+
+
+
+function populatePlayerDropdown(players, clubName) {
+
+    var output = [];
+
+    for (p in players) {
+        if (players[p].club == clubName) {
+            output.push(players[p]);
+        }
+    }
+
+    return output;
+
+}
+
 
 
 function displaySubmission(fixturesData) {
