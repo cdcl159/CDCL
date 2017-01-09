@@ -299,6 +299,7 @@ function selectTeam(teamData, players) {
         
         var data = teamData[$(this).parent().parent().attr("id")];
         $("#teamModalTitle").text(data["name"]);
+        $("#editTeamName").val(data["name"]);
 
         $("#editTeamCaptainDropdown").text(data["captainName"]);
         $("#editTeamCaptainDropdown").val(data["captainID`"]);
@@ -324,13 +325,15 @@ function selectTeam(teamData, players) {
 function populatePlayerDropdown(players, clubName) {
 
     var output = [];
-
+    console.log(clubName);
     for (p in players) {
         if (players[p].club == clubName) {
+            console.log("FOUND");
             output.push(players[p]);
         }
     }
 
+    console.log("out:", output);
     return output;
 
 }
