@@ -1328,7 +1328,7 @@ def fixtures(request):
 			"clubID": t.club.id,
 			"clubName": t.club.name,
 			"captainID": t.captain.id,
-			"captainName": t.captain.name,
+			"captainName": t.captain.forenames + " " + t.captain.surname,
 			"name": t.name
 		}
 
