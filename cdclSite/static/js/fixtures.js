@@ -330,11 +330,11 @@ function selectNewCaptain() {
 
 function selectNewClub() {
     $(".editTeamClubOption").click(function() {
-        
+
         $("#editTeamClubDropdown").text($(this).text());
         $("#editTeamClubDropdown").val($(this).attr("id"));
         $("#editTeamCaptainDropdownMenu").empty();
-        var initialPlayers = getPlayersForClub(players, data["clubName"]);
+        var initialPlayers = getPlayersForClub(players, $(this).text());
 
         for (i = 0; i < initialPlayers.length; i++) {
             var player = initialPlayers[i];
