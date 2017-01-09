@@ -328,7 +328,7 @@ function selectNewCaptain() {
     });
 }
 
-function selectNewTeam() {
+function selectNewClub() {
     $("#editTeamClubDropdownMenu").on("click", ".editTeamClubOption", function() {
         $("#editTeamClubDropdown").text($(this).text());
         $("#editTeamClubDropdown").val($(this).attr("id"));
