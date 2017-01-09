@@ -308,7 +308,7 @@ function selectTeam(teamData, players) {
 
         $("#editTeamCaptainDropdownMenu").empty();
 
-        var initialPlayers = populatePlayerDropdown(players, data["clubName"]);
+        var initialPlayers = getPlayersForClub(players, data["clubName"]);
 
         for (i = 0; i < initialPlayers.length; i++) {
             var player = initialPlayers[i];
@@ -328,9 +328,24 @@ function selectNewCaptain() {
     });
 }
 
+function selectNewTeam() {
+    $("#editTeamClubDropdownMenu").on("click", ".editTeamClubOption", function() {
+        $("#editTeamClubDropdown").text($(this).text());
+        $("#editTeamClubDropdown").val($(this).attr("id"));
+        $("#editTeamCaptainDropdownMenu").empty();
+        var initialPlayers = getPlayersForClub(players, data["clubName"]);
+
+        for (i = 0; i < initialPlayers.length; i++) {
+            var player = initialPlayers[i];
+            var option = "<li class='editCaptainOption' id='" + player["id"] + "'>" + player["name"] + "</li>"
+            $("#editTeamCaptainDropdownMenu").append(option);
+        }
+    });
+}
 
 
-function populatePlayerDropdown(players, clubName) {
+
+function getPlayersForClub(players, clubName) {
 
     var output = [];
     console.log(clubName);
