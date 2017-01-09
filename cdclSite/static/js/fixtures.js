@@ -298,7 +298,7 @@ function selectTeam(teamData) {
     $(".editTeamIcon").click(function() {
         
         var data = teamData[$(this).parent().parent().attr("id")];
-
+        $("#teamModalTitle").text(data["name"]);
         $("#editTeamModal").modal("show");
 
     });
