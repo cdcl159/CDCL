@@ -322,7 +322,7 @@ function selectTeam(teamData, players) {
 }
 
 function selectNewCaptain() {
-    $("#editTeamCaptainDropdownMenu").on("click", function() {
+    $("#editTeamCaptainDropdownMenu").on("click", ".editCaptainOption", function() {
         $("#editTeamCaptainDropdown").text($(this).text());
         $("#editTeamCaptainDropdown").val($(this).attr("id"));
     });
