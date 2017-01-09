@@ -321,6 +321,13 @@ function selectTeam(teamData, players) {
     });
 }
 
+function selectNewCaptain() {
+    $("#editTeamCaptainDropdownMenu").on("click", function() {
+        $("#editTeamCaptainDropdown").text($(this).text());
+        $("#editTeamCaptainDropdown").val($(this).attr("id"));
+    });
+}
+
 
 
 function populatePlayerDropdown(players, clubName) {
