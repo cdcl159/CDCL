@@ -349,15 +349,12 @@ function selectNewClub(players) {
 function getPlayersForClub(players, clubName) {
 
     var output = [];
-    console.log(clubName);
     for (p in players) {
         if (players[p].club == clubName) {
-            console.log("FOUND");
             output.push(players[p]);
         }
     }
 
-    console.log("out:", output);
     return output;
 
 }
