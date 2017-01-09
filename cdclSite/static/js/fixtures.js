@@ -310,7 +310,8 @@ function selectTeam(teamData, players) {
 
         var initialPlayers = populatePlayerDropdown(players, data["clubName"]);
 
-        for (player in initialPlayers) {
+        for (i = 0; i < initialPlayers.length; i++) {
+            var player = initialPlayers[i];
             var option = "<li class='editCaptainOption' id='" + player["id"] + "'>" + player["name"] + "</li>"
             $("#editTeamCaptainDropdownMenu").append(option);
         }
