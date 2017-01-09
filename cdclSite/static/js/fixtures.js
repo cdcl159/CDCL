@@ -299,6 +299,12 @@ function selectTeam(teamData) {
         
         var data = teamData[$(this).parent().parent().attr("id")];
         $("#teamModalTitle").text(data["name"]);
+
+        $("#editTeamCaptainDropdown").text(data["captainName"]);
+        $("#editTeamCaptainDropdown").val(data["captainID`"]);
+        $("#editTeamClubDropdown").text(data["clubName"]);
+        $("#editTeamClubDropdown").val(data["clubID"]);
+
         $("#editTeamModal").modal("show");
 
     });

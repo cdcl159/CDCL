@@ -1326,7 +1326,9 @@ def fixtures(request):
 
 		teamData[t.id] = {
 			"clubID": t.club.id,
-			"captain": t.captain.id,
+			"clubName": t.club.name,
+			"captainID": t.captain.id,
+			"captainName": t.captain.name,
 			"name": t.name
 		}
 
