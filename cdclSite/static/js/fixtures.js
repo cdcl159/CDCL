@@ -294,8 +294,7 @@ function submitTeamEdit() {
         $("#id_editTeamName").val($("#editTeamName").val());
         $("#id_editTeamClubID").val($("#editTeamClubDropdown").val());
         $("#id_editTeamCaptainID").val($("#editTeamCaptainDropdown").val());
-        alert($("#id_editTeamCaptainID").val());
-        alert($("#id_editTeamClubID").val());
+
         $("#fixtureManagementForm").submit();
     });
 }
