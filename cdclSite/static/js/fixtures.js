@@ -320,7 +320,7 @@ function selectTeam(teamData, players) {
         $("#editTeamName").val(data["name"]);
 
         $("#editTeamCaptainDropdown").text(data["captainName"]);
-        $("#editTeamCaptainDropdown").val(data["captainID`"]);
+        $("#editTeamCaptainDropdown").val(data["captainID"]);
         $("#editTeamClubDropdown").text(data["clubName"]);
         $("#editTeamClubDropdown").val(data["clubID"]);
 
