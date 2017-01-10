@@ -56,6 +56,7 @@ class FixtureManagementForm(forms.Form):
 	removeFixtureMode = forms.BooleanField(required = False)
 	removeTeamMode = forms.BooleanField(required = False)
 	addTeamMode = forms.BooleanField(required = False)
+	editTeamMode = forms.BooleanField(required = False)
 
 	newTeamName = forms.CharField(required = False, max_length = 50)
 	newTeamClubID = forms.IntegerField(required = False)
@@ -82,6 +83,9 @@ class FixtureManagementForm(forms.Form):
 	newStatus = forms.CharField(required = False, max_length = 15)
 
 	selectedTeamID = forms.IntegerField(required = False)
+	editTeamName = forms.CharField(required = False, max_length = 30)
+	editTeamClubID = forms.IntegerField(required = False)
+	editTeamCaptainID = forms.IntegerField(required = False)
 
 
 class ResultsSubmissionForm(forms.Form):
