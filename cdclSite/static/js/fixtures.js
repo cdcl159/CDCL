@@ -284,6 +284,21 @@ function submitTeams() {
 }
 
 
+function submitTeamEdit() {
+    $("#submitTeamChanges").click(function() {
+
+        $("#id_editTeamMode").val(true);
+        $("#id_bulkMode").val(false);
+
+        $("#id_selectedTeamID").val(parseInt($("#teamID").attr("class")));
+        $("#id_editTeamName").val($("#editTeamName").val());
+        $("#id_editTeamClubID").val($("#editTeamClubDropdown").val());
+        $("#id_editTeamCaptainID").val($("#editTeamCaptainDropdown").val());
+        $("#fixtureManagementForm").submit();
+    });
+}
+
+
 function submitNewTeam() {
     $("#submitNewTeam").click(function() {
         $("#id_addTeamMode").val(true);
@@ -298,6 +313,7 @@ function selectTeam(teamData, players) {
     $(".editTeamIcon").click(function() {
         
         var data = teamData[$(this).parent().parent().attr("id")];
+        $("#teamID").attr("class", $(this).parent().parent().attr("id"));
         $("#teamModalTitle").text(data["name"]);
         $("#editTeamName").val(data["name"]);
 
