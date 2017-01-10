@@ -919,6 +919,7 @@ def fixtures(request):
 			form_bulkMode = fixtureManagementForm.cleaned_data["bulkMode"]
 			form_editMode = fixtureManagementForm.cleaned_data["editMode"]
 			form_addMode = fixtureManagementForm.cleaned_data["addMode"]
+			form_editTeamMode = fixtureManagementForm.cleaned_data["editTeamMode"]
 			
 			form_removeFixtureMode = fixtureManagementForm.cleaned_data["removeFixtureMode"]
 			form_removeTeamMode = fixtureManagementForm.cleaned_data["removeTeamMode"]
@@ -947,6 +948,44 @@ def fixtures(request):
 			form_newStatus = fixtureManagementForm.cleaned_data["newStatus"]
 
 			form_selectedTeamID = fixtureManagementForm.cleaned_data["selectedTeamID"]
+			form_editTeamName = fixtureManagementForm.cleaned_data["editTeamName"]
+			form_editTeamClubID = fixtureManagementForm.cleaned_data["editTeamClubID"]
+			form_editTeamCaptainID = fixtureManagementForm.cleaned_data["editTeamCaptainID"]
+
+			if form_editTeamMode:
+
+				try:
+
+					selectedTeam = Team.objects.get(id = form_selectedTeamID)
+				
+				except Team.DoesNotExist:
+
+					pageMessage = {
+						"type": "ERROR",
+						"message": "The team with id: " + str(form_selectedTeamID) + " could not be found."
+					}
+				
+				else:
+
+					try:
+						selectedTeam.name = form_editTeamName
+						selectedTeam.captain = Player.objects.get(id = form_editTeamCaptainID)
+						selectedTeam.club = Club.objects.get(id = form_editTeamClubID)
+						selectedTeam.save()
+					
+					except Exception as e:
+
+						pageMessage = {
+							"type": "ERROR",
+							"message": "The team could not be edited: " + str(e)
+						}
+					
+					else:
+
+						pageMessage = {
+							"type": "SUCCESS",
+							"message": "The changes were made successfully"
+						}
 
 			if form_addTeamMode:
 
