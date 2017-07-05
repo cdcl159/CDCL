@@ -66,6 +66,8 @@ def report_all(output_filename):
 		for fixture in output:
 
 			for game in fixture["games"]:
+				
+				print game
 
 				writer.writerow(
 					[
