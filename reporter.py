@@ -77,7 +77,7 @@ def report_all(output_filename):
 						fixture["hometeam"],
 						fixture["awayteam"],
 						game["boardnumber"],
-						game["homeplayer"]["id"]
+						game["homeplayer"]["id"],
 						game["homeplayer"]["name"],
 						game["homeplayer"]["ecf"],
 						game["homeplayer"]["score"],
