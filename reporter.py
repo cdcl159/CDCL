@@ -65,7 +65,7 @@ def report_all(output_filename):
 
 		for fixture in output:
 
-			for game in fixture["ggames"]:
+			for game in fixture["games"]:
 
 				writer.writerow(
 					[
@@ -75,7 +75,7 @@ def report_all(output_filename):
 						fixture["hometeam"],
 						fixture["awayteam"],
 						game["boardnumber"],
-						game["homeplayer_id]"
+						game["homeplayer_id"]
 						game["homeplayer_name"],
 						game["homeplayer_ecf"],
 						game["homeplayer_score"],
