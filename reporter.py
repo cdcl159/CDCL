@@ -38,8 +38,7 @@ def report_all(output_filename):
 			)
 		
 		fixture_data["games"] = games
-			
 	
-	output.append(fixture_data)
+		output.append(fixture_data)
 
 	return output
