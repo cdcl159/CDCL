@@ -1,6 +1,7 @@
 from cdclSite.models import *
 import csv
 
+# generate report
 def report_all(output_filename):
 	output = []
 
